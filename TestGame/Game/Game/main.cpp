@@ -1,7 +1,9 @@
 #include "stdafx.h"
-#include "Scene/TitleScene.h"
+#include "Scene/SceneManager.h"
+#include "fade/Fade.h"
 
 CRandom g_random;
+Fade* g_fade = nullptr;
 /*!
  * @brief	tkEngineの初期化。
  */
@@ -61,10 +63,14 @@ int WINAPI wWinMain(
 	//tkEngineの初期化。
 	InitTkEngine( hInst );
 
-	//タイトルシーンの作成。
-	NewGO<TitleScene>(0);
+	//常駐オブジェクト。
+	g_fade = NewGO<Fade>(1);
+
+	//シーンマネージャ生成
+	NewGO<SceneManager>(0);
 	
-	Engine().RunGameLoop();		//ゲームループを実行。
+	//ゲームループを実行。
+	Engine().RunGameLoop();	
 
 	return 0;
 }

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "GameScene.h"
 #include "ResultScene.h"
+#include "fade/Fade.h"
 
 GameScene* g_gameScene = NULL;
 
@@ -10,38 +11,25 @@ GameScene::GameScene()
 }
 GameScene::~GameScene()
 {
-	DeleteGO(bgmSource);
+
 }
 
 bool GameScene::Start()
 {
-	bgmSource = NewGO<CSoundSource>(0);
-	bgmSource->Init("Assets/sound/GameBGM.wav");
-	bgmSource->Play(true);
-
-	//ライトを初期化。
+	//ライトを初期化
 	light.SetAmbinetLight(CVector3::One);
 
-	map=NewGO<Map>(0);
-	player=NewGO<Player>(0);
-	camera = NewGO<Camera>(0);
+	map		= NewGO<Map>(0);		//マップ生成
+	player	= NewGO<Player>(0);		//プレイヤー生成
+	camera	= NewGO<Camera>(0);		//カメラ生成
 
+	g_fade->StartFadeIn();
 	return true;
 }
 
 void GameScene::Update()
 {
 
-	if (Pad(0).IsTrigger(enButtonStart)) {
-		//タイトル画面に遷移する。
-		NewGO<ResultScene>(0);
-		DeleteGO(camera);
-		DeleteGO(player);
-		DeleteGO(map);
-		DeleteGO(this);
-		return;
-	}
-	
 }
 /*!
 *@brief	描画関数。
@@ -49,4 +37,11 @@ void GameScene::Update()
 void GameScene::Render(CRenderContext& renderContext)
 {
 
+}
+
+//生成したものを解放する
+void GameScene::Release() {
+	DeleteGO(camera);	//カメラ
+	DeleteGO(player);	//プレイヤー
+	DeleteGO(map);		//マップ
 }

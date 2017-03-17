@@ -1,3 +1,7 @@
+/*
+	リザルト画面
+*/
+
 #pragma once
 class ResultScene : public IGameObject
 {
@@ -8,9 +12,7 @@ public:
 	void Update() override;
 	void PostRender(CRenderContext& renderContext) override;
 private:
-	CSoundSource* bgmSource = NULL;
-
-	CSprite sprite;
-	CTexture texture;
+	CSprite		sprite;		//スプライト
+	CTexture	texture;	//テクスチャ
 };
 

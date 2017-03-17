@@ -19,6 +19,6 @@ public:
 
 private:
 	CCamera		camera;			//カメラ
-	CVector3	playerDist;		//カメラの位置
+	CVector3	playerDist;		//カメラとプレイヤーの距離みたいなの
 };
 

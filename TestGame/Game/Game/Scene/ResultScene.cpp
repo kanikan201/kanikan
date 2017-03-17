@@ -2,6 +2,7 @@
 #include "ResultScene.h"
 #include "TitleScene.h"
 #include "GameScene.h"
+#include "fade/Fade.h"
 
 namespace {
 	const CVector2 BackSize = { 1280.0f, 720.0f };
@@ -14,27 +15,22 @@ ResultScene::ResultScene()
 
 ResultScene::~ResultScene()
 {
-	DeleteGO(bgmSource);
+
 }
 bool ResultScene::Start()
 {
-	bgmSource = NewGO<CSoundSource>(0);
-	bgmSource->Init("Assets/sound/TitleBGM.wav");
-	bgmSource->Play(true);
-
 	texture.Load("Assets/sprite/result.png");
+
 	sprite.Init(&texture);
 	sprite.SetSize(BackSize);
 	sprite.SetPosition(BackPos);
+
+	g_fade->StartFadeIn();
 	return true;
 }
 void ResultScene::Update()
 {
-	if (Pad(0).IsTrigger(enButtonStart)) {
-		NewGO<TitleScene>(0);
-		//©•ª‚ğíœB
-		DeleteGO(this);
-	}
+
 }
 void ResultScene::PostRender(CRenderContext& renderContext)
 {

@@ -31,17 +31,17 @@ public:
 	};
 
 private:
-	CSkinModel						skinModel;					//スキンモデル
+	CSkinModel					skinModel;					//スキンモデル
 	CSkinModelData				skinModelData;				//スキンモデルデータ。
-	CCharacterController			characterController;		//キャラクタ―コントローラー
+	CCharacterController		characterController;		//キャラクタ―コントローラー
 
-	CVector3							position = CVector3::Zero;			//プレイヤーの座標
-	CQuaternion						rotation = CQuaternion::Identity;	//回転
-	CVector3							dir = { 0.0f,0.0f,1.0f };		//向き
+	CVector3			position = CVector3::Zero;			//プレイヤーの座標
+	CQuaternion			rotation = CQuaternion::Identity;	//回転
+	CVector3			dir = { 0.0f,0.0f,1.0f };			//向き
 
-	CAnimation		animation;		//アニメーション。
-	AnimationNo		currentAnimSetNo;	//今のモーション
-	AnimationNo		anim;				//変更前のモーション
+	CAnimation			animation;			//アニメーション。
+	AnimationNo			currentAnimSetNo;	//今のモーション
+	AnimationNo			anim;				//変更前のモーション
 
-	float timer = 0.0f;		//タイマー。
+	float				timer = 0.0f;		//タイマー。
 };

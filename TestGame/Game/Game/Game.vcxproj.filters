@@ -18,6 +18,9 @@
     <Filter Include="Source Files\Player">
       <UniqueIdentifier>{38682c94-1b3f-451b-a01f-1f95bcca720c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Fade">
+      <UniqueIdentifier>{fcfeed53-b7a5-4664-8bb6-7c5a8b90bfc1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -47,6 +50,12 @@
     <ClCompile Include="Scene\ResultScene.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Fade\Fade.cpp">
+      <Filter>Source Files\Fade</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -72,6 +81,12 @@
     </ClInclude>
     <ClInclude Include="Scene\ResultScene.h">
       <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Fade\Fade.h">
+      <Filter>Source Files\Fade</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
