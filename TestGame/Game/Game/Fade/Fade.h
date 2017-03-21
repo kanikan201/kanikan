@@ -44,7 +44,7 @@ private:
 		eFadeOut,	//フェードアウト
 		eFadeIn,	//フェードイン
 	};
-	const float		FADE_TIME = 0.2f;		//フェード時間(単位：秒)
+	const float		FADE_TIME = 0.15f;		//フェード時間(単位：秒)
 	CSprite			m_sprite;				//フェードするスプライト
 	CTexture		m_texture;				//フェードするテクスチャ
 	EnState			m_state = eFadeIn;		//状態

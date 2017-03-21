@@ -22,7 +22,7 @@ bool SceneManager::Start()
 
 void SceneManager::Update()
 {
-	//フェードイン時
+	//フェードイン中
 	if (f_step == step_WaitFadeIn) {
 		//フェードが終わった
 		if (!g_fade->IsExecute()) {
@@ -56,25 +56,47 @@ void SceneManager::Update()
 
 	//ゲームシーンの時
 	case stateGame:
-		if (Pad(0).IsTrigger(enButtonStart)) {
-			//リザルト画面へ遷移
-			result=NewGO<ResultScene>(0);
-			g_gameScene->Release();
-			DeleteGO(g_gameScene);
-			
-			state = stateResult;
+		//フェードアウト時
+		if (f_step == step_WaitFadeOut) {
+			//フェードが終わった
+			if (!g_fade->IsExecute()) {
+				result = NewGO<ResultScene>(0);
+				g_gameScene->Release();
+				DeleteGO(g_gameScene);
+				f_step = step_WaitFadeIn;
+				state = stateResult;
+			}
+		}
+		//通常時
+		else if (f_step == step_nomal) {
+			//スタートボタンを押した
+			if (Pad(0).IsTrigger(enButtonStart)) {
+				g_fade->StartFadeOut();
+				f_step = step_WaitFadeOut;
+			}
 		}
 		break;
 
 	//リザルト画面の時
 	case stateResult:
-		if (Pad(0).IsTrigger(enButtonStart)) {
-			//タイトル画面へ遷移
-			titel=NewGO<TitleScene>(0);
-
-			DeleteGO(result);
-
-			state = stateTitel;
+		//フェードアウト時
+		if (f_step == step_WaitFadeOut) {
+			//フェードが終わった
+			if (!g_fade->IsExecute()) {
+				//タイトル画面へ遷移
+				titel = NewGO<TitleScene>(0);
+				DeleteGO(result);
+				f_step = step_WaitFadeIn;
+				state = stateTitel;
+			}
+		}
+		//通常時
+		else if (f_step == step_nomal) {
+			//スタートボタンを押した
+			if (Pad(0).IsTrigger(enButtonStart)) {
+				g_fade->StartFadeOut();
+				f_step = step_WaitFadeOut;
+			}
 		}
 		break;
 	}
