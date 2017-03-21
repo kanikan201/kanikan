@@ -38,6 +38,7 @@ void SceneManager::Update()
 		if (f_step == step_WaitFadeOut) {
 			//フェードが終わった
 			if (!g_fade->IsExecute()) {
+				//ゲームシーンへ遷移
 				g_gameScene = NewGO<GameScene>(0);
 				DeleteGO(titel);
 				f_step = step_WaitFadeIn;
@@ -60,6 +61,7 @@ void SceneManager::Update()
 		if (f_step == step_WaitFadeOut) {
 			//フェードが終わった
 			if (!g_fade->IsExecute()) {
+				//リザルトへ遷移
 				result = NewGO<ResultScene>(0);
 				g_gameScene->Release();
 				DeleteGO(g_gameScene);

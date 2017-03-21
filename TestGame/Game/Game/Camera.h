@@ -20,5 +20,6 @@ public:
 private:
 	CCamera		camera;			//カメラ
 	CVector3	playerDist;		//カメラとプレイヤーの距離みたいなの
+	CVector3	toPosition;		//注視点から視点へのベクトル。
 };
 
