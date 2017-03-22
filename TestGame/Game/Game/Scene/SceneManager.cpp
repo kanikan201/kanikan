@@ -3,6 +3,8 @@
 #include "GameScene.h"
 #include "fade/Fade.h"
 
+SceneManager* sceneManager;
+
 SceneManager::SceneManager()
 {
 }

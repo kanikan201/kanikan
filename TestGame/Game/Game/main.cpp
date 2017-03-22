@@ -67,7 +67,7 @@ int WINAPI wWinMain(
 	g_fade = NewGO<Fade>(1);
 
 	//シーンマネージャ生成
-	NewGO<SceneManager>(0);
+	sceneManager=NewGO<SceneManager>(0);
 	
 	//ゲームループを実行。
 	Engine().RunGameLoop();	

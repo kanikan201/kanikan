@@ -9,6 +9,7 @@ public:
 	~Player();
 	bool Start();
 	void Update();
+	void Move();
 	void Render(CRenderContext& renderContext);
 	float Distance(CVector3& objectPos);	//プレイヤーとの距離を返す
 
@@ -39,9 +40,11 @@ private:
 	CQuaternion			rotation = CQuaternion::Identity;	//回転
 	CVector3			dir = { 0.0f,0.0f,1.0f };			//向き
 
+	CVector3			toLightPos;
+
 	CAnimation			animation;			//アニメーション。
 	AnimationNo			currentAnimSetNo;	//今のモーション
-	AnimationNo			anim;				//変更前のモーション
+	AnimationNo			prevAnim;				//変更前のモーション
 
 	float				timer = 0.0f;		//タイマー。
 };

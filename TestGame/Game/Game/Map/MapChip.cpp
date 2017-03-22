@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MapChip.h"
 #include "scene/GameScene.h"
+#include "scene/SceneManager.h"
 
 
 MapChip::MapChip()
@@ -10,6 +11,8 @@ MapChip::MapChip()
 
 MapChip::~MapChip()
 {
+	skinModel.SetShadowCasterFlag(false);
+	skinModel.SetShadowReceiverFlag(false);
 	//剛体を削除
 	PhysicsWorld().RemoveRigidBody(&rigidBody);
 }
@@ -53,8 +56,8 @@ void MapChip::Update()
 	//何もしない
 
 	//テスト用
-	if (Pad(0).IsTrigger(enButtonStart)) {
-		//タイトル画面に遷移する。
+	if (sceneManager->GetScene()!=SceneManager::stateGame) {
+		//自分を削除
 		DeleteGO(this);
 		return;
 	}

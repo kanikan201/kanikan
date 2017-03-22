@@ -28,6 +28,11 @@ public:
 		step_nomal,			//何もない
 	};
 
+	//現在のシーンを取得
+	SceneState GetScene() {
+		return state;
+	}
+
 private:
 	SceneState			state;		//現在のシーン
 	FadeStep			f_step;
@@ -35,3 +40,5 @@ private:
 	TitleScene*			titel;		//タイトル
 	ResultScene*		result;		//リザルト
 };
+
+extern SceneManager* sceneManager;

@@ -16,14 +16,12 @@ Camera::~Camera()
 
 bool Camera::Start()
 {
-	//ƒJƒƒ‰‚ÆƒvƒŒƒCƒ„[‚Æ‚Ì‹——£?
-	playerDist.Set(0.0f, 4.0f, 12.0f);
-
-	camera.SetPosition(playerDist);
+	camera.SetPosition({ 0.0f, 4.0f, 12.0f });
 	camera.SetTarget(CVector3::Zero);
 	toPosition.Subtract(camera.GetPosition(), camera.GetTarget());
+
 	camera.SetFar(100000.0f);
-	camera.SetViewAngle(CMath::DegToRad(45.0f));
+	camera.SetViewAngle(CMath::DegToRad(45.0f));	//‰æŠp
 	camera.Update();
 
 	return true;
@@ -36,22 +34,26 @@ void Camera::Update()
 	float rStick_y = Pad(0).GetRStickYF();
 
 	if (fabsf(rStick_x) > 0.0f) {
-		//YŽ²Žü‚è‚Ì‰ñ“]‚ðŒvŽZB
-		//‰ñ‚·
+		//YŽ²Žü‚è‚Ì‰ñ“]‚ðŒvŽZ
 		CMatrix mRot;
 		mRot.MakeRotationY(SPEED * rStick_x);
 		mRot.Mul(toPosition);
 	}
 	if (fabsf(rStick_y) > 0.0f) {
+		//XŽ²Žü‚è‚Ì‰ñ“]‚ðŒvŽZ
 		CVector3 rotAxis;
 		rotAxis.Cross(CVector3::Up, toPosition);
 		rotAxis.Normalize();
 		CMatrix mRot;
 		mRot.MakeRotationAxis(rotAxis, SPEED * rStick_y);
+
+		//‘O‚Ìƒ|ƒWƒVƒ‡ƒ“
 		CVector3 toPositionOld = toPosition;
+
 		mRot.Mul(toPosition);
 		CVector3 toPosDir = toPosition;
 		toPosDir.Normalize();
+
 		if (toPosDir.y < -0.5f) {
 			//ƒJƒƒ‰‚ªãŒü‚«‚·‚¬‚é‚©‚çŽ~‚ß‚é
 			toPosition = toPositionOld;
@@ -72,7 +74,6 @@ void Camera::Update()
 
 	CVector3 cameraPos;
 	cameraPos = target;
-	//cameraPos.Add(target, playerDist);
 
 	cameraPos.Add(toPosition);
 	camera.SetPosition(cameraPos);
