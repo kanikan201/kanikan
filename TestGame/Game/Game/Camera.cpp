@@ -54,11 +54,11 @@ void Camera::Update()
 		CVector3 toPosDir = toPosition;
 		toPosDir.Normalize();
 
-		if (toPosDir.y < -0.5f) {
+		if (toPosDir.y < -0.1f) {
 			//ƒJƒƒ‰‚ªãŒü‚«‚·‚¬‚é‚©‚ç~‚ß‚é
 			toPosition = toPositionOld;
 		}
-		else if (toPosDir.y > 0.8f) {
+		else if (toPosDir.y > 0.85f) {
 			//ƒJƒƒ‰‚ª‰ºŒü‚«‚·‚¬‚é‚©‚ç~‚ß‚é
 			toPosition = toPositionOld;
 		}

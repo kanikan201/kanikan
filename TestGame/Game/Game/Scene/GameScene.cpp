@@ -43,6 +43,7 @@ bool GameScene::Start()
 	map->Create(Stage, numObject);
 	player	= NewGO<Player>(0);		//プレイヤー生成
 	camera	= NewGO<Camera>(0);		//カメラ生成
+	ivt = NewGO<inventory>(0);
 
 	g_fade->StartFadeIn();
 	return true;
@@ -65,4 +66,5 @@ void GameScene::Release() {
 	DeleteGO(camera);	//カメラ
 	DeleteGO(player);	//プレイヤー
 	DeleteGO(map);		//マップ
+	DeleteGO(ivt);
 }

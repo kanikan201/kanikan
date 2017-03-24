@@ -1,7 +1,9 @@
-#pragma once
 /*!
- *@brief	タイトルシーン。
- */
+*@brief	タイトルシーン。
+*/
+
+#pragma once
+
 class TitleScene : public IGameObject
 {
 public:

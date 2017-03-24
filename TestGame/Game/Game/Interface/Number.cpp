@@ -12,21 +12,12 @@ Number::~Number()
 {
 }
 
-//初期化
-void Number::Init(texState tex, CVector2 numPos, CVector2 numSize)
+//初期化(ポジション,サイズ)
+void Number::Init(CVector2 numPos, CVector2 numSize)
 {
-	char str[10];
-
-	if (tex == isInfo) {
-		sprintf(str, "number");
-	}
-	else {
-		sprintf(str, "resultNum");
-	}
-
 	for (int i = 0; i < 10; i++) {
 		char filePath[256];
-		sprintf(filePath, "Assets/sprite/%s/%d.png",str, i);
+		sprintf(filePath, "Assets/sprite/num/%d.png", i);
 		m_numberTex[i].Load(filePath);
 
 		m_number[i].Init(&m_numberTex[i]);
