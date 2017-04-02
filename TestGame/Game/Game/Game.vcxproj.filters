@@ -21,6 +21,9 @@
     <Filter Include="Source Files\Fade">
       <UniqueIdentifier>{fcfeed53-b7a5-4664-8bb6-7c5a8b90bfc1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Eneny">
+      <UniqueIdentifier>{1b4b6839-65cf-4adc-bb0e-d5e8a4e56ca8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -56,6 +59,12 @@
     <ClCompile Include="Fade\Fade.cpp">
       <Filter>Source Files\Fade</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy\Enemy.cpp">
+      <Filter>Source Files\Eneny</Filter>
+    </ClCompile>
+    <ClCompile Include="inventory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -87,6 +96,12 @@
     </ClInclude>
     <ClInclude Include="Fade\Fade.h">
       <Filter>Source Files\Fade</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy\Enemy.h">
+      <Filter>Source Files\Eneny</Filter>
+    </ClInclude>
+    <ClInclude Include="inventory.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

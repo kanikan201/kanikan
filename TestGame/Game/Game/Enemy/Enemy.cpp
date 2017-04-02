@@ -1,9 +1,8 @@
 #include "stdafx.h"
 #include "Enemy.h"
-#include "Player.h"
+#include "Player/Player.h"
 #include "Camera.h"
-#include "Bullet.h"
-#include "SceneManager.h"
+#include "scene/GameScene.h"
 
 
 Enemy::Enemy()
@@ -18,9 +17,10 @@ Enemy::~Enemy()
 
 void Enemy::Init(CVector3 pos)
 {
+	skinModelData.LoadModelData("Assets/modelData/D_Unity.X", &animation);
 
 	skinModel.Init(&skinModelData);
-	skinModel.SetLight(&g_defaultLight);			//デフォルトライトを設定。
+	skinModel.SetLight(&g_gameScene->getLight());			//デフォルトライトを設定。
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
@@ -37,6 +37,7 @@ void Enemy::Init(CVector3 pos)
 
 void Enemy::Update()
 {
+	/*
 	//HPが0になった
 	if (scene->isDelete() || state.hp <= 0) {
 		g_player->SetScore(state.score);
@@ -51,20 +52,13 @@ void Enemy::Update()
 		workFlag = true;
 	}
 
-	//アニメーション更新
-	//animation.Update(1.0f / 30.0f);
-	//anim = currentAnimSetNo;
-
-	//落下死
-	if (centralPos.y < -10.0f) {
-		state.hp = 0;
-	}
-
+	//プレイヤーと接触
 	if (length <= 3.0f) {
 		g_player->Damage(centralPos);
 	}
 
 	this->Damage();
+	*/
 
 	move = characterController.GetMoveSpeed();
 
@@ -72,7 +66,7 @@ void Enemy::Update()
 	Move();
 
 	characterController.SetMoveSpeed(move);		//移動速度を設定
-	characterController.Execute();					//キャラクターコントロール実行
+	characterController.Execute(GameTime().GetFrameDeltaTime());					//キャラクターコントロール実行
 	position = characterController.GetPosition();	//実行結果の受け取り
 	centralPos.Add(position, central);
 
@@ -85,35 +79,12 @@ void Enemy::Move()
 
 }
 
+//ダメージを受ける
 void Enemy::Damage()
 {
-	if (g_player->GetInfo() == Player::isClear) { return; }
-	if (length > (Limit-4.5f)) { return; }
-
-	for (int i = 0; i < BulletMAX; i++) {
-
-		if (bullet[i] == nullptr) { continue; }
-
-		if (bullet[i]->Distance(centralPos) < 3.0) {
-			state.hp--;
-			bullet[i]->SetFlag(true);
-			DeleteGO(bullet[i]);
-			bullet[i] = nullptr;
-
-			CSoundSource* SE = NewGO<CSoundSource>(0);
-			if (state.hp > 0) {
-				SE->Init("Assets/sound/hit.wav");
-			}
-			else {
-				SE->Init("Assets/sound/enemy_death.wav");
-			}
-			SE->Play(false);
-		}
-	}
 }
 
 void Enemy::Render(CRenderContext& renderContext)
 {
-	if (length > Limit) { return; }
-	skinModel.Draw(renderContext, gameCamera->GetViewMatrix(), gameCamera->GetProjectionMatrix());
+	skinModel.Draw(renderContext, g_gameScene->getCamera()->GetViewMatrix(), g_gameScene->getCamera()->GetProjectionMatrix());
 }

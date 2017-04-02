@@ -13,11 +13,11 @@ public:
 	void Init(CVector3 FirstPosition);
 	void Update();
 	void Render(CRenderContext& renderContext);
-	virtual void Move();			//動き
-	virtual void Damage();
+	void Move();			//動き
+	void Damage();
 
 protected:
-	//モーション
+	//モーション(仮)
 	enum AnimationNo {
 		AnimationDeath,		//死
 		AnimationRun,		//走り
@@ -26,7 +26,7 @@ protected:
 
 	CAnimation			animation;			//アニメーション。
 	AnimationNo			currentAnimSetNo;	//今のモーション
-	AnimationNo			anim;				//変更前のモーション
+	AnimationNo			prevAnim;			//変更前のモーション
 
 	char filePath[256];	//ファイルパス
 
@@ -40,12 +40,11 @@ protected:
 	CSkinModelData			skinModelData;				//スキンモデルデータ。
 	CCharacterController	characterController;		//キャラクタ―コントローラー
 
-	CVector3				position;					//プレイヤーの座標
-	CVector3				centralPos;					//プレイヤーの中心の座標
-	const CVector3			central = { 0.0f, 1.8f,0.0f };	//プレイヤーの真ん中の高さ
+	CVector3				position;					//敵の座標
+	CVector3				centralPos;					//敵の中心の座標
+	const CVector3			central = { 0.0f, 1.8f,0.0f };	//敵の中心の高さ
 
 	CVector3				move = CVector3::Zero;
-
 	CQuaternion				rotation = CQuaternion::Identity;	//回転
 
 	//CAnimation		animation;			//アニメーション。
@@ -55,6 +54,4 @@ protected:
 	Status state;	//敵のステータス
 
 	float length = 0.0f;	//プレイヤーとの距離
-
-	bool workFlag = false; 
 };

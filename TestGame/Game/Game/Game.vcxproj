@@ -163,7 +163,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Fade\Fade.cpp" />
+    <ClCompile Include="inventory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\Map.cpp" />
     <ClCompile Include="Map\MapChip.cpp" />
@@ -181,7 +183,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Fade\Fade.h" />
+    <ClInclude Include="inventory.h" />
     <ClInclude Include="Map\Map.h" />
     <ClInclude Include="Map\MapChip.h" />
     <ClInclude Include="Player\Player.h" />
