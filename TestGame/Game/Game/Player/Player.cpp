@@ -40,6 +40,9 @@ bool Player::Start() {
 
 void Player::Update()
 {
+	//切り替わり時は処理しない
+	if (g_gameScene->isStep() != GameScene::step_nomal) { return; }
+
 	//前のアニメーションを保存
 	prevAnim = currentAnimSetNo;
 
@@ -128,6 +131,19 @@ void Player::Render(CRenderContext& renderContext)
 	skinModel.Draw(renderContext, g_gameScene->getCamera()->GetViewMatrix(), g_gameScene->getCamera()->GetProjectionMatrix());
 }
 
+void Player::SetPosition(CVector3 pos) 
+{
+	characterController.SetPosition(pos);
+	characterController.Execute(GameTime().GetFrameDeltaTime());	//キャラクターコントロール実行
+	position = pos;
+	//影
+	ShadowMap().SetLightTarget(position);
+	CVector3 lightPos;
+	lightPos.Add(position, toLightPos);
+	ShadowMap().SetLightPosition(lightPos);
+
+	skinModel.Update(position, rotation, { 2.5f, 2.5f, 2.5f });
+}
 
 //プレイヤーと対象の距離を計算して返す
 float Player::Distance(CVector3& objectPos)

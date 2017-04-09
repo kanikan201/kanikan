@@ -3,6 +3,7 @@
 #include "Player/Player.h"
 #include "Camera.h"
 #include "scene/GameScene.h"
+#include "scene/SceneManager.h"
 
 
 Enemy::Enemy()
@@ -31,34 +32,24 @@ void Enemy::Init(CVector3 pos)
 
 	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
 
-	//animation.SetAnimationEndTime(AnimationRun, 0.8);
 	//animation.PlayAnimation(AnimationStand);
 }
 
 void Enemy::Update()
 {
-	/*
-	//HPが0になった
-	if (scene->isDelete() || state.hp <= 0) {
-		g_player->SetScore(state.score);
+	if (sceneManager->GetScene() != SceneManager::stateGame || g_gameScene->isObjectDelete()) {
+		//自分を削除
 		skinModel.SetShadowCasterFlag(false);
 		skinModel.SetShadowReceiverFlag(false);
 		DeleteGO(this);
+		return;
 	}
 
-	length = g_player->Distance(centralPos);
-	if (!workFlag) {
-		if (length > Limit) { return; }
-		workFlag = true;
+	//プレイヤーと自身の距離
+	float dist = g_gameScene->getPlayer()->Distance(position);
+	if (dist < 1.0f) {
+		g_gameScene->getPlayer()->SetPosition({ 0.0f,0.0f,0.0f });
 	}
-
-	//プレイヤーと接触
-	if (length <= 3.0f) {
-		g_player->Damage(centralPos);
-	}
-
-	this->Damage();
-	*/
 
 	move = characterController.GetMoveSpeed();
 
@@ -66,17 +57,24 @@ void Enemy::Update()
 	Move();
 
 	characterController.SetMoveSpeed(move);		//移動速度を設定
-	characterController.Execute(GameTime().GetFrameDeltaTime());					//キャラクターコントロール実行
+	characterController.Execute(GameTime().GetFrameDeltaTime());	//キャラクターコントロール実行
 	position = characterController.GetPosition();	//実行結果の受け取り
 	centralPos.Add(position, central);
 
-	skinModel.Update(position, rotation, CVector3::One);
+	skinModel.Update(position, rotation, { 2.5f, 2.5f, 2.5f });
 }
 
 //動き
 void Enemy::Move()
 {
+	m_timer += GameTime().GetFrameDeltaTime();
 
+	if (m_timer > 2.0f) {
+		dir *= -1.0f;
+		m_timer = 0.0f;
+		rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(90.0f*dir));
+	}
+	move.x = dir*5.0f;
 }
 
 //ダメージを受ける

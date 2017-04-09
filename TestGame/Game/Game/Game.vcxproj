@@ -163,6 +163,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="ClearMarker.cpp" />
     <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Fade\Fade.cpp" />
     <ClCompile Include="inventory.cpp" />
@@ -183,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="ClearMarker.h" />
     <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Fade\Fade.h" />
     <ClInclude Include="inventory.h" />

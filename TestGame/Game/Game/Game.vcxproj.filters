@@ -65,6 +65,9 @@
     <ClCompile Include="inventory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ClearMarker.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -102,6 +105,9 @@
     </ClInclude>
     <ClInclude Include="inventory.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ClearMarker.h">
+      <Filter>Source Files\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -56,7 +56,7 @@ void MapChip::Update()
 	//何もしない
 
 	//テスト用
-	if (sceneManager->GetScene()!=SceneManager::stateGame) {
+	if ((sceneManager->GetScene() != SceneManager::stateGame) || g_gameScene->isObjectDelete()) {
 		//自分を削除
 		DeleteGO(this);
 		return;

@@ -16,3 +16,9 @@
 	CVector3(0.40f, -1.60f, -1.20f),             //平行移動
 	CQuaternion(-0.68f, 0.18f, 0.18f, 0.68f ),  //回転
 },
+//clearMaker
+{
+	"clearMarker",
+	CVector3(10.00f, -3.00f, -5.20f),             //平行移動
+	CQuaternion(0.00f, 0.00f, 0.00f, 0.00f),  //回転
+},

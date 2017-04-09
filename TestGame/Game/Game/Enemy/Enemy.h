@@ -53,5 +53,7 @@ protected:
 
 	Status state;	//敵のステータス
 
-	float length = 0.0f;	//プレイヤーとの距離
+	float		length = 0.0f;	//プレイヤーとの距離
+	float		m_timer = 0.0f;
+	float		dir = 1.0f;
 };
