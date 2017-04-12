@@ -36,9 +36,6 @@ public:
 private:
 	SceneState			state;		//現在のシーン
 	FadeStep			f_step;
-
-	TitleScene*			titel;		//タイトル
-	ResultScene*		result;		//リザルト
 };
 
 extern SceneManager* sceneManager;

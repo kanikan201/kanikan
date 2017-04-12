@@ -15,7 +15,7 @@ SceneManager::~SceneManager()
 bool SceneManager::Start()
 {
 	//タイトル画面生成
-	titel=NewGO<TitleScene>(0);
+	NewGO<TitleScene>(0);
 	state = stateTitel;
 	f_step = step_nomal;
 
@@ -42,7 +42,6 @@ void SceneManager::Update()
 			if (!g_fade->IsExecute()) {
 				//ゲームシーンへ遷移
 				g_gameScene = NewGO<GameScene>(0);
-				DeleteGO(titel);
 				f_step = step_WaitFadeIn;
 				state = stateGame;
 			}
@@ -63,9 +62,9 @@ void SceneManager::Update()
 		if (f_step == step_WaitFadeOut) {
 			//フェードが終わった
 			if (!g_fade->IsExecute()) {
-				//リザルトへ遷移
-				result = NewGO<ResultScene>(0);
 				g_gameScene->Release();
+				//リザルトへ遷移
+				NewGO<ResultScene>(0);
 				DeleteGO(g_gameScene);
 				f_step = step_WaitFadeIn;
 				state = stateResult;
@@ -88,8 +87,7 @@ void SceneManager::Update()
 			//フェードが終わった
 			if (!g_fade->IsExecute()) {
 				//タイトル画面へ遷移
-				titel = NewGO<TitleScene>(0);
-				DeleteGO(result);
+				NewGO<TitleScene>(0);
 				f_step = step_WaitFadeIn;
 				state = stateTitel;
 			}

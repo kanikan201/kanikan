@@ -37,7 +37,7 @@ void Enemy::Init(CVector3 pos)
 
 void Enemy::Update()
 {
-	if (sceneManager->GetScene() != SceneManager::stateGame || g_gameScene->isObjectDelete()) {
+	if ((sceneManager->GetScene() != SceneManager::stateGame) || g_gameScene->isObjectDelete()) {
 		//©•ª‚ğíœ
 		skinModel.SetShadowCasterFlag(false);
 		skinModel.SetShadowReceiverFlag(false);

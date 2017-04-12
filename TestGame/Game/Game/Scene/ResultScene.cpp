@@ -3,6 +3,7 @@
 #include "TitleScene.h"
 #include "GameScene.h"
 #include "fade/Fade.h"
+#include "SceneManager.h"
 
 namespace {
 	const CVector2 BackSize = { 1280.0f, 720.0f };
@@ -30,7 +31,9 @@ bool ResultScene::Start()
 }
 void ResultScene::Update()
 {
-
+	if (sceneManager->GetScene() != SceneManager::stateResult) {
+		DeleteGO(this);
+	}
 }
 void ResultScene::PostRender(CRenderContext& renderContext)
 {

@@ -2,6 +2,7 @@
 #include "TitleScene.h"
 #include "GameScene.h"
 #include "fade/Fade.h"
+#include "SceneManager.h"
 
 namespace {
 	const CVector2 BackSize = { 1280.0f, 720.0f };
@@ -31,6 +32,9 @@ bool TitleScene::Start()
 }
 void TitleScene::Update()
 {
+	if (sceneManager->GetScene() != SceneManager::stateTitel) {
+		DeleteGO(this);
+	}
 }
 void TitleScene::PostRender(CRenderContext& renderContext)
 {

@@ -46,6 +46,7 @@ bool GameScene::Start()
 		//マップに配置されているオブジェクト数を計算
 		numObject = sizeof(Stage1) / sizeof(Stage1[0]);
 		map->Create(Stage1, numObject);
+
 		player = NewGO<Player>(0);		//プレイヤー生成
 		camera = NewGO<Camera>(0);		//カメラ生成
 		ivt = NewGO<inventory>(0);

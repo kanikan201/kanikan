@@ -43,8 +43,8 @@ private:
 
 	CVector3			toLightPos;
 
-	CAnimation			animation;			//アニメーション。
-	AnimationNo			currentAnimSetNo;	//今のモーション
+	CAnimation			animation;				//アニメーション。
+	AnimationNo			currentAnimSetNo;		//今のモーション
 	AnimationNo			prevAnim;				//変更前のモーション
 
 	float				timer = 0.0f;		//タイマー。
