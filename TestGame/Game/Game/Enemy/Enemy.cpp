@@ -10,7 +10,8 @@ Enemy::Enemy()
 {
 	CRandom rand;
 	rand.Init((unsigned long)time(NULL));
-	start = rand.GetRandDouble;
+	start = rand.GetRandInt() % 15;
+	start /= 10.0f;
 }
 
 
