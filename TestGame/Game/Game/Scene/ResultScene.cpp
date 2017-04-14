@@ -26,11 +26,13 @@ bool ResultScene::Start()
 	sprite.SetSize(BackSize);
 	sprite.SetPosition(BackPos);
 
+	//フェードイン
 	g_fade->StartFadeIn();
 	return true;
 }
 void ResultScene::Update()
 {
+	//シーンが切り替わったら自身を削除
 	if (sceneManager->GetScene() != SceneManager::stateResult) {
 		DeleteGO(this);
 	}

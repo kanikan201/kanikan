@@ -7,6 +7,7 @@ public:
 	bool Start();
 	void Update();
 
+//ÉQÉbÉ^Å[
 	const CMatrix& GetViewMatrix() const 
 	{
 		return camera.GetViewMatrix();

@@ -75,8 +75,8 @@ private:
 	Player*				player;				//プレイヤー
 	Map*				map;				//マップ
 	inventory*			ivt;				//インベントリ
-	bool				isDelete = false;		//オブジェクト消去フラグ
-	bool				isClear	 = false;		//クリアフラグ
+	bool				isDelete;			//オブジェクト消去フラグ
+	bool				isClear;			//クリアフラグ
 	FadeStep			fadeStep = step_WaitFadeOut;
 
 	state_stage			currentStage = en_Stage1;	//現在のステージ

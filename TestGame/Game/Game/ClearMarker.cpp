@@ -12,8 +12,6 @@ ClearMarker::ClearMarker()
 
 ClearMarker::~ClearMarker()
 {
-	skinModel.SetShadowCasterFlag(false);
-	skinModel.SetShadowReceiverFlag(false);
 }
 
 void ClearMarker::Init(CVector3 position, CQuaternion rotation)
@@ -37,17 +35,19 @@ void ClearMarker::Init(CVector3 position, CQuaternion rotation)
 
 void ClearMarker::Update()
 {
+	if ((g_gameScene == nullptr) || g_gameScene->isObjectDelete()) {
+		skinModel.SetShadowCasterFlag(false);
+		skinModel.SetShadowReceiverFlag(false);
+		//自分を削除
+		DeleteGO(this);
+		return;
+	}
+
 	//プレイヤーと自身の距離
 	float dist = g_gameScene->getPlayer()->Distance(position);
 	if (!flag && (dist < 1.0f) && Pad(0).IsTrigger(enButtonA)) {
 		flag = true;
 		g_gameScene->setClear(true);
-	}
-
-	if ((sceneManager->GetScene() != SceneManager::stateGame) || g_gameScene->isObjectDelete()) {
-		//自分を削除
-		DeleteGO(this);
-		return;
 	}
 }
 

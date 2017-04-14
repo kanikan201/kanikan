@@ -16,6 +16,7 @@ Camera::~Camera()
 
 bool Camera::Start()
 {
+	//カメラの位置設定
 	camera.SetPosition({ 0.0f, 4.0f, 12.0f });
 	camera.SetTarget(CVector3::Zero);
 	toPosition.Subtract(camera.GetPosition(), camera.GetTarget());
@@ -75,6 +76,7 @@ void Camera::Update()
 	CVector3 cameraPos;
 	cameraPos = target;
 
+	//カメラ位置セット
 	cameraPos.Add(toPosition);
 	camera.SetPosition(cameraPos);
 

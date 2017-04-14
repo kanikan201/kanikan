@@ -32,6 +32,7 @@ bool TitleScene::Start()
 }
 void TitleScene::Update()
 {
+	//ƒV[ƒ“‚ªØ‚è‘Ö‚í‚Á‚½‚çŽ©g‚ðíœ
 	if (sceneManager->GetScene() != SceneManager::stateTitel) {
 		DeleteGO(this);
 	}

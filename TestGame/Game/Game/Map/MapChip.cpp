@@ -11,8 +11,6 @@ MapChip::MapChip()
 
 MapChip::~MapChip()
 {
-	skinModel.SetShadowCasterFlag(false);
-	skinModel.SetShadowReceiverFlag(false);
 	//剛体を削除
 	PhysicsWorld().RemoveRigidBody(&rigidBody);
 }
@@ -28,7 +26,7 @@ void MapChip::Init(const char* modelName, CVector3 position, CQuaternion rotatio
 	//CSkinModelを初期化
 	skinModel.Init(&skinModelData);
 
-	//デフォルトライト設定
+	//ライト設定
 	skinModel.SetLight(&g_gameScene->getLight());
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
@@ -53,10 +51,7 @@ void MapChip::Init(const char* modelName, CVector3 position, CQuaternion rotatio
 
 void MapChip::Update()
 {
-	//何もしない
-
-	//テスト用
-	if ((sceneManager->GetScene() != SceneManager::stateGame) || g_gameScene->isObjectDelete()) {
+	if ((g_gameScene == nullptr) || g_gameScene->isObjectDelete()) {
 		//自分を削除
 		DeleteGO(this);
 		return;

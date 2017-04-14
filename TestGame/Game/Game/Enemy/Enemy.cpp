@@ -8,6 +8,9 @@
 
 Enemy::Enemy()
 {
+	CRandom rand;
+	rand.Init((unsigned long)time(NULL));
+	start = rand.GetRandDouble;
 }
 
 
@@ -37,7 +40,7 @@ void Enemy::Init(CVector3 pos)
 
 void Enemy::Update()
 {
-	if ((sceneManager->GetScene() != SceneManager::stateGame) || g_gameScene->isObjectDelete()) {
+	if ((g_gameScene == nullptr) || g_gameScene->isObjectDelete()) {
 		//Ž©•ª‚ðíœ
 		skinModel.SetShadowCasterFlag(false);
 		skinModel.SetShadowReceiverFlag(false);
@@ -49,6 +52,12 @@ void Enemy::Update()
 	float dist = g_gameScene->getPlayer()->Distance(position);
 	if (dist < 1.0f) {
 		g_gameScene->getPlayer()->SetPosition({ 0.0f,0.0f,0.0f });
+	}
+
+	m_timer += GameTime().GetFrameDeltaTime();
+	if (!isMoving && m_timer > start) {
+		isMoving = true;
+		m_timer = 0.0f;
 	}
 
 	move = characterController.GetMoveSpeed();
@@ -67,7 +76,7 @@ void Enemy::Update()
 //“®‚«
 void Enemy::Move()
 {
-	m_timer += GameTime().GetFrameDeltaTime();
+	if (!isMoving) { return; }
 
 	if (m_timer > 2.0f) {
 		dir *= -1.0f;

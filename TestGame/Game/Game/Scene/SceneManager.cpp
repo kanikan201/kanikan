@@ -34,7 +34,7 @@ void SceneManager::Update()
 
 	switch (state)
 	{
-	//タイトル画面の時
+//タイトル画面の時
 	case stateTitel:
 		//フェードアウト時
 		if (f_step == step_WaitFadeOut) {
@@ -56,7 +56,7 @@ void SceneManager::Update()
 		}
 		break;
 
-	//ゲームシーンの時
+//ゲームシーンの時
 	case stateGame:
 		//フェードアウト時
 		if (f_step == step_WaitFadeOut) {
@@ -66,6 +66,7 @@ void SceneManager::Update()
 				//リザルトへ遷移
 				NewGO<ResultScene>(0);
 				DeleteGO(g_gameScene);
+				g_gameScene = nullptr;
 				f_step = step_WaitFadeIn;
 				state = stateResult;
 			}
@@ -80,7 +81,7 @@ void SceneManager::Update()
 		}
 		break;
 
-	//リザルト画面の時
+//リザルト画面の時
 	case stateResult:
 		//フェードアウト時
 		if (f_step == step_WaitFadeOut) {

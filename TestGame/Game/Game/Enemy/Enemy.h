@@ -56,4 +56,6 @@ protected:
 	float		length = 0.0f;	//ƒvƒŒƒCƒ„[‚Æ‚Ì‹——£
 	float		m_timer = 0.0f;
 	float		dir = 1.0f;
+	float start;
+	bool isMoving = false;
 };

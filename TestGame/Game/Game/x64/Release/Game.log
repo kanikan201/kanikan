@@ -1,0 +1,4 @@
+﻿  Enemy.cpp
+Enemy\Enemy.cpp(13): error C3867: 'tkEngine::CRandom::GetRandDouble': 非標準の構文です。メンバーにポインタを作成するには '&' を使用してください
+Enemy\Enemy.cpp(13): error C2296: '%': 無効です。左オペランドには型 'double (__cdecl tkEngine::CRandom::* )(void)' が指定されています。
+Enemy\Enemy.cpp(13): error C2297: '%': 無効です。右オペランドには型 'double' が指定されています。

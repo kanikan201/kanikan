@@ -5,11 +5,11 @@
 
 GameScene* g_gameScene = NULL;
 
-//マップの配置情報
+//ステージ1の配置情報
 SMapInfo Stage1[] = {
 #include "locationInfo.h"
 };
-//マップの配置情報
+//ステージ2の配置情報
 SMapInfo Stage2[] = {
 #include "locationInfo2.h"
 };
@@ -42,16 +42,20 @@ bool GameScene::Start()
 		//light.SetLimLightDirection(CVector3(0.0f, 0.0f, -1.0f));
 
 		map = NewGO<Map>(0);		//マップ生成
-		int numObject;
+
 		//マップに配置されているオブジェクト数を計算
+		int numObject;
 		numObject = sizeof(Stage1) / sizeof(Stage1[0]);
 		map->Create(Stage1, numObject);
 
 		player = NewGO<Player>(0);		//プレイヤー生成
 		camera = NewGO<Camera>(0);		//カメラ生成
-		ivt = NewGO<inventory>(0);
+		ivt = NewGO<inventory>(0);		//インベントリ生成
 
 		fadeStep = step_StageLoad;
+		isDelete = false;
+		isClear = false;
+
 		return false;
 	}
 	else {
@@ -66,7 +70,7 @@ void GameScene::Update()
 
 	switch (fadeStep) {
 
-		//ステージの読み込みが終わった
+	//ステージの読み込みが終わった
 	case step_StageLoad:
 		g_fade->StartFadeIn();
 		fadeStep = step_WaitFadeIn;
@@ -92,8 +96,8 @@ void GameScene::Update()
 	case step_WaitFadeOut:
 		//オブジェクトを削除した
 		if (isDelete == true) {
-			isDelete = false;
 			ChangeStage();
+			isDelete = false;
 			fadeStep = step_StageLoad;
 		}
 		//フェードが終わった
