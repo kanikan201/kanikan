@@ -16,19 +16,19 @@
 	CVector3(0.40f, -1.60f, -1.20f),             //平行移動
 	CQuaternion(-0.68f, 0.18f, 0.18f, 0.68f ),  //回転
 },
-//clearMaker
+//D_Unity
 {
 	"D_Unity",
 	CVector3(10.00f, -1.00f, -3.20f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 0.00f),  //回転
 },
-//clearMaker
+//D_Unity
 {
 	"D_Unity",
 	CVector3(5.00f, -1.00f, 3.20f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 0.00f),  //回転
 },
-//clearMaker
+//D_Unity
 {
 	"D_Unity",
 	CVector3(15.00f, -1.00f, 3.20f),             //平行移動
