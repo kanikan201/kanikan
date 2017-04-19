@@ -13,7 +13,7 @@ public:
 	void Init(CVector3 FirstPosition);
 	void Update();
 	void Render(CRenderContext& renderContext);
-	void Move();			//“®‚«
+	virtual void Move();			//“®‚«
 	void Damage();
 
 protected:
@@ -55,7 +55,6 @@ protected:
 
 	float		length = 0.0f;	//ƒvƒŒƒCƒ„[‚Æ‚Ì‹——£
 	float		m_timer = 0.0f;
-	float		dir = 1.0f;
 	float start;
 	bool isMoving = false;
 };

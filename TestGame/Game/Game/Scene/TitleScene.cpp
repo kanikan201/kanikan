@@ -36,6 +36,12 @@ void TitleScene::Update()
 	if (sceneManager->GetScene() != SceneManager::stateTitel) {
 		DeleteGO(this);
 	}
+
+	if (Pad(0).IsTrigger(enButtonStart)) {
+		CSoundSource* se = NewGO<CSoundSource>(0);
+		se->Init("Assets/sound/Decision.wav");
+		se->Play(false);
+	}
 }
 void TitleScene::PostRender(CRenderContext& renderContext)
 {

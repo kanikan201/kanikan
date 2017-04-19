@@ -22,8 +22,6 @@ Enemy::~Enemy()
 
 void Enemy::Init(CVector3 pos)
 {
-	skinModelData.LoadModelData("Assets/modelData/D_Unity.X", &animation);
-
 	skinModel.Init(&skinModelData);
 	skinModel.SetLight(&g_gameScene->getLight());			//デフォルトライトを設定。
 	skinModel.SetShadowCasterFlag(true);
@@ -77,14 +75,7 @@ void Enemy::Update()
 //動き
 void Enemy::Move()
 {
-	if (!isMoving) { return; }
 
-	if (m_timer > 2.0f) {
-		dir *= -1.0f;
-		m_timer = 0.0f;
-		rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(90.0f*dir));
-	}
-	move.x = dir*5.0f;
 }
 
 //ダメージを受ける

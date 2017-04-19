@@ -65,7 +65,10 @@
     <ClCompile Include="inventory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ClearMarker.cpp">
+    <ClCompile Include="Enemy\TestEnemy.cpp">
+      <Filter>Source Files\Eneny</Filter>
+    </ClCompile>
+    <ClCompile Include="Map\ClearMarker.cpp">
       <Filter>Source Files\Map</Filter>
     </ClCompile>
   </ItemGroup>
@@ -106,7 +109,10 @@
     <ClInclude Include="inventory.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="ClearMarker.h">
+    <ClInclude Include="Enemy\TestEnemy.h">
+      <Filter>Source Files\Eneny</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\ClearMarker.h">
       <Filter>Source Files\Map</Filter>
     </ClInclude>
   </ItemGroup>

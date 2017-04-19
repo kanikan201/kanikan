@@ -48,11 +48,20 @@ void Player::Update()
 
 	Move();	//移動
 
-//走ってるとき
+//移動してる
 	if (Pad(0).GetLStickXF()!=0.0f || Pad(0).GetLStickYF() != 0.0f)
 	{
 		//走りアニメーション
 		currentAnimSetNo = AnimationRun;
+
+		timer += GameTime().GetFrameDeltaTime();
+
+		if (timer >0.4f) {
+			CSoundSource* se = NewGO<CSoundSource>(0);
+			se->Init("Assets/sound/footstep.wav");
+			se->Play(false);
+			timer = 0.0f;
+		}
 
 		//向きを変更
 		rotation.SetRotation(CVector3::AxisY, atan2f(dir.x, dir.z));
@@ -60,6 +69,7 @@ void Player::Update()
 //立ってるとき
 	else 
 	{
+
 		//立ちアニメーション
 		currentAnimSetNo = AnimationStand;
 	}
