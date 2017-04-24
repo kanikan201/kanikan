@@ -3,23 +3,6 @@
 #include "Map/ClearMarker.h"
 #include "Enemy/TestEnemy.h"
 
-namespace {
-	const int WIDTH = 7;
-	const int HEIGHT = 9;
-	//0ÇÕínñ ÅA1ÇÕï«ÅA2ÇÕíå
-	static int sMap[HEIGHT][WIDTH] = {
-		{1, 1, 1, 1, 1, 1, 1},
-		{1, 0, 0, 0, 0, 0, 1},
-		{1, 0, 2, 0, 1, 0, 1},
-		{1, 0, 0, 0, 0, 0, 1},
-		{1, 1, 2, 1, 2, 1, 1},
-		{1, 0, 0, 1, 0, 0, 1},
-		{1, 0, 0, 0, 0, 0, 1},
-		{1, 1, 1, 0, 0, 0, 1},
-		{1, 1, 1, 1, 1, 1, 1},
-	};
-}
-
 Map::Map()
 {
 }
