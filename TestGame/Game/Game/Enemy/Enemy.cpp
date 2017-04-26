@@ -22,7 +22,7 @@ Enemy::~Enemy()
 
 void Enemy::Init(CVector3 pos)
 {
-	skinModel.Init(&skinModelData);
+	skinModel.Init(skinModelData.GetBody());
 	skinModel.SetLight(&g_gameScene->getLight());			//デフォルトライトを設定。
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);

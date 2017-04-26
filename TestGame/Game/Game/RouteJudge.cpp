@@ -17,6 +17,8 @@ bool RouteJudge::Start()
 {
 	currentGrid.x = 0;
 	currentGrid.y = 0;
+
+	return true;
 }
 
 void RouteJudge::Update()
@@ -28,8 +30,8 @@ void RouteJudge::Update()
 	CVector3 pos = g_gameScene->getPlayer()->GetPosition();
 
 	//現在の位置を更新
-	currentGrid.x = (int)pos.x / GRID_SIZE;
-	currentGrid.y = (int)pos.y / GRID_SIZE;
+	currentGrid.x = (int)(pos.x / GRID_SIZE);
+	currentGrid.y = (int)(pos.y / GRID_SIZE);
 
 	//マスの移動があった時
 	if (prevGrid.x != currentGrid.x || prevGrid.y != currentGrid.y) {

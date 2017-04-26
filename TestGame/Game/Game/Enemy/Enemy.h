@@ -37,7 +37,7 @@ protected:
 	};
 
 	CSkinModel				skinModel;					//スキンモデル
-	CSkinModelData			skinModelData;				//スキンモデルデータ。
+	CSkinModelDataHandle	skinModelData;				//スキンモデルデータ。
 	CCharacterController	characterController;		//キャラクタ―コントローラー
 
 	CVector3				position;					//敵の座標
