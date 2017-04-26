@@ -63,14 +63,14 @@ void SceneManager::Update()
 			//フェードが終わった
 			if (!g_fade->IsExecute()) {
 				//リザルトへ遷移
-				NewGO<ResultScene>(0);
+				NewGO<GameOverScene>(0);
 
 				g_gameScene->Release();
 				DeleteGO(g_gameScene);
 				g_gameScene = nullptr;
 
 				f_step = step_WaitFadeIn;
-				state = stateResult;
+				state = stateGameOver;
 			}
 		}
 		//通常時
@@ -93,6 +93,26 @@ void SceneManager::Update()
 				NewGO<TitleScene>(0);
 				f_step = step_WaitFadeIn;
 				state = stateTitel;
+			}
+		}
+		//通常時
+		else if (f_step == step_nomal) {
+			//スタートボタンを押した
+			if (Pad(0).IsTrigger(enButtonStart)) {
+				g_fade->StartFadeOut();
+				f_step = step_WaitFadeOut;
+			}
+		}
+		break;
+	case stateGameOver:
+		//フェードアウト時
+		if (f_step == step_WaitFadeOut) {
+			//フェードが終わった
+			if (!g_fade->IsExecute()) {
+				//タイトル画面へ遷移
+				NewGO<ResultScene>(0);
+				f_step = step_WaitFadeIn;
+				state = stateResult;
 			}
 		}
 		//通常時

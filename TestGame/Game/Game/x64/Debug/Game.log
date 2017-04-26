@@ -1,0 +1,21 @@
+﻿  SceneManager.cpp
+  GameScene.cpp
+  RouteJudge.cpp
+  MapChip.cpp
+  ClearMarker.cpp
+  Enemy.cpp
+c:\users\kbc16b08\documents\github\kanikan\testgame\game\game\enemy\enemy.cpp(13): warning C4244: '=': 'unsigned long' から 'float' への変換です。データが失われる可能性があります。
+  コードを生成中...
+  コンパイル中...
+  Map.cpp
+  TestEnemy.cpp
+  コードを生成中...
+  スキップ中... (関連する変更は検出されませんでした)
+  main.cpp
+  TitleScene.cpp
+  ResultScene.cpp
+  Player.cpp
+  GameOverScene.cpp
+  Camera.cpp
+  Game.vcxproj -> C:\Users\kbc16b08\Documents\github\kanikan\TestGame\Game\x64\Debug\Game.exe
+  Game.vcxproj -> C:\Users\kbc16b08\Documents\github\kanikan\TestGame\Game\x64\Debug\Game.pdb (Full PDB)

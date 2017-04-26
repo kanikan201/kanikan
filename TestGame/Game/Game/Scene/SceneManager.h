@@ -5,6 +5,7 @@
 #pragma once
 #include "TitleScene.h"
 #include "ResultScene.h"
+#include "GameOverScene.h"
 
 class SceneManager : public IGameObject
 {
@@ -19,6 +20,7 @@ public:
 		stateTitel,
 		stateGame,
 		stateResult,
+		stateGameOver,
 	};
 
 	//フェードの状態

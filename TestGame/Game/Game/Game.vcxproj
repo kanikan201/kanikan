@@ -166,6 +166,7 @@
     <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Enemy\TestEnemy.cpp" />
     <ClCompile Include="Fade\Fade.cpp" />
+    <ClCompile Include="GameOverScene.cpp" />
     <ClCompile Include="inventory.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\ClearMarker.cpp" />
@@ -189,6 +190,7 @@
     <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Enemy\TestEnemy.h" />
     <ClInclude Include="Fade\Fade.h" />
+    <ClInclude Include="GameOverScene.h" />
     <ClInclude Include="inventory.h" />
     <ClInclude Include="Map\ClearMarker.h" />
     <ClInclude Include="Map\Map.h" />
