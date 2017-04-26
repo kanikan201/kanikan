@@ -16,7 +16,7 @@ ResultScene::ResultScene()
 
 ResultScene::~ResultScene()
 {
-
+	DeleteGO(bgm);
 }
 bool ResultScene::Start()
 {
@@ -25,6 +25,10 @@ bool ResultScene::Start()
 	sprite.Init(&texture);
 	sprite.SetSize(BackSize);
 	sprite.SetPosition(BackPos);
+
+	bgm = NewGO<CSoundSource>(0);
+	bgm->Init("Assets/sound/Result.wav");
+	bgm->Play(true);
 
 	//フェードイン
 	g_fade->StartFadeIn();

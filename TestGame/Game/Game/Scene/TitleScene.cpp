@@ -26,6 +26,10 @@ bool TitleScene::Start()
 	sprite.SetSize(BackSize);
 	sprite.SetPosition(BackPos);
 
+	bgm = NewGO<CSoundSource>(0);
+	bgm->Init("Assets/sound/Title.wav");
+	bgm->Play(true);
+
 	g_fade->StartFadeIn();
 
 	return true;
@@ -38,6 +42,7 @@ void TitleScene::Update()
 	}
 
 	if (Pad(0).IsTrigger(enButtonStart)) {
+		DeleteGO(bgm);
 		CSoundSource* se = NewGO<CSoundSource>(0);
 		se->Init("Assets/sound/Decision.wav");
 		se->Play(false);

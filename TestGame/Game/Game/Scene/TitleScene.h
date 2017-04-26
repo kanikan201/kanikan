@@ -3,6 +3,7 @@
 */
 
 #pragma once
+#include "stdafx.h"
 
 class TitleScene : public IGameObject
 {
@@ -15,5 +16,6 @@ public:
 private:
 	CSprite		sprite;		//スプライト
 	CTexture	texture;	//テクスチャ
+	CSoundSource* bgm;
 };
 
