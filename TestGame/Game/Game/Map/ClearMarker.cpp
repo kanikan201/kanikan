@@ -18,7 +18,7 @@ void ClearMarker::Init(CVector3 position, CQuaternion rotation)
 {
 	//CSkinModelを初期化
 	skinModelData.LoadModelData("Assets/modelData/clearMarker.x", NULL);
-	skinModel.Init(&skinModelData);
+	skinModel.Init(skinModelData.GetBody());
 
 	//デフォルトライト設定
 	skinModel.SetLight(&g_gameScene->getLight());

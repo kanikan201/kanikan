@@ -16,11 +16,11 @@ public:
 	void Render(CRenderContext& renderContext);
 
 private:
-	CSkinModel			skinModel;		//スキンモデル
-	CSkinModelData		skinModelData;	//スキンモデルデータ
+	CSkinModel					skinModel;		//スキンモデル
+	CSkinModelDataHandle		skinModelData;	//スキンモデルデータ
 
-	CVector3			position;		//マーカーの位置
-	CQuaternion			rotation;
-	bool				flag = false;	//クリアフラグ
+	CVector3					position;		//マーカーの位置
+	CQuaternion					rotation;
+	bool						flag = false;	//クリアフラグ
 };
 

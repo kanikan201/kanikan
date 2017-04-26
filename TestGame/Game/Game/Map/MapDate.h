@@ -1,5 +1,6 @@
 #pragma once
 
+//ˆêƒ}ƒX‚Ì’·‚³?
 #define GRID_SIZE 3.0f
 
 namespace {

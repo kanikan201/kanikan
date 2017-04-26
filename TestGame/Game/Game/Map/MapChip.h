@@ -12,9 +12,9 @@ public:
 	void Render(CRenderContext& renderContext);
 
 private:
-	CSkinModel			skinModel;		//スキンモデル
-	CSkinModelData		skinModelData;	//スキンモデルデータ
-	CMeshCollider		meshColloder;	//メッシュコライダー
-	CRigidBody			rigidBody;		//剛体
+	CSkinModel					skinModel;		//スキンモデル
+	CSkinModelDataHandle		skinModelData;	//スキンモデルデータ
+	CMeshCollider				meshColloder;	//メッシュコライダー
+	CRigidBody					rigidBody;		//剛体
 };
 

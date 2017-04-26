@@ -24,7 +24,7 @@ void MapChip::Init(const char* modelName, CVector3 position, CQuaternion rotatio
 	//モデルデータをロード
 	skinModelData.LoadModelData(filePath, NULL);
 	//CSkinModelを初期化
-	skinModel.Init(&skinModelData);
+	skinModel.Init(skinModelData.GetBody());
 
 	//ライト設定
 	skinModel.SetLight(&g_gameScene->getLight());
@@ -35,7 +35,7 @@ void MapChip::Init(const char* modelName, CVector3 position, CQuaternion rotatio
 	skinModel.Update(position, rotation, CVector3::One);
 
 	//メッシュコライダー作成
-	meshColloder.CreateFromSkinModel(&skinModel, skinModelData.GetRootBoneWorldMatrix());
+	meshColloder.CreateFromSkinModel(&skinModel, skinModelData.GetBody()->GetRootBoneWorldMatrix());
 
 	RigidBodyInfo rbInfo;				//剛体の作成
 	rbInfo.collider = &meshColloder;	//剛体のコライダーを渡す
