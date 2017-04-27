@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "Enemy.h"
 #include "Player/Player.h"
-#include "Camera.h"
 #include "scene/GameScene.h"
 #include "scene/SceneManager.h"
 

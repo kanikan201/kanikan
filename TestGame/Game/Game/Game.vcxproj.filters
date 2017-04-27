@@ -24,6 +24,12 @@
     <Filter Include="Source Files\Eneny">
       <UniqueIdentifier>{1b4b6839-65cf-4adc-bb0e-d5e8a4e56ca8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Interface">
+      <UniqueIdentifier>{274afb91-ed9c-41d4-908a-695cc6732374}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Camera">
+      <UniqueIdentifier>{9717c3bb-2c7d-43d7-b234-565562e5a83d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -44,9 +50,6 @@
     <ClCompile Include="Player\Player.cpp">
       <Filter>Source Files\Player</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\GameScene.cpp">
       <Filter>Source Files\Scene</Filter>
     </ClCompile>
@@ -62,9 +65,6 @@
     <ClCompile Include="Enemy\Enemy.cpp">
       <Filter>Source Files\Eneny</Filter>
     </ClCompile>
-    <ClCompile Include="inventory.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Enemy\TestEnemy.cpp">
       <Filter>Source Files\Eneny</Filter>
     </ClCompile>
@@ -74,8 +74,20 @@
     <ClCompile Include="RouteJudge.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameOverScene.cpp">
+    <ClCompile Include="Interface\inventory.cpp">
+      <Filter>Source Files\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface\Number.cpp">
+      <Filter>Source Files\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\GameOverScene.cpp">
       <Filter>Source Files\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Interface\DisplayTime.cpp">
+      <Filter>Source Files\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera\Camera.cpp">
+      <Filter>Source Files\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,9 +109,6 @@
     <ClInclude Include="Player\Player.h">
       <Filter>Source Files\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\ResultScene.h">
       <Filter>Source Files\Scene</Filter>
     </ClInclude>
@@ -111,9 +120,6 @@
     </ClInclude>
     <ClInclude Include="Enemy\Enemy.h">
       <Filter>Source Files\Eneny</Filter>
-    </ClInclude>
-    <ClInclude Include="inventory.h">
-      <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Enemy\TestEnemy.h">
       <Filter>Source Files\Eneny</Filter>
@@ -127,8 +133,20 @@
     <ClInclude Include="RouteJudge.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameOverScene.h">
+    <ClInclude Include="Interface\inventory.h">
+      <Filter>Source Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\Number.h">
+      <Filter>Source Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\GameOverScene.h">
       <Filter>Source Files\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\DisplayTime.h">
+      <Filter>Source Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera\Camera.h">
+      <Filter>Source Files\Camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

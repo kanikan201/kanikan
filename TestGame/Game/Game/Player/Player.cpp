@@ -53,18 +53,19 @@ void Player::Update()
 	{
 		//走りアニメーション
 		currentAnimSetNo = AnimationRun;
-
-		timer += GameTime().GetFrameDeltaTime();
-
-		if (timer >0.4f) {
-			CSoundSource* se = NewGO<CSoundSource>(0);
-			se->Init("Assets/sound/footstep.wav");
-			se->Play(false);
-			timer = 0.0f;
-		}
-
 		//向きを変更
 		rotation.SetRotation(CVector3::AxisY, atan2f(dir.x, dir.z));
+		if (!characterController.IsJump()) {
+
+			timer += GameTime().GetFrameDeltaTime();
+
+			if (timer > 0.4f) {
+				CSoundSource* se = NewGO<CSoundSource>(0);
+				se->Init("Assets/sound/footstep.wav");
+				se->Play(false);
+				timer = 0.0f;
+			}
+		}
 	}
 //立ってるとき
 	else 

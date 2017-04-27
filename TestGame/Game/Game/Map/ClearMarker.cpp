@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "ClearMarker.h"
-#include "Camera.h"
 #include "scene/GameScene.h"
 #include "scene/SceneManager.h"
 

@@ -63,14 +63,14 @@ void SceneManager::Update()
 			//フェードが終わった
 			if (!g_fade->IsExecute()) {
 				//リザルトへ遷移
-				NewGO<GameOverScene>(0);
+				NewGO<ResultScene>(0);
 
 				g_gameScene->Release();
 				DeleteGO(g_gameScene);
 				g_gameScene = nullptr;
 
 				f_step = step_WaitFadeIn;
-				state = stateGameOver;
+				state = stateResult;
 			}
 		}
 		//通常時

@@ -162,18 +162,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Camera\Camera.cpp" />
     <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Enemy\TestEnemy.cpp" />
     <ClCompile Include="Fade\Fade.cpp" />
-    <ClCompile Include="GameOverScene.cpp" />
-    <ClCompile Include="inventory.cpp" />
+    <ClCompile Include="Interface\DisplayTime.cpp" />
+    <ClCompile Include="Interface\inventory.cpp" />
+    <ClCompile Include="Interface\Number.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\ClearMarker.cpp" />
     <ClCompile Include="Map\Map.cpp" />
     <ClCompile Include="Map\MapChip.cpp" />
     <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="RouteJudge.cpp" />
+    <ClCompile Include="Scene\GameOverScene.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\ResultScene.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
@@ -186,18 +188,20 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Enemy\TestEnemy.h" />
     <ClInclude Include="Fade\Fade.h" />
-    <ClInclude Include="GameOverScene.h" />
-    <ClInclude Include="inventory.h" />
+    <ClInclude Include="Interface\DisplayTime.h" />
+    <ClInclude Include="Interface\inventory.h" />
+    <ClInclude Include="Interface\Number.h" />
     <ClInclude Include="Map\ClearMarker.h" />
     <ClInclude Include="Map\Map.h" />
     <ClInclude Include="Map\MapChip.h" />
     <ClInclude Include="Map\MapDate.h" />
     <ClInclude Include="Player\Player.h" />
     <ClInclude Include="RouteJudge.h" />
+    <ClInclude Include="Scene\GameOverScene.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\ResultScene.h" />
     <ClInclude Include="Scene\SceneManager.h" />

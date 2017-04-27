@@ -6,9 +6,10 @@
 
 #include "tkEngine/Sound/tkSoundSource.h"
 #include "Player/Player.h"
-#include "Camera.h"
+#include "Camera/Camera.h"
 #include "Map/Map.h"
-#include "inventory.h"
+#include "Interface/inventory.h"
+#include "Interface/DisplayTime.h"
 
 class GameScene :
 	public IGameObject
@@ -69,15 +70,29 @@ public:
 	FadeStep isStep() {
 		return fadeStep;
 	}
+
+	float GetTime() {
+		return gameTime;
+	}
+	float GetTotalTime() {
+		return totalTime;
+	}
 private:
+	//コンストラクタ
 	Camera*				camera;				//カメラ
 	CLight				light;				//ライト
 	Player*				player;				//プレイヤー
 	Map*				map;				//マップ
 	inventory*			ivt;				//インベントリ
+	DisplayTime*		time;				//タイム表示
+
+	//変数
 	bool				isDelete;			//オブジェクト消去フラグ
 	bool				isClear;			//クリアフラグ
 	FadeStep			fadeStep = step_WaitFadeOut;
+
+	float				gameTime = 0.0f;
+	float				totalTime = 0.0f;
 
 	state_stage			currentStage = en_Stage1;	//現在のステージ
 };

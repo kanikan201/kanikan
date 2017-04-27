@@ -7,11 +7,11 @@ GameScene* g_gameScene = NULL;
 
 //ステージ1の配置情報
 SMapInfo Stage1[] = {
-#include "locationInfo.h"
+#include "locationInfo/stage1.h"
 };
 //ステージ2の配置情報
 SMapInfo Stage2[] = {
-#include "locationInfo2.h"
+#include "locationInfo/stage2.h"
 };
 
 GameScene::GameScene()
@@ -51,6 +51,7 @@ bool GameScene::Start()
 		player = NewGO<Player>(0);		//プレイヤー生成
 		camera = NewGO<Camera>(0);		//カメラ生成
 		ivt = NewGO<inventory>(0);		//インベントリ生成
+		time = NewGO<DisplayTime>(0);	//タイム表示生成
 
 		fadeStep = step_StageLoad;
 		isDelete = false;
@@ -90,6 +91,10 @@ void GameScene::Update()
 		if (isClear == true) {
 			g_fade->StartFadeOut();
 			fadeStep = step_WaitFadeOut;
+			totalTime += gameTime;
+		}
+		else {
+			gameTime += GameTime().GetFrameDeltaTime();	//プレイ時間カウント
 		}
 		break;
 	//フェードアウト時
@@ -104,6 +109,7 @@ void GameScene::Update()
 		else if (!g_fade->IsExecute()) {
 			player->SetPosition({ 0.0f, 0.0f, 0.0f });
 			setClear(false);
+			gameTime = 0.0f;
 			//オブジェクトを削除
 			isDelete = true;
 		}
@@ -143,4 +149,5 @@ void GameScene::Release() {
 	DeleteGO(player);	//プレイヤー
 	DeleteGO(map);		//マップ
 	DeleteGO(ivt);
+	DeleteGO(time);
 }

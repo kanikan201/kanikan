@@ -3,7 +3,7 @@
 
 namespace {
 	const CVector2 frameSize = { 650.0f, 120.0f };		//枠のサイズ(仮)
-	const CVector2 framePos = { -300.0f,-280.0f };		//枠の位置(仮)
+	const CVector2 framePos = { -305.0f,-290.0f };		//枠の位置(仮)
 }
 
 inventory::inventory()

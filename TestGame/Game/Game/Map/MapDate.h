@@ -1,6 +1,10 @@
+/*
+	マップデータ
+*/
+
 #pragma once
 
-//一マスの長さ?
+//一マスの長さ(仮)
 #define GRID_SIZE 3.0f
 
 namespace {
