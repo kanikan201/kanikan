@@ -1,13 +1,13 @@
 ﻿  tkEnginePreCompile.cpp
   tkEngine.cpp
-c:\users\kbc16b08\documents\github\kanikan\testgame\tkengine\tkengine.cpp(290): warning C4244: '初期化中': 'double' から 'DWORD' への変換です。データが失われる可能性があります。
+c:\users\kbc16b05\documents\github\kanikan\testgame\tkengine\tkengine.cpp(290): warning C4244: '初期化中': 'double' から 'DWORD' への変換です。データが失われる可能性があります。
   tkWaveFileBank.cpp
   tkWaveFile.cpp
   tkSoundSource.cpp
   tkSoundEngine.cpp
   tkSphereShape.cpp
-c:\users\kbc16b08\documents\github\kanikan\testgame\tkengine\shape\tksphereshape.cpp(41): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
-c:\users\kbc16b08\documents\github\kanikan\testgame\tkengine\shape\tksphereshape.cpp(61): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+c:\users\kbc16b05\documents\github\kanikan\testgame\tkengine\shape\tksphereshape.cpp(41): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+c:\users\kbc16b05\documents\github\kanikan\testgame\tkengine\shape\tksphereshape.cpp(61): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
   tkShapeBase.cpp
   tkBoxShape.cpp
   tkTextureResources.cpp
@@ -79,4 +79,4 @@ d3d9.lib(d3d9.dll) : warning LNK4221: このオブジェクト ファイルは�
 XInput.lib(XINPUT1_3.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR は d3dx9.lib(d3dx9_43.dll) で定義されています。2 つ目以降の定義は無視されます。
 XInput.lib(XINPUT1_3.dll) : warning LNK4221: このオブジェクト ファイルは、以前に未定義であったパブリック シンボルを定義していないため、このライブラリを使用するリンク操作では使用されません
 tkGameObject.obj : warning LNK4221: このオブジェクト ファイルは、以前に未定義であったパブリック シンボルを定義していないため、このライブラリを使用するリンク操作では使用されません
-  tkEngine.vcxproj -> C:\Users\kbc16b08\Documents\github\kanikan\TestGame\Game\x64\Debug\tkEngine.lib
+  tkEngine.vcxproj -> C:\Users\kbc16b05\Documents\github\kanikan\TestGame\Game\x64\Debug\tkEngine.lib
