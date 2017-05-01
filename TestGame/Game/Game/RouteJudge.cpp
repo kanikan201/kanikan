@@ -1,13 +1,11 @@
 #include "stdafx.h"
 #include "RouteJudge.h"
-#include "Map\MapDate.h"
 #include "scene/GameScene.h"
 
 
 RouteJudge::RouteJudge()
 {
 }
-
 
 RouteJudge::~RouteJudge()
 {
@@ -18,7 +16,19 @@ bool RouteJudge::Start()
 	currentGrid.x = 3;
 	currentGrid.y = 7;
 
+
+	Reset();
+
 	return true;
+}
+
+//リセット
+void RouteJudge::Reset()
+{
+	for (int i = 0; i < HEIGHT; i++) {
+		memcpy(map[i], sMap[i], sizeof(sMap[i]));
+	}
+	map[7][3] = 5;
 }
 
 void RouteJudge::Update()
@@ -36,19 +46,21 @@ void RouteJudge::Update()
 	//マスの移動があった時
 	if (prevGrid.x != currentGrid.x || prevGrid.y != currentGrid.y) {
 		//通れない場所だった(壁と柱)
-		if (sMap[currentGrid.y][currentGrid.x] == 1) {
+		if (map[currentGrid.y][currentGrid.x] == 1) {
 			currentGrid = prevGrid;
 		}
 
 		//すでに通ったマスに移動
-		if (sMap[currentGrid.y][currentGrid.x] == 5) {
-			//なんかゲームオーバー処理
+		if (map[currentGrid.y][currentGrid.x] == 5) {
+			//なんかゲームオーバー処理(仮)
 			g_gameScene->getPlayer()->SetPosition({0.0f,0.0f,0.0f});
+			Reset();
+			return;
 		}
-	}
 
-	//まだ通ってない道
-	if (sMap[currentGrid.y][currentGrid.x] == 0) {
-		sMap[currentGrid.y][currentGrid.x] = 5;
+		//まだ通ってない道
+		if (map[currentGrid.y][currentGrid.x] == 0) {
+			map[currentGrid.y][currentGrid.x] = 5;
+		}
 	}
 }

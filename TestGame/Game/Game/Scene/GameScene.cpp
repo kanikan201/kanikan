@@ -52,6 +52,7 @@ bool GameScene::Start()
 		camera = NewGO<Camera>(0);		//カメラ生成
 		ivt = NewGO<inventory>(0);		//インベントリ生成
 		time = NewGO<DisplayTime>(0);	//タイム表示生成
+		route = NewGO<RouteJudge>(0);
 
 		bgmSource = NULL;
 		bgmSource = NewGO<CSoundSource>(0);
@@ -156,4 +157,5 @@ void GameScene::Release() {
 	DeleteGO(ivt);
 	DeleteGO(time);
 	DeleteGO(bgmSource);
+	DeleteGO(route);
 }

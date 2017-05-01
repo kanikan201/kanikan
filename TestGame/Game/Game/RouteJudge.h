@@ -4,6 +4,8 @@
 
 
 #pragma once
+#include "Map\MapDate.h"
+
 class RouteJudge :public IGameObject
 {
 public:
@@ -11,6 +13,7 @@ public:
 	~RouteJudge();
 	bool Start();
 	void Update();
+	void Reset();
 
 private:
 	struct grid
@@ -21,5 +24,6 @@ private:
 
 	grid prevGrid;
 	grid currentGrid;
+	int map[HEIGHT][WIDTH];
 };
 

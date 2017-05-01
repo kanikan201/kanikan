@@ -10,6 +10,7 @@
 #include "Map/Map.h"
 #include "Interface/inventory.h"
 #include "Interface/DisplayTime.h"
+#include "RouteJudge.h"
 
 class GameScene :
 	public IGameObject
@@ -85,6 +86,7 @@ private:
 	Map*				map;				//マップ
 	inventory*			ivt;				//インベントリ
 	DisplayTime*		time;				//タイム表示
+	RouteJudge*			route;
 
 	//変数
 	bool				isDelete;			//オブジェクト消去フラグ

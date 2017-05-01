@@ -24,6 +24,8 @@ bool Player::Start() {
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
+	rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(180.0f));
+
 	CVector3 lightPos = CVector3(0.0f, 20.5f, 24.5f);
 	ShadowMap().SetLightPosition(lightPos);
 	ShadowMap().SetLightTarget(position);

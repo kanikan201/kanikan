@@ -5,7 +5,7 @@
 #pragma once
 
 //ˆêƒ}ƒX‚Ì’·‚³(‰¼)
-#define GRID_SIZE 3.0f
+#define GRID_SIZE 8.0f
 
 namespace {
 	const int WIDTH = 7;
