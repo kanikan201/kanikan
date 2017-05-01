@@ -53,6 +53,11 @@ bool GameScene::Start()
 		ivt = NewGO<inventory>(0);		//インベントリ生成
 		time = NewGO<DisplayTime>(0);	//タイム表示生成
 
+		bgmSource = NULL;
+		bgmSource = NewGO<CSoundSource>(0);
+		bgmSource->Init("Assets/sound/Dungeon.wav");
+		bgmSource->Play(true);
+
 		fadeStep = step_StageLoad;
 		isDelete = false;
 		isClear = false;
@@ -150,4 +155,5 @@ void GameScene::Release() {
 	DeleteGO(map);		//マップ
 	DeleteGO(ivt);
 	DeleteGO(time);
+	DeleteGO(bgmSource);
 }

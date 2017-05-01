@@ -14,12 +14,13 @@ GameOverScene::GameOverScene()
 {
 	CSoundSource* bgmSource = NULL;
 	bgmSource = NewGO<CSoundSource>(0);
-	bgmSource->Init("Assets/sound/GameOverBGM.wav");
+	bgmSource->Init("Assets/sound/GameOverBGM2.wav");
 	bgmSource->Play(true);
 }
 
 GameOverScene::~GameOverScene()
 {
+	DeleteGO(bgmsource);
 }
 
 bool GameOverScene::Start()

@@ -95,6 +95,7 @@ private:
 	float				totalTime = 0.0f;
 
 	state_stage			currentStage = en_Stage1;	//現在のステージ
+	CSoundSource* bgmSource;
 };
 
 extern GameScene* g_gameScene;

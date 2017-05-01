@@ -63,14 +63,14 @@ void SceneManager::Update()
 			//フェードが終わった
 			if (!g_fade->IsExecute()) {
 				//リザルトへ遷移
-				NewGO<ResultScene>(0);
+				NewGO<GameOverScene>(0);
 
 				g_gameScene->Release();
 				DeleteGO(g_gameScene);
 				g_gameScene = nullptr;
 
 				f_step = step_WaitFadeIn;
-				state = stateResult;
+				state = stateGameOver;
 			}
 		}
 		//通常時
@@ -104,6 +104,7 @@ void SceneManager::Update()
 			}
 		}
 		break;
+//ゲームオーバー画面の時
 	case stateGameOver:
 		//フェードアウト時
 		if (f_step == step_WaitFadeOut) {
