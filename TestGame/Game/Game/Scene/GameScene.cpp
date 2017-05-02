@@ -2,6 +2,7 @@
 #include "GameScene.h"
 #include "ResultScene.h"
 #include "fade/Fade.h"
+#include "GameOverScene.h"
 
 GameScene* g_gameScene = NULL;
 
@@ -25,7 +26,7 @@ GameScene::~GameScene()
 
 bool GameScene::Start()
 {
-	if (fadeStep == step_WaitFadeOut) {
+	if (step == step_WaitFadeOut) {
 		//ライトを初期化
 		light.SetDiffuseLightDirection(0, { 0.707f, 0.0f, -0.707f });
 		light.SetDiffuseLightDirection(1, { -0.707f, 0.0f, -0.707f });
@@ -59,14 +60,14 @@ bool GameScene::Start()
 		bgmSource->Init("Assets/sound/Dungeon.wav");
 		bgmSource->Play(true);
 
-		fadeStep = step_StageLoad;
+		step = step_StageLoad;
 		isDelete = false;
 		isClear = false;
 
 		return false;
 	}
 	else {
-		fadeStep = step_WaitFadeIn;
+		step = step_WaitFadeIn;
 		g_fade->StartFadeIn();
 	}
 	return true;
@@ -75,19 +76,19 @@ bool GameScene::Start()
 void GameScene::Update()
 {
 
-	switch (fadeStep) {
+	switch (step) {
 
 	//ステージの読み込みが終わった
 	case step_StageLoad:
 		g_fade->StartFadeIn();
-		fadeStep = step_WaitFadeIn;
+		step = step_WaitFadeIn;
 		break;
 
 	//フェードアウト時
 	case step_WaitFadeIn:
 		//フェードが終わった
 		if (!g_fade->IsExecute()) {
-			fadeStep = step_nomal;
+			step = step_nomal;
 		}
 		break;
 
@@ -96,7 +97,7 @@ void GameScene::Update()
 		//クリアした
 		if (isClear == true) {
 			g_fade->StartFadeOut();
-			fadeStep = step_WaitFadeOut;
+			step = step_WaitFadeOut;
 			totalTime += gameTime;
 		}
 		else {
@@ -107,23 +108,30 @@ void GameScene::Update()
 	case step_WaitFadeOut:
 		//オブジェクトを削除した
 		if (isDelete == true) {
-			ChangeStage();
+			CreateStage();
 			isDelete = false;
-			fadeStep = step_StageLoad;
+			step = step_StageLoad;
 		}
 		//フェードが終わった
 		else if (!g_fade->IsExecute()) {
-			player->SetPosition({ 0.0f, 0.0f, 0.0f });
+			Reset();
 			setClear(false);
-			gameTime = 0.0f;
 			//オブジェクトを削除
 			isDelete = true;
+		}
+		break;
+	case step_GameOver:
+		if (Pad(0).IsTrigger(enButtonSelect)) {
+			step = step_nomal;
+			bgmSource->Play(true);
+			step = step_nomal;
+			Reset();
 		}
 		break;
 	}
 }
 
-void GameScene::ChangeStage()
+void GameScene::CreateStage()
 {
 	int numObject;
 	switch (currentStage) {
@@ -158,4 +166,18 @@ void GameScene::Release() {
 	DeleteGO(time);
 	DeleteGO(bgmSource);
 	DeleteGO(route);
+}
+
+void GameScene::SetGameOver() {
+	//ゲームオーバーの呼び出し
+	NewGO<GameOverScene>(0);
+	step = step_GameOver;
+	bgmSource->Stop();
+}
+
+//リセット
+void GameScene::Reset() {
+	player->SetPosition({ 0.0f,0.0f,0.0f });
+	gameTime = 0.0f;
+	camera->Reset();
 }

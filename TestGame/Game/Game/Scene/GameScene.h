@@ -25,7 +25,9 @@ public:
 	void Render(CRenderContext& renderContext);
 
 	void Release();		//解放
-	void ChangeStage();
+	void CreateStage();
+	void SetGameOver();
+	void Reset();
 
 	//ステージ番号
 	enum state_stage {
@@ -35,11 +37,12 @@ public:
 	};
 
 	//フェードの状態
-	enum FadeStep {
+	enum Step {
 		step_WaitFadeIn,	//フェードイン待ち
 		step_WaitFadeOut,	//フェードアウト待ち
 		step_nomal,			//何もない
 		step_StageLoad,
+		step_GameOver,
 	};
 
 	//ライト取得
@@ -68,8 +71,8 @@ public:
 	}
 
 	//現ステップを取得
-	FadeStep isStep() {
-		return fadeStep;
+	Step isStep() {
+		return step;
 	}
 
 	float GetTime() {
@@ -87,17 +90,17 @@ private:
 	inventory*			ivt;				//インベントリ
 	DisplayTime*		time;				//タイム表示
 	RouteJudge*			route;
+	CSoundSource*		bgmSource;
 
 	//変数
 	bool				isDelete;			//オブジェクト消去フラグ
 	bool				isClear;			//クリアフラグ
-	FadeStep			fadeStep = step_WaitFadeOut;
+	Step				step = step_WaitFadeOut;
 
 	float				gameTime = 0.0f;
 	float				totalTime = 0.0f;
 
 	state_stage			currentStage = en_Stage1;	//現在のステージ
-	CSoundSource* bgmSource;
 };
 
 extern GameScene* g_gameScene;

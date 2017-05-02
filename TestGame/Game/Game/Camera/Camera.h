@@ -6,6 +6,7 @@ public:
 	~Camera();
 	bool Start();
 	void Update();
+	void Reset();
 
 //ÉQÉbÉ^Å[
 	const CMatrix& GetViewMatrix() const 

@@ -53,8 +53,8 @@ void RouteJudge::Update()
 		//すでに通ったマスに移動
 		if (map[currentGrid.y][currentGrid.x] == 5) {
 			//なんかゲームオーバー処理(仮)
-			g_gameScene->getPlayer()->SetPosition({0.0f,0.0f,0.0f});
 			Reset();
+			g_gameScene->SetGameOver();
 			return;
 		}
 

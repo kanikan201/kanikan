@@ -82,3 +82,8 @@ void Camera::Update()
 
 	camera.Update();
 }
+
+void Camera::Reset()
+{
+	camera.SetPosition({ 0.0f, 4.0f, 12.0f });
+}

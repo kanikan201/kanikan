@@ -12,15 +12,14 @@ namespace {
 
 GameOverScene::GameOverScene()
 {
-	CSoundSource* bgmSource = NULL;
 	bgmSource = NewGO<CSoundSource>(0);
-	bgmSource->Init("Assets/sound/GameOverBGM2.wav");
+	bgmSource->Init("Assets/sound/GameOverBGM.wav");
 	bgmSource->Play(true);
 }
 
 GameOverScene::~GameOverScene()
 {
-	DeleteGO(bgmsource);
+	DeleteGO(bgmSource);
 }
 
 bool GameOverScene::Start()
@@ -39,7 +38,10 @@ bool GameOverScene::Start()
 void GameOverScene::Update()
 {
 	//ƒV[ƒ“‚ªØ‚è‘Ö‚í‚Á‚½‚çŽ©g‚ðíœ
-	if (sceneManager->GetScene() != SceneManager::stateGameOver) {
+	//if (sceneManager->GetScene() != SceneManager::stateGameOver) {
+	//	DeleteGO(this);
+	//}
+	if ((g_gameScene == nullptr) ||g_gameScene->isStep()!= GameScene::step_GameOver) {
 		DeleteGO(this);
 	}
 }
