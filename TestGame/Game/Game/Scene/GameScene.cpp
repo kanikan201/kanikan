@@ -177,7 +177,7 @@ void GameScene::SetGameOver() {
 
 //ƒŠƒZƒbƒg
 void GameScene::Reset() {
-	player->SetPosition({ 0.0f,0.0f,0.0f });
+	player->Reset();
 	gameTime = 0.0f;
 	camera->Reset();
 }

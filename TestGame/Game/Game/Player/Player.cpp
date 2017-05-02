@@ -168,3 +168,9 @@ float Player::Distance(CVector3& objectPos)
 	//敵とプレイヤーの距離を計算
 	return diff.Length();
 }
+
+void Player::Reset()
+{
+	rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(180.0f));
+	SetPosition({ 0.0f,0.0f,0.0f });
+}

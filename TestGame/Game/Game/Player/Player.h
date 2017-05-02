@@ -10,6 +10,7 @@ public:
 	bool Start();
 	void Update();
 	void Move();
+	void Reset();
 	void SetPosition(CVector3 pos);
 	void Render(CRenderContext& renderContext);
 	float Distance(CVector3& objectPos);	//ƒvƒŒƒCƒ„[‚Æ‚Ì‹——£‚ğ•Ô‚·

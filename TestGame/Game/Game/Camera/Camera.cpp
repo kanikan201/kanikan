@@ -85,5 +85,11 @@ void Camera::Update()
 
 void Camera::Reset()
 {
+	//ƒJƒƒ‰‚ÌˆÊ’uİ’è
 	camera.SetPosition({ 0.0f, 4.0f, 12.0f });
+	camera.SetTarget(CVector3::Zero);
+	toPosition.Subtract(camera.GetPosition(), camera.GetTarget());
+
+	camera.SetFar(100000.0f);
+	camera.SetViewAngle(CMath::DegToRad(45.0f));	//‰æŠp
 }
