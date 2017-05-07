@@ -62,21 +62,29 @@ void SceneManager::Update()
 		if (f_step == step_WaitFadeOut) {
 			//フェードが終わった
 			if (!g_fade->IsExecute()) {
-				//リザルトへ遷移
-				NewGO<ResultScene>(0);
+
+				if (g_gameScene->isStep() == GameScene::step_GameEnd) {
+					//タイトルへ遷移
+					NewGO<TitleScene>(0);
+					state = stateTitel;
+				}
+				else {
+					//リザルトへ遷移
+					NewGO<ResultScene>(0);
+					state = stateResult;
+				}
 
 				g_gameScene->Release();
 				DeleteGO(g_gameScene);
 				g_gameScene = nullptr;
 
 				f_step = step_WaitFadeIn;
-				state = stateResult;
 			}
 		}
 		//通常時
 		else if (f_step == step_nomal) {
-			//スタートボタンを押した
-			if (Pad(0).IsTrigger(enButtonStart)) {
+			//クリアかゲームオーバー
+			if (Pad(0).IsTrigger(enButtonStart)||g_gameScene->isStep()== GameScene::step_GameEnd) {
 				g_fade->StartFadeOut();
 				f_step = step_WaitFadeOut;
 			}

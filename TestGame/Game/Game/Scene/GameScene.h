@@ -11,6 +11,7 @@
 #include "Interface/inventory.h"
 #include "Interface/DisplayTime.h"
 #include "RouteJudge.h"
+#include "GameOverScene.h"
 
 class GameScene :
 	public IGameObject
@@ -43,6 +44,8 @@ public:
 		step_nomal,			//何もない
 		step_StageLoad,
 		step_GameOver,
+		step_GameClear,
+		step_GameEnd,
 	};
 
 	//ライト取得
@@ -91,6 +94,7 @@ private:
 	DisplayTime*		time;				//タイム表示
 	RouteJudge*			route;
 	CSoundSource*		bgmSource;
+	GameOverScene*		gameOver;
 
 	//変数
 	bool				isDelete;			//オブジェクト消去フラグ

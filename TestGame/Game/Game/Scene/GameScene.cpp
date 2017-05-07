@@ -2,7 +2,6 @@
 #include "GameScene.h"
 #include "ResultScene.h"
 #include "fade/Fade.h"
-#include "GameOverScene.h"
 
 GameScene* g_gameScene = NULL;
 
@@ -121,12 +120,18 @@ void GameScene::Update()
 		}
 		break;
 	case step_GameOver:
-		if (Pad(0).IsTrigger(enButtonSelect)) {
-			step = step_nomal;
-			bgmSource->Play(true);
-			step = step_nomal;
-			Reset();
+		if (gameOver->GetChoice()) {
+			if (gameOver->GetState()== GameOverScene::enContinue) {
+				step = step_nomal;
+				bgmSource->Play(true);
+				step = step_nomal;
+				Reset();
+			}
+			else if (gameOver->GetState()== GameOverScene::enEnd) {
+				step = step_GameEnd;
+			}
 		}
+
 		break;
 	}
 }
@@ -163,6 +168,7 @@ void GameScene::Release() {
 	DeleteGO(player);	//プレイヤー
 	DeleteGO(map);		//マップ
 	DeleteGO(ivt);
+	time->DeleteNum();
 	DeleteGO(time);
 	DeleteGO(bgmSource);
 	DeleteGO(route);
@@ -170,7 +176,7 @@ void GameScene::Release() {
 
 void GameScene::SetGameOver() {
 	//ゲームオーバーの呼び出し
-	NewGO<GameOverScene>(0);
+	gameOver=NewGO<GameOverScene>(0);
 	step = step_GameOver;
 	bgmSource->Stop();
 }
