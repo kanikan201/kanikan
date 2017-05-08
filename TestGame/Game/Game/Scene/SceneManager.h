@@ -38,6 +38,7 @@ public:
 private:
 	SceneState			state;		//Œ»İ‚ÌƒV[ƒ“
 	FadeStep			f_step;
+	TitleScene*			title = NULL;
 };
 
 extern SceneManager* sceneManager;

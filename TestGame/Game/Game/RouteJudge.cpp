@@ -29,10 +29,14 @@ void RouteJudge::Reset()
 		memcpy(map[i], sMap[i], sizeof(sMap[i]));
 	}
 	map[7][3] = 5;
+	currentGrid.x = 3;
+	currentGrid.y = 7;
 }
 
 void RouteJudge::Update()
 {
+	if (g_gameScene->isStep() != GameScene::step_nomal) { return; }
+
 	//前回のグリッドを記憶
 	prevGrid = currentGrid;
 

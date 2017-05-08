@@ -63,10 +63,6 @@ bool GameScene::Start()
 		isDelete = false;
 		isClear = false;
 
-		texture.Load("Assets/modelData/kiiro.png");
-		sprite.Init(&texture);
-		sprite.SetSize({ 1280,720 });
-
 		return false;
 	}
 	else {
@@ -111,7 +107,7 @@ void GameScene::Update()
 	case step_WaitFadeOut:
 		//オブジェクトを削除した
 		if (isDelete == true) {
-			CreateStage();
+			CreateStage(nextStage);
 			isDelete = false;
 			step = step_StageLoad;
 		}
@@ -126,10 +122,11 @@ void GameScene::Update()
 	case step_GameOver:
 		if (gameOver->GetChoice()) {
 			if (gameOver->GetState()== GameOverScene::enContinue) {
-				step = step_nomal;
 				bgmSource->Play(true);
-				step = step_nomal;
-				Reset();
+				g_fade->StartFadeOut();
+				step = step_WaitFadeOut;
+				nextStage = currentStage;
+				//Reset();
 			}
 			else if (gameOver->GetState()== GameOverScene::enEnd) {
 				step = step_GameEnd;
@@ -140,21 +137,23 @@ void GameScene::Update()
 	}
 }
 
-void GameScene::CreateStage()
+void GameScene::CreateStage(state_stage stage)
 {
 	int numObject;
-	switch (currentStage) {
+	switch (stage) {
 	case en_Stage1:
 		//マップに配置されているオブジェクト数を計算
-		numObject = sizeof(Stage2) / sizeof(Stage2[0]);
-		map->Create(Stage2, numObject);
-		currentStage = en_Stage2;
+		numObject = sizeof(Stage1) / sizeof(Stage1[0]);
+		map->Create(Stage1, numObject);
+		currentStage = en_Stage1;
+		nextStage = en_Stage2;
 		break;
 	case en_Stage2:
 		//マップに配置されているオブジェクト数を計算
 		numObject = sizeof(Stage2) / sizeof(Stage2[0]);
 		map->Create(Stage2, numObject);
 		currentStage = en_Stage2;
+		nextStage = en_Stage3;
 		break;
 	}
 }
@@ -163,9 +162,7 @@ void GameScene::CreateStage()
 */
 void GameScene::Render(CRenderContext& renderContext)
 {
-	renderContext.SetRenderState(RS_ZWRITEENABLE, FALSE);
-	sprite.Draw(renderContext);
-	renderContext.SetRenderState(RS_ZWRITEENABLE, TRUE);
+
 }
 
 //生成したものを解放する

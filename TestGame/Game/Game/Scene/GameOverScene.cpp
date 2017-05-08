@@ -67,7 +67,7 @@ void GameOverScene::Update()
 	//if (sceneManager->GetScene() != SceneManager::stateGameOver) {
 	//	DeleteGO(this);
 	//}
-	if ((g_gameScene == nullptr) ||g_gameScene->isStep()!= GameScene::step_GameOver) {
+	if ((g_gameScene == nullptr) ||g_gameScene->isObjectDelete()) {
 		DeleteGO(this);
 	}
 

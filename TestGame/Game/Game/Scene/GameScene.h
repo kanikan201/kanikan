@@ -26,7 +26,6 @@ public:
 	void Render(CRenderContext& renderContext);
 
 	void Release();		//解放
-	void CreateStage();
 	void SetGameOver();
 	void Reset();
 
@@ -85,6 +84,8 @@ public:
 		return totalTime;
 	}
 private:
+	void CreateStage(state_stage stage);
+
 	//コンストラクタ
 	Camera*				camera;				//カメラ
 	CLight				light;				//ライト
@@ -95,8 +96,6 @@ private:
 	RouteJudge*			route;
 	CSoundSource*		bgmSource;
 	GameOverScene*		gameOver;
-	CSprite				sprite;
-	CTexture			texture;
 
 	//変数
 	bool				isDelete;			//オブジェクト消去フラグ
@@ -107,6 +106,7 @@ private:
 	float				totalTime = 0.0f;
 
 	state_stage			currentStage = en_Stage1;	//現在のステージ
+	state_stage			nextStage = en_Stage2;	//現在のステージ
 };
 
 extern GameScene* g_gameScene;
