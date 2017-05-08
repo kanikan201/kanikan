@@ -63,6 +63,10 @@ bool GameScene::Start()
 		isDelete = false;
 		isClear = false;
 
+		texture.Load("Assets/modelData/kiiro.png");
+		sprite.Init(&texture);
+		sprite.SetSize({ 1280,720 });
+
 		return false;
 	}
 	else {
@@ -159,7 +163,9 @@ void GameScene::CreateStage()
 */
 void GameScene::Render(CRenderContext& renderContext)
 {
-
+	renderContext.SetRenderState(RS_ZWRITEENABLE, FALSE);
+	sprite.Draw(renderContext);
+	renderContext.SetRenderState(RS_ZWRITEENABLE, TRUE);
 }
 
 //ê∂ê¨ÇµÇΩÇ‡ÇÃÇâï˙Ç∑ÇÈ

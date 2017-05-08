@@ -95,6 +95,8 @@ private:
 	RouteJudge*			route;
 	CSoundSource*		bgmSource;
 	GameOverScene*		gameOver;
+	CSprite				sprite;
+	CTexture			texture;
 
 	//変数
 	bool				isDelete;			//オブジェクト消去フラグ
