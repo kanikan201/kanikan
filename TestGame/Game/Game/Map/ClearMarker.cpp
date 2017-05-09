@@ -44,7 +44,7 @@ void ClearMarker::Update()
 
 	//プレイヤーと自身の距離
 	float dist = g_gameScene->getPlayer()->Distance(position);
-	if (!flag && (dist < 1.0f) && Pad(0).IsTrigger(enButtonA)) {
+	if (!flag && (dist < 1.0f) && Pad(0).IsTrigger(enButtonB)) {
 		flag = true;
 		g_gameScene->setClear(true);
 	}

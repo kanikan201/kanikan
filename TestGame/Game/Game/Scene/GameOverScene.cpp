@@ -15,9 +15,7 @@ namespace {
 
 GameOverScene::GameOverScene()
 {
-	bgmSource = NewGO<CSoundSource>(0);
-	bgmSource->Init("Assets/sound/GameOverBGM.wav");
-	bgmSource->Play(true);
+
 }
 
 GameOverScene::~GameOverScene()
@@ -55,6 +53,10 @@ bool GameOverScene::Start()
 	//フェードイン
 	g_fade->StartFadeIn();
 
+	bgmSource = NewGO<CSoundSource>(0);
+	bgmSource->Init("Assets/sound/GameOverBGM.wav");
+	bgmSource->Play(true);
+
 	state = enContinue;
 	isChoice = false;
 
@@ -77,18 +79,29 @@ void GameOverScene::Update()
 
 	//上選択(つづける)
 	if (input > 0.0 || Pad(0).IsTrigger(enButtonUp)) {
-		state = enContinue;
+		if (state == enEnd) {
+			CSoundSource* SE = NewGO<CSoundSource>(0);
+			SE->Init("Assets/sound/Choice.wav");
+			SE->Play(false);
+			state = enContinue;
+		}
 	}
 	//下選択(おわる)
 	else if (input < 0.0 || Pad(0).IsTrigger(enButtonDown)) {
-		state = enEnd;
+		if (state == enContinue) {
+			CSoundSource* SE = NewGO<CSoundSource>(0);
+			SE->Init("Assets/sound/Choice.wav");
+			SE->Play(false);
+			state = enEnd;
+		}
 	}
 
 	//決定
 	if (Pad(0).IsTrigger(enButtonB)) {
+		DeleteGO(bgmSource);
 		//サウンド
 		CSoundSource* SE = NewGO<CSoundSource>(0);
-		SE->Init("Assets/sound/Choice.wav");
+		SE->Init("Assets/sound/Decision.wav");
 		SE->Play(false);
 		isChoice = true;
 	}

@@ -46,10 +46,13 @@ void Enemy::Update()
 		return;
 	}
 
+	//通常時しか処理しない
+	if (g_gameScene->isStep() != GameScene::step_nomal) { return; }
+
 	//プレイヤーと自身の距離
 	float dist = g_gameScene->getPlayer()->Distance(position);
 	if (dist < 1.0f) {
-		g_gameScene->getPlayer()->SetPosition({ 0.0f,0.0f,0.0f });
+		g_gameScene->SetGameOver();
 	}
 
 	m_timer += GameTime().GetFrameDeltaTime();

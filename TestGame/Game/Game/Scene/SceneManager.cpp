@@ -50,7 +50,7 @@ void SceneManager::Update()
 		else if(f_step==step_nomal){
 			//スタートボタンを押した
 			if (title->GetChoice()) {
-				if (title->GetState()== TitleScene::enContinue) {
+				if (title->GetState()== TitleScene::enStart) {
 					g_fade->StartFadeOut();
 					f_step = step_WaitFadeOut;
 				}

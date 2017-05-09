@@ -56,8 +56,7 @@ void RouteJudge::Update()
 
 		//すでに通ったマスに移動
 		if (map[currentGrid.y][currentGrid.x] == 5) {
-			//なんかゲームオーバー処理(仮)
-			Reset();
+			//ゲームオーバー処理
 			g_gameScene->SetGameOver();
 			return;
 		}

@@ -43,21 +43,14 @@ bool GameScene::Start()
 
 		map = NewGO<Map>(0);		//マップ生成
 
-		//マップに配置されているオブジェクト数を計算
-		int numObject;
-		numObject = sizeof(Stage1) / sizeof(Stage1[0]);
-		map->Create(Stage1, numObject);
+		bgmSource = NULL;
+		CreateStage(currentStage);
 
 		player = NewGO<Player>(0);		//プレイヤー生成
 		camera = NewGO<Camera>(0);		//カメラ生成
 		ivt = NewGO<inventory>(0);		//インベントリ生成
 		time = NewGO<DisplayTime>(0);	//タイム表示生成
 		route = NewGO<RouteJudge>(0);
-
-		bgmSource = NULL;
-		bgmSource = NewGO<CSoundSource>(0);
-		bgmSource->Init("Assets/sound/Dungeon.wav");
-		bgmSource->Play(true);
 
 		step = step_StageLoad;
 		isDelete = false;
@@ -98,6 +91,8 @@ void GameScene::Update()
 			g_fade->StartFadeOut();
 			step = step_WaitFadeOut;
 			totalTime += gameTime;
+			route->Reset();	//テスト用
+			DeleteGO(bgmSource);
 		}
 		else {
 			gameTime += GameTime().GetFrameDeltaTime();	//プレイ時間カウント
@@ -122,7 +117,7 @@ void GameScene::Update()
 	case step_GameOver:
 		if (gameOver->GetChoice()) {
 			if (gameOver->GetState()== GameOverScene::enContinue) {
-				bgmSource->Play(true);
+				//bgmSource->Play(true);
 				g_fade->StartFadeOut();
 				step = step_WaitFadeOut;
 				nextStage = currentStage;
@@ -147,6 +142,10 @@ void GameScene::CreateStage(state_stage stage)
 		map->Create(Stage1, numObject);
 		currentStage = en_Stage1;
 		nextStage = en_Stage2;
+
+		bgmSource = NewGO<CSoundSource>(0);
+		bgmSource->Init("Assets/sound/Dungeon.wav");
+		bgmSource->Play(true);
 		break;
 	case en_Stage2:
 		//マップに配置されているオブジェクト数を計算
@@ -154,6 +153,10 @@ void GameScene::CreateStage(state_stage stage)
 		map->Create(Stage2, numObject);
 		currentStage = en_Stage2;
 		nextStage = en_Stage3;
+
+		bgmSource = NewGO<CSoundSource>(0);
+		bgmSource->Init("Assets/sound/GameBGM.wav");
+		bgmSource->Play(true);
 		break;
 	}
 }
@@ -177,11 +180,12 @@ void GameScene::Release() {
 	DeleteGO(route);
 }
 
+//ゲームオーバーへ切り替え
 void GameScene::SetGameOver() {
-	//ゲームオーバーの呼び出し
+	DeleteGO(bgmSource);
 	gameOver=NewGO<GameOverScene>(0);
 	step = step_GameOver;
-	bgmSource->Stop();
+	route->Reset();
 }
 
 //リセット

@@ -15,8 +15,8 @@ public:
 	void PostRender( CRenderContext& renderContext ) override;
 
 	enum State {
-		enContinue,
-		enEnd,
+		enStart,
+		enExit,
 	};
 
 	bool GetChoice() {
@@ -26,8 +26,8 @@ public:
 		return state;
 	}
 private:
-	CSprite		sprite;		//スプライト
-	CTexture	texture;	//テクスチャ
+	CSprite			sprite;		//スプライト
+	CTexture		texture;	//テクスチャ
 
 	CSprite			continue1;
 	CSprite			continue2;
@@ -39,7 +39,7 @@ private:
 	CTexture		end1Tex;
 	CTexture		end2Tex;
 
-	CSoundSource* bgm;
+	CSoundSource*	bgm;
 	bool			isChoice;
 	State			state;
 };

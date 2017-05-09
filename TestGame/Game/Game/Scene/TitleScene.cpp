@@ -54,7 +54,7 @@ bool TitleScene::Start()
 	bgm->Play(true);
 
 	g_fade->StartFadeIn();
-	state = enContinue;
+	state = enStart;
 	isChoice = false;
 
 	return true;
@@ -66,30 +66,35 @@ void TitleScene::Update()
 		DeleteGO(this);
 	}
 
-	if (Pad(0).IsTrigger(enButtonStart)) {
-		DeleteGO(bgm);
-		CSoundSource* se = NewGO<CSoundSource>(0);
-		se->Init("Assets/sound/Decision.wav");
-		se->Play(false);
-	}
 	if (isChoice) { return; }
 
 	float input = Pad(0).GetLStickYF();
 
 	//上選択(つづける)
 	if (input > 0.0 || Pad(0).IsTrigger(enButtonUp)) {
-		state = enContinue;
+		if (state == enExit) {
+			CSoundSource* SE = NewGO<CSoundSource>(0);
+			SE->Init("Assets/sound/Choice.wav");
+			SE->Play(false);
+			state = enStart;
+		}
 	}
 	//下選択(おわる)
 	else if (input < 0.0 || Pad(0).IsTrigger(enButtonDown)) {
-		state = enEnd;
+		if (state == enStart) {
+			CSoundSource* SE = NewGO<CSoundSource>(0);
+			SE->Init("Assets/sound/Choice.wav");
+			SE->Play(false);
+			state = enExit;
+		}
 	}
 
 	//決定
 	if (Pad(0).IsTrigger(enButtonB)) {
+		DeleteGO(bgm);
 		//サウンド
 		CSoundSource* SE = NewGO<CSoundSource>(0);
-		SE->Init("Assets/sound/Choice.wav");
+		SE->Init("Assets/sound/Decision.wav");
 		SE->Play(false);
 		isChoice = true;
 	}
@@ -98,7 +103,7 @@ void TitleScene::PostRender(CRenderContext& renderContext)
 {
 	sprite.Draw(renderContext);
 	sprite.Draw(renderContext);
-	if (state == enContinue) {
+	if (state == enStart) {
 		continue1.Draw(renderContext);
 		end2.Draw(renderContext);
 	}
