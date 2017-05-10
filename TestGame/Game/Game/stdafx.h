@@ -15,11 +15,12 @@
 #include "tkEngine/graphics/tkLight.h"
 #include "tkEngine/graphics/tkTexture.h"
 #include "tkEngine/resource/tkSkinModelDataHandle.h"
-#include "tkEngine/graphics/tkSkinModelMaterial.h"
+#include "tkEngine/graphics/material/tkSkinModelMaterial.h"
 #include "tkEngine/Physics/tkPhysics.h"
 using namespace tkEngine;
 #include "tkEngine/random/tkRandom.h"
 #include "tkEngine/Sound/tkSoundSource.h"
+#include "tkEngine/Camera/tkSpringCamera.h"
 extern CRandom g_random;
 
 #endif // _STDAFX_H_

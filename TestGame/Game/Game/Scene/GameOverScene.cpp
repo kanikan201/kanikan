@@ -66,9 +66,6 @@ bool GameOverScene::Start()
 void GameOverScene::Update()
 {
 	//ƒV[ƒ“‚ªØ‚è‘Ö‚í‚Á‚½‚çŽ©g‚ðíœ
-	//if (sceneManager->GetScene() != SceneManager::stateGameOver) {
-	//	DeleteGO(this);
-	//}
 	if ((g_gameScene == nullptr) ||g_gameScene->isObjectDelete()) {
 		DeleteGO(this);
 	}

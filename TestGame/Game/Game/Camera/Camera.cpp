@@ -17,15 +17,13 @@ Camera::~Camera()
 bool Camera::Start()
 {
 	//カメラの位置設定
-	camera.SetPosition({ 0.0f, 4.0f, 12.0f });			//前のカメラ
-	//camera.SetPosition({ 0.0f, 100.0f, -24.0f });		//上から
-	camera.SetTarget(CVector3::Zero);
-	toPosition.Subtract(camera.GetPosition(), camera.GetTarget());
-
+	CVector3 initCamraPos = { 0.0f, 4.0f, 12.0f };
+	toPosition = initCamraPos;
+	camera.Init(CVector3::Zero, initCamraPos, 100.0f);
 	camera.SetFar(100000.0f);
 	camera.SetViewAngle(CMath::DegToRad(45.0f));	//画角
 	camera.Update();
-
+	cameraCollisionSolver.Init(0.2f);
 	return true;
 }
 
@@ -72,16 +70,20 @@ void Camera::Update()
 	target.y += 2.0f;
 
 	//視点設定
-	camera.SetTarget(target);
-
-	CVector3 cameraPos;
-	cameraPos = target;
+	camera.SetTarTarget(target);
 
 	//カメラ位置セット
-	cameraPos.Add(toPosition);
-	camera.SetPosition(cameraPos);
+	target.Add(toPosition);
+	camera.SetTarPosition(target);
 
-	camera.Update();
+	camera.UpdateSpringCamera();
+	//カメラコリジョン処理の実行。
+	CVector3 newPos;
+	if (cameraCollisionSolver.Execute(newPos, camera.GetPosition(), camera.GetTarget())) {
+		camera.SetPosition(newPos);
+		camera.ClearSpringParame();
+	}
+	camera.UpdateCamera();
 }
 
 void Camera::Reset()

@@ -1,4 +1,6 @@
 #pragma once
+#include "tkEngine/camera/tkCameraCollisionSolver.h"
+
 class Camera:public IGameObject
 {
 public:
@@ -11,24 +13,25 @@ public:
 //ゲッター
 	const CMatrix& GetViewMatrix() const 
 	{
-		return camera.GetViewMatrix();
+		return camera.GetCamera()->GetViewMatrix();
 	}
 	const CMatrix& GetViewMatrixInv() const
 	{
-		return camera.GetViewMatrixInv();
+		return camera.GetCamera()->GetViewMatrixInv();
 	}
 
 	const CMatrix& GetProjectionMatrix() const
 	{
-		return camera.GetProjectionMatrix();
+		return camera.GetCamera()->GetProjectionMatrix();
 	}
 	const CCamera& GetCamera() const
 	{
-		return camera;
+		return *camera.GetCamera();
 	}
 
 private:
-	CCamera		camera;			//カメラ
-	CVector3	toPosition;		//注視点から視点へのベクトル。
+	CSpringCamera			camera;			//カメラ
+	CVector3				toPosition;		//注視点から視点へのベクトル。
+	CCameraCollisionSolver	cameraCollisionSolver;
 };
 
