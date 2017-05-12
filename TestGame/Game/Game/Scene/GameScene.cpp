@@ -67,6 +67,11 @@ bool GameScene::Start()
 
 void GameScene::Update()
 {
+	//テスト用
+	if (Pad(0).IsTrigger(enButtonStart)) {
+		step = step_GameClear;
+	}
+
 
 	switch (step) {
 
@@ -88,11 +93,29 @@ void GameScene::Update()
 	case step_nomal:
 		//クリアした
 		if (isClear == true) {
-			g_fade->StartFadeOut();
-			step = step_WaitFadeOut;
-			totalTime += gameTime;
-			route->Reset();	//テスト用
-			DeleteGO(bgmSource);
+			if (timer == 0.0f) {
+				DeleteGO(bgmSource);
+				//クリアボイス(仮)
+				CSoundSource* SE = NewGO<CSoundSource>(0);
+				SE->Init("Assets/sound/V0024.wav");
+				SE->Play(false);
+			}
+			//2秒待ってから遷移
+			else if (timer > 2.0f) {
+				if (nextStage == en_end) {
+					//最後のステージをクリアした
+					step = step_GameClear;
+				}
+				else{
+					g_fade->StartFadeOut();
+					step = step_WaitFadeOut;
+					route->Reset();	//テスト用(あとで変更)
+				}
+				totalTime += gameTime;
+				timer = 0.0f;
+				return;
+			}
+			timer += GameTime().GetFrameDeltaTime();
 		}
 		else {
 			gameTime += GameTime().GetFrameDeltaTime();	//プレイ時間カウント
@@ -102,9 +125,9 @@ void GameScene::Update()
 	case step_WaitFadeOut:
 		//オブジェクトを削除した
 		if (isDelete == true) {
+			//ステージの切り替え
 			CreateStage(nextStage);
 			isDelete = false;
-			step = step_StageLoad;
 		}
 		//フェードが終わった
 		else if (!g_fade->IsExecute()) {
@@ -114,8 +137,10 @@ void GameScene::Update()
 			isDelete = true;
 		}
 		break;
+	//ゲームオーバーの時
 	case step_GameOver:
 		if (gameOver->GetChoice()) {
+			//続けるを選択
 			if (gameOver->GetState()== GameOverScene::enContinue) {
 				//bgmSource->Play(true);
 				g_fade->StartFadeOut();
@@ -123,6 +148,7 @@ void GameScene::Update()
 				nextStage = currentStage;
 				//Reset();
 			}
+			//やめるを選択
 			else if (gameOver->GetState()== GameOverScene::enEnd) {
 				step = step_GameEnd;
 			}
@@ -140,8 +166,11 @@ void GameScene::CreateStage(state_stage stage)
 		//マップに配置されているオブジェクト数を計算
 		numObject = sizeof(Stage1) / sizeof(Stage1[0]);
 		map->Create(Stage1, numObject);
+
 		currentStage = en_Stage1;
-		nextStage = en_Stage2;
+		//nextStage = en_Stage2;
+		nextStage = en_end;	//こっちはテスト用
+		step = step_StageLoad;
 
 		bgmSource = NewGO<CSoundSource>(0);
 		bgmSource->Init("Assets/sound/Dungeon.wav");
@@ -153,12 +182,14 @@ void GameScene::CreateStage(state_stage stage)
 		map->Create(Stage2, numObject);
 		currentStage = en_Stage2;
 		nextStage = en_Stage3;
+		step = step_StageLoad;
 
 		bgmSource = NewGO<CSoundSource>(0);
 		bgmSource->Init("Assets/sound/GameBGM.wav");
 		bgmSource->Play(true);
 		break;
 	}
+	step = step_StageLoad;
 }
 /*!
 *@brief	描画関数。
@@ -186,6 +217,11 @@ void GameScene::SetGameOver() {
 	gameOver=NewGO<GameOverScene>(0);
 	step = step_GameOver;
 	route->Reset();
+
+	//仮
+	CSoundSource* SE = NewGO<CSoundSource>(0);
+	SE->Init("Assets/sound/V0019.wav");
+	SE->Play(false);
 }
 
 //リセット

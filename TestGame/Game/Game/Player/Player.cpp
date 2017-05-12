@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "scene/GameScene.h"
 
-#define SPEED 6.0f
+#define SPEED 7.0f
 
 Player::Player()
 {
@@ -48,10 +48,13 @@ void Player::Update()
 	//前のアニメーションを保存
 	prevAnim = currentAnimSetNo;
 
-	Move();	//移動
+	//移動
+	characterController.SetMoveSpeed(Move());	//移動速度を設定
+	characterController.Execute(GameTime().GetFrameDeltaTime());	//キャラクターコントロール実行
+	position = characterController.GetPosition();	//実行結果を受け取る
 
 //移動してる
-	if (Pad(0).GetLStickXF()!=0.0f || Pad(0).GetLStickYF() != 0.0f)
+	if (!g_gameScene->GetClear() && (Pad(0).GetLStickXF()!=0.0f || Pad(0).GetLStickYF() != 0.0f))
 	{
 		//走りアニメーション
 		currentAnimSetNo = AnimationRun;
@@ -93,15 +96,24 @@ void Player::Update()
 	ShadowMap().SetLightPosition(lightPos);
 }
 
-void Player::Move()
+CVector3 Player::Move()
 {
+
 	//キャラクターの移動速度取得
 	CVector3 move = characterController.GetMoveSpeed();
+	if (g_gameScene->GetClear()) { 
+		move.x = 0.0f;
+		move.z = 0.0f;
+		return move; 
+	}
 
 	//Aボタンでジャンプ
 	if (Pad(0).IsTrigger(enButtonA) && !characterController.IsJump()) {
 		move.y = 8.0f;
 		characterController.Jump();
+		CSoundSource* SE = NewGO<CSoundSource>(0);
+		SE->Init("Assets/sound/V0001.wav");
+		SE->Play(false);
 	}
 
 	//キャラの進行方向の計算
@@ -134,9 +146,12 @@ void Player::Move()
 	move.x = dir.x * SPEED;
 	move.z = dir.z * SPEED;
 
-	characterController.SetMoveSpeed(move);	//移動速度を設定
-	characterController.Execute(GameTime().GetFrameDeltaTime());	//キャラクターコントロール実行
-	position = characterController.GetPosition();	//実行結果を受け取る
+	if (characterController.IsJump()) {
+		move.x = move.x * 2 / 3;
+		move.z = move.z * 2 / 3;
+	}
+
+	return move;
 }
 
 void Player::Render(CRenderContext& renderContext)

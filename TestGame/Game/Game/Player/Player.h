@@ -9,7 +9,6 @@ public:
 	~Player();
 	bool Start();
 	void Update();
-	void Move();
 	void Reset();
 	void SetPosition(CVector3 pos);
 	void Render(CRenderContext& renderContext);
@@ -34,6 +33,8 @@ public:
 	};
 
 private:
+	CVector3 Move();
+
 	CSkinModel					skinModel;					//スキンモデル
 	CSkinModelData				skinModelData;				//スキンモデルデータ。
 	CCharacterController		characterController;		//キャラクタ―コントローラー

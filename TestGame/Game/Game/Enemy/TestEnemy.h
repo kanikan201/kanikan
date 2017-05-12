@@ -8,9 +8,10 @@ class TestEnemy : public Enemy
 public:
 	TestEnemy();
 	~TestEnemy();
-	void Move();
+
 
 private:
+	void Move()override;
 	float		dir = 1.0f;
 };
 

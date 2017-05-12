@@ -14,7 +14,7 @@ public:
 	void PostRender(CRenderContext& renderContext) override;
 private:
 	CSprite		 m_Str;		//HPバーの背景。
-	CTexture		m_StrTex;		//HPバーの背景のテクスチャ
+	CTexture	m_StrTex;		//HPバーの背景のテクスチャ
 
 	CSprite		m_colon;
 	CTexture	m_colonTex;

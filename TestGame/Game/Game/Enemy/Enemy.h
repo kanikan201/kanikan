@@ -13,10 +13,11 @@ public:
 	void Init(CVector3 FirstPosition);
 	void Update();
 	void Render(CRenderContext& renderContext);
-	virtual void Move();			//“®‚«
 	void Damage();
 
 protected:
+	virtual void Move();			//“®‚«
+
 	//ƒ‚[ƒVƒ‡ƒ“(‰¼)
 	enum AnimationNo {
 		AnimationDeath,		//€

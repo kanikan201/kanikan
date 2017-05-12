@@ -75,7 +75,8 @@ void SceneManager::Update()
 				}
 				else {
 					//リザルトへ遷移
-					NewGO<ResultScene>(0);
+					ResultScene* result= NewGO<ResultScene>(0);
+					result->Init();
 					state = stateResult;
 				}
 
@@ -88,8 +89,9 @@ void SceneManager::Update()
 		}
 		//通常時
 		else if (f_step == step_nomal) {
+			GameScene::Step g_step = g_gameScene->isStep();
 			//クリアかゲームオーバー
-			if (Pad(0).IsTrigger(enButtonStart)||g_gameScene->isStep()== GameScene::step_GameEnd) {
+			if (g_step ==GameScene::step_GameClear|| g_step == GameScene::step_GameEnd) {
 				g_fade->StartFadeOut();
 				f_step = step_WaitFadeOut;
 			}
