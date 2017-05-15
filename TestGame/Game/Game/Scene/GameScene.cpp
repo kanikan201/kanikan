@@ -137,6 +137,13 @@ void GameScene::Update()
 			isDelete = true;
 		}
 		break;
+	case step_WaitGameOver:
+		if (!GameOverSE.IsPlaying()) {
+			step = step_GameOver;
+			gameOver = NewGO<GameOverScene>(0);
+
+		}
+		break;
 	//ゲームオーバーの時
 	case step_GameOver:
 		if (gameOver->GetChoice()) {
@@ -214,14 +221,12 @@ void GameScene::Release() {
 //ゲームオーバーへ切り替え
 void GameScene::SetGameOver() {
 	DeleteGO(bgmSource);
-	gameOver=NewGO<GameOverScene>(0);
-	step = step_GameOver;
 	route->Reset();
 
-	//仮
-	CSoundSource* SE = NewGO<CSoundSource>(0);
-	SE->Init("Assets/sound/V0019.wav");
-	SE->Play(false);
+	AddGO(0, &GameOverSE);
+	GameOverSE.Init("Assets/sound/jingle.wav");
+	GameOverSE.Play(false);
+	step = step_WaitGameOver;
 }
 
 //リセット

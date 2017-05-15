@@ -41,6 +41,7 @@ public:
 	enum Step {
 		step_WaitFadeIn,	//フェードイン待ち
 		step_WaitFadeOut,	//フェードアウト待ち
+		step_WaitGameOver,	//ゲームオーバー待ち
 		step_nomal,			//何もない
 		step_StageLoad,
 		step_GameOver,
@@ -113,6 +114,7 @@ private:
 
 	state_stage			currentStage = en_Stage1;	//現在のステージ
 	state_stage			nextStage = en_Stage2;	//次のステージ
+	CSoundSource		GameOverSE;			//ゲームオーバーのSE
 };
 
 extern GameScene* g_gameScene;
