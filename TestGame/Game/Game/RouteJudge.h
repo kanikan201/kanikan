@@ -25,5 +25,6 @@ private:
 	grid prevGrid;
 	grid currentGrid;
 	int map[HEIGHT][WIDTH];
+	bool Perticleflg;			//パーティクルのフラグ
 };
 

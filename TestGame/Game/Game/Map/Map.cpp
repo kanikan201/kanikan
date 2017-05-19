@@ -2,9 +2,13 @@
 #include "Map.h"
 #include "Map/ClearMarker.h"
 #include "Enemy/TestEnemy.h"
+#include "RouteObject.h"
 
 Map::Map()
 {
+	for (int i = 0; i < HEIGHT; i++) {
+		memcpy(routeMap[i], sMap[i], sizeof(sMap[i]));
+	}
 }
 
 
@@ -30,6 +34,12 @@ void Map::Create(SMapInfo* mapLocInfo, int numObject)
 		else if (strcmp("D_Unity", mapLocInfo[i].modelName) == 0) {
 			TestEnemy* enemy = NewGO<TestEnemy>(0);
 			enemy->Init(mapLocInfo[i].position);
+		}
+		else if (strcmp("route", mapLocInfo[i].modelName) == 0) {
+			int routex = (int)(-mapLocInfo[i].position.x / GRID_SIZE + WIDTH / 2.0f);
+			int routey = (int)(mapLocInfo[i].position.z / GRID_SIZE + (HEIGHT - 1.5f));
+			routeObject[routey][routex] = NewGO<RouteObject>(0);
+			routeObject[routey][routex]->Init(mapLocInfo[i].position, mapLocInfo[i].rotation);
 		}
 		else {
 			MapChip* mapChip = NewGO<MapChip>(0);

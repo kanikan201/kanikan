@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "RouteJudge.h"
 #include "scene/GameScene.h"
-
+#include "RouteObject.h"
 
 RouteJudge::RouteJudge()
 {
@@ -16,6 +16,7 @@ bool RouteJudge::Start()
 	currentGrid.x = 3;
 	currentGrid.y = 7;
 
+	Perticleflg = false;
 
 	Reset();
 
@@ -47,6 +48,13 @@ void RouteJudge::Update()
 	currentGrid.x = (int)(-pos.x / GRID_SIZE+ WIDTH/2.0f);
 	currentGrid.y = (int)(pos.z / GRID_SIZE+ (HEIGHT-1.5f));
 
+	//プレイヤーの初期位置を通ったマスにする
+	if (Perticleflg == false) {
+		routeObject[prevGrid.y][prevGrid.x]->SetActiveFlag(true);
+		routeObject[prevGrid.y][prevGrid.x]->Perticle();
+		Perticleflg = true;
+	}
+
 	//マスの移動があった時
 	if (prevGrid.x != currentGrid.x || prevGrid.y != currentGrid.y) {
 		//通れない場所だった(壁と柱)
@@ -62,8 +70,11 @@ void RouteJudge::Update()
 		}
 
 		//まだ通ってない道
-		if (map[currentGrid.y][currentGrid.x] == 0) {
+		if (map[currentGrid.y][currentGrid.x] == 0 || map[currentGrid.y][currentGrid.x] == 2) {
 			map[currentGrid.y][currentGrid.x] = 5;
+			//通ったマスを描画する
+			routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
+			routeObject[currentGrid.y][currentGrid.x]->Perticle();
 		}
 	}
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include "MapChip.h"
+#include "Map\MapDate.h"
 
 struct SMapInfo {
 	const char*	modelName;
@@ -15,4 +16,6 @@ public:
 	bool Start();
 	void Create(SMapInfo* mapLocInfo, int numObject);
 	void Update();
+private:
+	int routeMap[HEIGHT][WIDTH];
 };
