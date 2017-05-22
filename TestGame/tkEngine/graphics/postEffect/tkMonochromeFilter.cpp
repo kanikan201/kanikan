@@ -9,8 +9,13 @@
 namespace tkEngine{
 	CMonochromeFilter::CMonochromeFilter()
 	{
-		
+		/*
+		//@todo ポストエフェクトのテストのため
+		SetEnalbe(true);
+		SetBlendRate(1.0f);
+		*/
 	}
+
 	CMonochromeFilter::~CMonochromeFilter()
 	{
 	}

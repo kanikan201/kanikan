@@ -174,8 +174,8 @@
     <ClCompile Include="Map\Map.cpp" />
     <ClCompile Include="Map\MapChip.cpp" />
     <ClCompile Include="Player\Player.cpp" />
-    <ClCompile Include="RouteJudge.cpp" />
-    <ClCompile Include="RouteObject.cpp" />
+    <ClCompile Include="Route\RouteJudge.cpp" />
+    <ClCompile Include="Route\RouteObject.cpp" />
     <ClCompile Include="Scene\GameOverScene.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\ResultScene.cpp" />
@@ -201,8 +201,8 @@
     <ClInclude Include="Map\MapChip.h" />
     <ClInclude Include="Map\MapDate.h" />
     <ClInclude Include="Player\Player.h" />
-    <ClInclude Include="RouteJudge.h" />
-    <ClInclude Include="RouteObject.h" />
+    <ClInclude Include="Route\RouteJudge.h" />
+    <ClInclude Include="Route\RouteObject.h" />
     <ClInclude Include="Scene\GameOverScene.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\ResultScene.h" />

@@ -38,7 +38,7 @@ private:
 	CTexture		end1Tex;
 	CTexture		end2Tex;
 
-	CSoundSource*	bgmSource;
+	CSoundSource*	bgmSource = nullptr;;
 	bool			isChoice;
 	State			state;
 };

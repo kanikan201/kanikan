@@ -446,19 +446,19 @@
 //D_Unity
 {
 	"D_Unity",
-	CVector3(-8.00f, -0.80f, -24.00f),             //平行移動
+	CVector3(-8.00f, 0.05f, -24.00f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 0.00f),  //回転
 },
 //D_Unity
 {
 	"D_Unity",
-	CVector3(8.00f, -0.80f, -24.00f),             //平行移動
+	CVector3(8.00f, 0.05f, -24.00f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 0.00f),  //回転
 },
 //D_Unity
 {
 	"D_Unity",
-	CVector3(8.00f, -1.00f, -40.00f),             //平行移動
+	CVector3(8.00f, 0.05f, -40.00f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 0.00f),  //回転
 },
 //clearMarker

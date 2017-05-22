@@ -10,7 +10,7 @@
 #include "Map/Map.h"
 #include "Interface/inventory.h"
 #include "Interface/DisplayTime.h"
-#include "RouteJudge.h"
+#include "Route/RouteJudge.h"
 #include "GameOverScene.h"
 
 class GameScene :
@@ -64,6 +64,10 @@ public:
 		return player;
 	}
 
+	RouteJudge* getJudge() {
+		return route;
+	}
+
 	//クリアフラグセット
 	void setClear(bool flag) {
 		isClear = flag;
@@ -100,7 +104,7 @@ private:
 	inventory*			ivt;				//インベントリ
 	DisplayTime*		time;				//タイム表示
 	RouteJudge*			route;				//ルート判定
-	CSoundSource*		bgmSource;
+	CSoundSource*		bgmSource = nullptr;
 	GameOverScene*		gameOver;
 
 	//変数

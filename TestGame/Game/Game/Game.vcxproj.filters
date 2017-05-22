@@ -30,6 +30,9 @@
     <Filter Include="Source Files\Camera">
       <UniqueIdentifier>{9717c3bb-2c7d-43d7-b234-565562e5a83d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Route">
+      <UniqueIdentifier>{1ed08ddf-152f-4e7a-bd54-21522d095bfd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -71,9 +74,6 @@
     <ClCompile Include="Map\ClearMarker.cpp">
       <Filter>Source Files\Map</Filter>
     </ClCompile>
-    <ClCompile Include="RouteJudge.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Interface\inventory.cpp">
       <Filter>Source Files\Interface</Filter>
     </ClCompile>
@@ -89,8 +89,11 @@
     <ClCompile Include="Camera\Camera.cpp">
       <Filter>Source Files\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="RouteObject.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Route\RouteJudge.cpp">
+      <Filter>Source Files\Route</Filter>
+    </ClCompile>
+    <ClCompile Include="Route\RouteObject.cpp">
+      <Filter>Source Files\Route</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,9 +136,6 @@
     <ClInclude Include="Map\MapDate.h">
       <Filter>Source Files\Map</Filter>
     </ClInclude>
-    <ClInclude Include="RouteJudge.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="Interface\inventory.h">
       <Filter>Source Files\Interface</Filter>
     </ClInclude>
@@ -151,8 +151,11 @@
     <ClInclude Include="Camera\Camera.h">
       <Filter>Source Files\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="RouteObject.h">
-      <Filter>Source Files</Filter>
+    <ClInclude Include="Route\RouteJudge.h">
+      <Filter>Source Files\Route</Filter>
+    </ClInclude>
+    <ClInclude Include="Route\RouteObject.h">
+      <Filter>Source Files\Route</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

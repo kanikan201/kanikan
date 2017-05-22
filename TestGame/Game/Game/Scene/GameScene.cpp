@@ -16,7 +16,7 @@ SMapInfo Stage2[] = {
 
 GameScene::GameScene()
 {
-	bgmSource = nullptr;
+	
 }
 GameScene::~GameScene()
 {
@@ -43,14 +43,14 @@ bool GameScene::Start()
 
 		map = NewGO<Map>(0);		//マップ生成
 
-		bgmSource = NULL;
-		CreateStage(currentStage);
-
 		player = NewGO<Player>(0);		//プレイヤー生成
 		camera = NewGO<Camera>(0);		//カメラ生成
 		ivt = NewGO<inventory>(0);		//インベントリ生成
 		time = NewGO<DisplayTime>(0);	//タイム表示生成
 		route = NewGO<RouteJudge>(0);
+
+		bgmSource = NULL;
+		CreateStage(currentStage);
 
 		step = step_StageLoad;
 		isDelete = false;
@@ -95,7 +95,6 @@ void GameScene::Update()
 		if (isClear == true) {
 			if (timer == 0.0f) {
 				DeleteGO(bgmSource);
-				bgmSource = nullptr;
 				//クリアボイス(仮)
 				CSoundSource* SE = NewGO<CSoundSource>(0);
 				SE->Init("Assets/sound/V0024.wav");
@@ -110,7 +109,7 @@ void GameScene::Update()
 				else{
 					g_fade->StartFadeOut();
 					step = step_WaitFadeOut;
-					route->Reset();	//テスト用(あとで変更)
+					//route->Reset(3, 7);	//テスト用(あとで変更)
 				}
 				totalTime += gameTime;
 				timer = 0.0f;
@@ -179,6 +178,7 @@ void GameScene::CreateStage(state_stage stage)
 		//nextStage = en_Stage2;
 		nextStage = en_end;	//こっちはテスト用
 		step = step_StageLoad;
+		route->Reset(3, 7);
 
 		bgmSource = NewGO<CSoundSource>(0);
 		bgmSource->Init("Assets/sound/Dungeon.wav");
@@ -188,9 +188,11 @@ void GameScene::CreateStage(state_stage stage)
 		//マップに配置されているオブジェクト数を計算
 		numObject = sizeof(Stage2) / sizeof(Stage2[0]);
 		map->Create(Stage2, numObject);
+
 		currentStage = en_Stage2;
 		nextStage = en_Stage3;
 		step = step_StageLoad;
+		route->Reset(3, 7);
 
 		bgmSource = NewGO<CSoundSource>(0);
 		bgmSource->Init("Assets/sound/GameBGM.wav");
@@ -216,15 +218,12 @@ void GameScene::Release() {
 	time->DeleteNum();
 	DeleteGO(time);
 	DeleteGO(bgmSource);
-	bgmSource = nullptr;
 	DeleteGO(route);
 }
 
 //ゲームオーバーへ切り替え
 void GameScene::SetGameOver() {
 	DeleteGO(bgmSource);
-	bgmSource = nullptr;
-	route->Reset();
 
 	AddGO(0, &GameOverSE);
 	GameOverSE.Init("Assets/sound/jingle.wav");

@@ -15,7 +15,7 @@ namespace {
 
 GameOverScene::GameOverScene()
 {
-	bgmSource = nullptr;
+
 }
 
 GameOverScene::~GameOverScene()
