@@ -15,7 +15,7 @@ namespace {
 
 GameOverScene::GameOverScene()
 {
-
+	bgmSource = nullptr;
 }
 
 GameOverScene::~GameOverScene()
@@ -95,7 +95,6 @@ void GameOverScene::Update()
 
 	//Œˆ’è
 	if (Pad(0).IsTrigger(enButtonB)) {
-		DeleteGO(bgmSource);
 		//ƒTƒEƒ“ƒh
 		CSoundSource* SE = NewGO<CSoundSource>(0);
 		SE->Init("Assets/sound/Decision.wav");

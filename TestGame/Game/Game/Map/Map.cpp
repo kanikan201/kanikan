@@ -6,9 +6,6 @@
 
 Map::Map()
 {
-	for (int i = 0; i < HEIGHT; i++) {
-		memcpy(routeMap[i], sMap[i], sizeof(sMap[i]));
-	}
 }
 
 

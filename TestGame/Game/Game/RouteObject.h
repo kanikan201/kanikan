@@ -22,7 +22,6 @@ private:
 	CVector3					position;		//マーカーの位置
 	CQuaternion					rotation;
 	CParticleEmitter*			perticle;
-	CRandom						m_random;
 };
 
 extern RouteObject* routeObject[HEIGHT][WIDTH];

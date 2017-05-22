@@ -22,7 +22,6 @@ ResultScene::ResultScene()
 
 ResultScene::~ResultScene()
 {
-
 	DeleteGO(bgm);
 }
 bool ResultScene::Start()

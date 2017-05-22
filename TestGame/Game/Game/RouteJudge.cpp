@@ -16,8 +16,6 @@ bool RouteJudge::Start()
 	currentGrid.x = 3;
 	currentGrid.y = 7;
 
-	Perticleflg = false;
-
 	Reset();
 
 	return true;
@@ -32,6 +30,8 @@ void RouteJudge::Reset()
 	map[7][3] = 5;
 	currentGrid.x = 3;
 	currentGrid.y = 7;
+
+	Perticleflg = false;
 }
 
 void RouteJudge::Update()
@@ -50,8 +50,8 @@ void RouteJudge::Update()
 
 	//プレイヤーの初期位置を通ったマスにする
 	if (Perticleflg == false) {
-		routeObject[prevGrid.y][prevGrid.x]->SetActiveFlag(true);
-		routeObject[prevGrid.y][prevGrid.x]->Perticle();
+		routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
+		routeObject[currentGrid.y][currentGrid.x]->Perticle();
 		Perticleflg = true;
 	}
 

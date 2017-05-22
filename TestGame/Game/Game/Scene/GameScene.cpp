@@ -16,7 +16,7 @@ SMapInfo Stage2[] = {
 
 GameScene::GameScene()
 {
-	
+	bgmSource = nullptr;
 }
 GameScene::~GameScene()
 {
@@ -95,6 +95,7 @@ void GameScene::Update()
 		if (isClear == true) {
 			if (timer == 0.0f) {
 				DeleteGO(bgmSource);
+				bgmSource = nullptr;
 				//クリアボイス(仮)
 				CSoundSource* SE = NewGO<CSoundSource>(0);
 				SE->Init("Assets/sound/V0024.wav");
@@ -215,12 +216,14 @@ void GameScene::Release() {
 	time->DeleteNum();
 	DeleteGO(time);
 	DeleteGO(bgmSource);
+	bgmSource = nullptr;
 	DeleteGO(route);
 }
 
 //ゲームオーバーへ切り替え
 void GameScene::SetGameOver() {
 	DeleteGO(bgmSource);
+	bgmSource = nullptr;
 	route->Reset();
 
 	AddGO(0, &GameOverSE);

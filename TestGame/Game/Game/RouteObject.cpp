@@ -13,6 +13,7 @@ RouteObject::RouteObject()
 
 RouteObject::~RouteObject()
 {
+	DeleteGO(perticle);
 }
 
 void RouteObject::Init(CVector3 position, CQuaternion rotation)
@@ -54,7 +55,7 @@ void RouteObject::Perticle()
 {
 	perticle = NewGO<CParticleEmitter>(0);
 
-	perticle->Init(m_random, g_gameScene->getCamera()->GetCamera(),
+	perticle->Init(g_random, g_gameScene->getCamera()->GetCamera(),
 	{
 		"Assets/sprite/Light.png",			//!<テクスチャのファイルパス。
 		{ 0.0f,0.0f,0.0f },					//!<初速度。
