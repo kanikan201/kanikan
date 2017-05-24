@@ -18,7 +18,6 @@ public:
 	{
 		return isReset;
 	}
-
 private:
 	struct grid
 	{
@@ -31,5 +30,7 @@ private:
 	int map[HEIGHT][WIDTH];
 	bool Perticleflg;			//パーティクルのフラグ
 	bool isReset=false;
+	int stageCount;		//stage1をクリアするために必要なマスの数
+	int routeCount;			//現在のstageで通ったマスの数
 };
 

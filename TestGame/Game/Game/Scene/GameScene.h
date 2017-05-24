@@ -86,7 +86,6 @@ public:
 	Step isStep() {
 		return step;
 	}
-
 	float GetTime() {
 		return gameTime;
 	}

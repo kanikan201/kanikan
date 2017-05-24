@@ -28,6 +28,17 @@ void RouteJudge::Reset(int set_x,int set_y)
 
 	Perticleflg = false;
 	isReset = false;
+
+	routeCount = 0;
+	stageCount = 0;
+
+	for (int i = 0; i < HEIGHT; i++) {
+		for (int j = 0; j < WIDTH; j++) {
+			if (map[i][j] == 0 || map[i][j] == 2) {
+				stageCount++;
+			}
+		}
+	}
 }
 
 void RouteJudge::Update()
@@ -80,6 +91,13 @@ void RouteJudge::Update()
 			//通ったマスを描画する
 			routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
 			routeObject[currentGrid.y][currentGrid.x]->Perticle();
+			routeCount++;
+		}
+
+		//クリア判定
+		if (stageCount == routeCount) {
+			//ゲームクリア処理
+			g_gameScene->setClear(true);
 		}
 	}
 }
