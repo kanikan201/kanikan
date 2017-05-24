@@ -34,7 +34,8 @@ void RouteJudge::Reset(int set_x,int set_y)
 
 	for (int i = 0; i < HEIGHT; i++) {
 		for (int j = 0; j < WIDTH; j++) {
-			if (map[i][j] == 0 || map[i][j] == 2) {
+			int tmp = map[i][j];
+			if (tmp == 0 || tmp == 2) {
 				stageCount++;
 			}
 		}
@@ -71,6 +72,15 @@ void RouteJudge::Update()
 	if (prevGrid.x != currentGrid.x || prevGrid.y != currentGrid.y) {
 		int mapTmp = map[currentGrid.y][currentGrid.x];
 
+		//クリア判定(仮)
+		//if (stageCount == routeCount && mapTmp == 6) {
+		//	routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
+		//	routeObject[currentGrid.y][currentGrid.x]->Perticle();
+		//	//ゲームクリア処理
+		//	g_gameScene->setClear(true);
+		//	return;
+		//}
+
 		//通れない場所だった(壁と柱)
 		if (mapTmp == 1) {
 			currentGrid = prevGrid;
@@ -92,12 +102,6 @@ void RouteJudge::Update()
 			routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
 			routeObject[currentGrid.y][currentGrid.x]->Perticle();
 			routeCount++;
-		}
-
-		//クリア判定
-		if (stageCount == routeCount) {
-			//ゲームクリア処理
-			g_gameScene->setClear(true);
 		}
 	}
 }
