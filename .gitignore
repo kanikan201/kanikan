@@ -1,12 +1,10 @@
 /TestGame/Game/Game.VC.db
-
 /TestGame/Game/.vs
-
 /TestGame/Game/ipch
-
 /TestGame/Game/x64
-
 /TestGame/Game/Game/x64
-
 /TestGame/tkEngine/x64
 /TestGame/tkEngine/bulletPhysics/src/BulletCollision/x64
+/TestGame/tkEngine/bulletPhysics/src/BulletDynamics/x64
+/TestGame/tkEngine/bulletPhysics/src/BulletSoftBody/x64
+/TestGame/tkEngine/bulletPhysics/src/LinearMath/x64
