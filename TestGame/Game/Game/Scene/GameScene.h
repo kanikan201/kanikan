@@ -26,7 +26,7 @@ public:
 	void Render(CRenderContext& renderContext);
 
 	void Release();		//解放
-	void SetGameOver();
+	void SetGameOver();	//ゲームオーバーをセット
 	void Reset();
 
 	//ステージ番号
@@ -64,6 +64,7 @@ public:
 		return player;
 	}
 
+	//ルート判定クラス取得
 	RouteJudge* getJudge() {
 		return route;
 	}
@@ -86,9 +87,18 @@ public:
 	Step isStep() {
 		return step;
 	}
+
+	//ステージ番号取得
+	state_stage GetStage()
+	{
+		return currentStage;
+	}
+
+	//現在のプレイタイム取得
 	float GetTime() {
 		return gameTime;
 	}
+	//合計プレイタイム取得
 	float GetTotalTime() {
 		return totalTime;
 	}
@@ -116,8 +126,8 @@ private:
 	float				timer = 0.0f;	
 
 	state_stage			currentStage = en_Stage1;	//現在のステージ
-	state_stage			nextStage = en_Stage2;	//次のステージ
-	CSoundSource		GameOverSE;			//ゲームオーバーのSE
+	state_stage			nextStage = en_Stage2;		//次のステージ
+	CSoundSource		GameOverSE;					//ゲームオーバーのSE
 };
 
 extern GameScene* g_gameScene;

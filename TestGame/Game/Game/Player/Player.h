@@ -36,7 +36,7 @@ private:
 	CVector3 Move();
 
 	CSkinModel					skinModel;					//スキンモデル
-	CSkinModelData				skinModelData;				//スキンモデルデータ。
+	CSkinModelDataHandle				skinModelData;				//スキンモデルデータ。
 	CCharacterController		characterController;		//キャラクタ―コントローラー
 
 	CVector3			position = CVector3::Zero;			//プレイヤーの座標

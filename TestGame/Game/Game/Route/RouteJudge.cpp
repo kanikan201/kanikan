@@ -16,7 +16,7 @@ bool RouteJudge::Start()
 	return true;
 }
 
-//リセット
+//リセット(引数はプレイヤー初期位置)
 void RouteJudge::Reset(int set_x,int set_y)
 {
 	for (int i = 0; i < HEIGHT; i++) {

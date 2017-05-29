@@ -161,6 +161,13 @@ namespace tkEngine{
 		*/
 		CSkinModelMaterial* FindMaterial(const char* matName);
 		/*!
+		* @brief	マテリアルリストを取得。
+		*@details
+		* 名前で検索を行っているため、遅いです。頻繁に呼ばないように。
+		*@param[in]	matName	マテリアル名。ディフューズテクスチャ名がマテリアル名になります。
+		*/
+		void FindMaterials(std::vector<CSkinModelMaterial*>& matList, const char* matName);
+		/*!
 		* @brief	スキンモデルマテリアルを追加。
 		*@details
 		* tkEngineの中でだけ使用されます。外部から使用しないようにしてください。

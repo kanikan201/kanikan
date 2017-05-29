@@ -969,4 +969,12 @@ namespace tkEngine{
 		}
 		return nullptr;
 	}
+	void CSkinModelData::FindMaterials(std::vector<CSkinModelMaterial*>& matList, const char* matName)
+	{
+		for (CSkinModelMaterial* mat : m_materials) {
+			if (strcmp(mat->GetName(), matName) == 0) {
+				matList.push_back(mat);
+			}
+		}
+	}
 }

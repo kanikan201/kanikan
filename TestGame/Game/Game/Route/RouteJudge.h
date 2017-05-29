@@ -13,14 +13,16 @@ public:
 	~RouteJudge();
 	bool Start();
 	void Update();
-	void Reset(int set_x, int set_y);
+	void Reset(int set_x, int set_y);	//リセット
+
 	bool isDelete()
 	{
 		return isReset;
 	}
+
+	//すべて通ったか
 	bool isPassed() {
 		if (stageCount == routeCount) {
-			//ゲームクリア処理
 			return true;
 		}
 		return false;
@@ -32,13 +34,14 @@ private:
 		int y;
 	};
 
-	grid prevGrid;
-	grid currentGrid;
-	int map[HEIGHT][WIDTH];
+	grid prevGrid;		//前のマス
+	grid currentGrid;	//今のマス
+	int map[HEIGHT][WIDTH];	//マップデータの複製先
+
 	bool Perticleflg;			//パーティクルのフラグ
-	bool isReset=false;
+	bool isReset = false;
 
 	int stageCount;		//stage1をクリアするために必要なマスの数
-	int routeCount;			//現在のstageで通ったマスの数
+	int routeCount;		//現在のstageで通ったマスの数
 };
 

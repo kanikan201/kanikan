@@ -17,7 +17,7 @@ public:
 	~Number();
 	void Init(CVector2 numPos, CVector2 numSize);
 	void Update() override;
-	void NumSet(int n);
+	void NumSet(int n);	//•\¦‚·‚é”š‚ğİ’è
 	void PostRender(CRenderContext& renderContext) override;
 
 private:

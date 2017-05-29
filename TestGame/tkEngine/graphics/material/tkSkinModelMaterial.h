@@ -21,6 +21,8 @@ namespace tkEngine{
 			enTypeStandard,		//!<スタンダード。
 			enTypeTerrain,		//!<地形。
 			enTypeSky,			//!<空。
+			enTypeToon,			//!<トゥーン
+			enTypeToonNonSkin,
 		};
 		/*!
 		*@brief	テクスチャのシェーダーハンドル。
@@ -81,6 +83,9 @@ namespace tkEngine{
 			enIntshaderHandle_CurNumBone,		//!<スキニングを行うボーンの数。
 			enIntShaderHandle_Num,
 		};
+		
+	
+	public:
 		/*!
 		*@brief	シェーダーテクニックのハンドル。
 		*/
@@ -95,10 +100,10 @@ namespace tkEngine{
 			enTecShaderHandle_NoSkinModel,								//!<NoSkinModelテクニック。
 			enTecShaderHandle_Sky,										//!<Skyテクニック。
 			enTecShaderHandle_Terrain,									//!<Terrain用テクニック。
+			enTecShaderHandle_Toon,
+			enTecShaderHandle_ToonNonSkin,
 			enTecShaderHandle_Num,
 		};
-	
-	public:
 		/*!
 		 *@brief	コンストラクタ。
 		 */

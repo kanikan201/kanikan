@@ -19,9 +19,11 @@ public:
 		enExit,
 	};
 
+	//‘I‘ğŒˆ’è‚µ‚½‚©‚Ç‚¤‚©
 	bool GetChoice() {
 		return isChoice;
 	}
+	//ó‘Ô‚ğæ“¾
 	State GetState() {
 		return state;
 	}

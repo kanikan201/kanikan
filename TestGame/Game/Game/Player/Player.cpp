@@ -18,7 +18,7 @@ Player::~Player()
 bool Player::Start() {
 	skinModelData.LoadModelData("Assets/modelData/Unity.X", &animation);
 
-	skinModel.Init(&skinModelData);
+	skinModel.Init(skinModelData.GetBody());
 	skinModel.SetLight(&g_gameScene->getLight());			//デフォルトライトを設定。
 
 	skinModel.SetShadowCasterFlag(true);
@@ -36,6 +36,23 @@ bool Player::Start() {
 
 	animation.SetAnimationEndTime(AnimationRun, 0.8);
 	animation.PlayAnimation(AnimationStand);
+
+	//トゥーンシェーダ設定
+	std::vector<CSkinModelMaterial*> matList;
+	skinModelData.GetBody()->FindMaterials(matList, "utc_all2.tga");
+	//リストが空じゃない
+	if (!matList.empty()) {
+		for (size_t i = 0; i < matList.size(); i++)
+		{	
+			if (matList[i]->GetTechnique() == CSkinModelMaterial::enTecShaderHandle_SkinModel) {
+				matList[i]->Build(CSkinModelMaterial::enTypeToon);
+			}
+			else {
+				matList[i]->Build(CSkinModelMaterial::enTypeToonNonSkin);
+			}
+			
+		}
+	}
 
 	return true;
 }

@@ -15,8 +15,9 @@ float4x4	g_worldMatrix;			//!<ワールド行列。
 float4x4	g_mViewProjLastFrame;	//!<1フレーム前のビュープロジェクション行列。
 float4		g_fogParam;				//フォグのパラメータ。xにフォグが掛かり始める深度。yにフォグが完全にかかる深度。zはフォグを計算するかどうかのフラグ。
 
-
 int4 g_flags;				//xに法線マップ、yはシャドウレシーバー、zはリムライト、wはスペキュラマップ。
+
+float4	g_diffuseLightDirection;	//トゥーンシェーダーはライトは一本のみ。
 
 texture g_diffuseTexture;		//ディフューズテクスチャ。
 sampler g_diffuseTextureSampler = 
@@ -769,6 +770,28 @@ PSOutput PSTerrain(VS_OUTPUT In) : COLOR
 }
 
 /*!
+*@brief	トゥーン
+*/
+PSOutput PSToon( VS_OUTPUT In )
+{
+	PSOutput psOut = (PSOutput)0;
+
+	psOut.color = tex2D(g_diffuseTextureSampler, In.Tex0);
+
+	//float uv = dot(In.normal.xyz, -g_diffuseLightDirection.xyz);
+	float uv = 0.3f;
+
+	if (uv < 0.5f) {
+		//色を暗くする
+		psOut.color -= float4(0.5f, 0.5f, 0.5f, 0.0f);
+	}
+
+	psOut.depth = In.worldPos_depth.w;
+
+	return psOut;
+}
+
+/*!
  *@brief	スキンありモデル用のテクニック。
  */
 technique SkinModel
@@ -880,5 +903,17 @@ technique Terrain{
 	{
 		VertexShader = compile vs_3_0 VSMain(false, false);
 		PixelShader = compile ps_3_0 PSTerrain();
+	}
+}
+technique Toon{
+	pass p0{
+		VertexShader = compile vs_3_0 VSMain(true, false);
+		PixelShader = compile ps_3_0 PSToon();
+	}
+}
+technique ToonNonSkin {
+	pass p0 {
+		VertexShader = compile vs_3_0 VSMain(false, false);
+		PixelShader = compile ps_3_0 PSToon();
 	}
 }

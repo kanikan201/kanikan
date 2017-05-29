@@ -33,6 +33,7 @@ void Enemy::Init(CVector3 pos)
 
 	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
 
+
 	//animation.PlayAnimation(AnimationStand);
 }
 

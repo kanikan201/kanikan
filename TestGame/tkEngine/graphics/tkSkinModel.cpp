@@ -158,7 +158,8 @@ namespace tkEngine{
 				CSkinModelMaterial::EnShaderTechnique oldTec = material.GetTechnique();
 				if (isDrawToShadowMap) {
 					//シャドウマップへの書き込み中。
-					if (oldTec == CSkinModelMaterial::enTecShaderHandle_SkinModel) {
+					if (oldTec == CSkinModelMaterial::enTecShaderHandle_SkinModel
+						|| oldTec == CSkinModelMaterial::enTecShaderHandle_Toon) {
 						material.SetTechnique(CSkinModelMaterial::enTecShaderHandle_SkinModelRenderShadowMap);
 					}
 					else if (oldTec == CSkinModelMaterial::enTecShaderHandle_SkinModelInstancing) {
@@ -228,6 +229,7 @@ namespace tkEngine{
 					//シャドウマップへの書き込み中。
 					if (oldTec == CSkinModelMaterial::enTecShaderHandle_NoSkinModel 
 						|| oldTec == CSkinModelMaterial::enTecShaderHandle_Terrain
+						|| oldTec == CSkinModelMaterial::enTecShaderHandle_ToonNonSkin
 					) {
 						material.SetTechnique(CSkinModelMaterial::enTecShaderHandle_NoSkinModelRenderShadowMap);
 					}

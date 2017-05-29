@@ -16,7 +16,7 @@ public:
 	void Damage();
 
 protected:
-	virtual void Move();			//動き
+	virtual void Move();	//動き
 
 	//モーション(仮)
 	enum AnimationNo {
@@ -56,6 +56,6 @@ protected:
 
 	float		length = 0.0f;	//プレイヤーとの距離
 	float		m_timer = 0.0f;
-	float start;
+	float		start;
 	bool isMoving = false;
 };

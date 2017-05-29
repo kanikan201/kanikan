@@ -80,7 +80,7 @@ void Camera::Update()
 	chengePos = { target.x,target.y + 100.0f,target.z };
 
 	//Aボタンが押されたら視点を変える
-	if (Pad(0).IsTrigger(enButtonA)) {
+	if (Pad(0).IsTrigger(enButtonX)) {
 		//上視点に変更
 		if (ChengeTrigger == false) {
 			chengePos.Add(toPosition);

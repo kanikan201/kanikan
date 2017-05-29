@@ -13,6 +13,6 @@ public:
 	Map();
 	~Map();
 	bool Start();
-	void Create(SMapInfo* mapLocInfo, int numObject);
+	void Create(SMapInfo* mapLocInfo, int numObject);	//ƒ}ƒbƒvì¬
 	void Update();
 };

@@ -11,14 +11,19 @@ public:
 	bool Start() override;
 	void Update() override;
 	void PostRender(CRenderContext& renderContext) override;
+
+	//‘I‘ğó‘Ô
 	enum State {
 		enContinue,
 		enEnd,
 	};
 
+	//‘I‘ğŒˆ’è‚µ‚½‚©
 	bool GetChoice(){
 		return isChoice;
 	}
+
+	//ó‘Ô‚ğæ“¾
 	State GetState() {
 		return state;
 	}

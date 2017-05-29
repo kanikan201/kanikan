@@ -17,14 +17,15 @@ public:
 private:
 	CSprite		sprite;		//スプライト
 	CTexture	texture;	//テクスチャ
+
+	CSprite		m_colon;	//コロン
+	CTexture	m_colonTex;	//コロンのテクスチャ
+
+	CSprite		m_Str;		//文字
+	CTexture	m_StrTex;	//文字のテクスチャ
+
+	Number*		num[4];	//数字
+
 	CSoundSource* bgm;
-
-	CSprite		m_colon;
-	CTexture	m_colonTex;
-
-	CSprite		 m_Str;		//HPバーの背景。
-	CTexture	m_StrTex;		//HPバーの背景のテクスチャ
-
-	Number*		num[4];
 };
 

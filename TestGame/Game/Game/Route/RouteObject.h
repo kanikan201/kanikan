@@ -19,9 +19,9 @@ private:
 	CSkinModel					skinModel;		//スキンモデル
 	CSkinModelDataHandle		skinModelData;	//スキンモデルデータ
 
-	CVector3					position;		//マーカーの位置
-	CQuaternion					rotation;
-	CParticleEmitter*			perticle;
+	CVector3					position;		//位置
+	CQuaternion					rotation;		//回転
+	CParticleEmitter*			perticle;		//パーティクル
 };
 
 extern RouteObject* routeObject[HEIGHT][WIDTH];
