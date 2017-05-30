@@ -25,14 +25,59 @@ bool Camera::Start()
 	camera.Update();
 	cameraCollisionSolver.Init(0.2f);
 
-	ChengeTrigger = false;
-	ChengeCamera = false;
+	ChengeCamera = false;	//後ろ視点
 
 	return true;
 }
 
 void Camera::Update()
 {
+	//Xボタンが押されたら視点を変える
+	if (Pad(0).IsTrigger(enButtonX)) {
+			ChengeCamera = !ChengeCamera;
+	}
+
+	Move();	//カメラを動かす
+
+	CVector3 target = g_gameScene->getPlayer()->GetPosition();
+	target.y += 2.0f;				//ターゲット微調整
+	camera.SetTarTarget(target);	//視点設定
+
+	//上視点の状態
+	if (ChengeCamera) {
+		target.y += 100.0f;	//高さ調整
+
+		//カメラ位置セット
+		target.Add(toPosition);
+		camera.SetPosition(target);
+	}
+	//後ろ視点の状態
+	else {
+		//カメラ位置セット
+		target.Add(toPosition);
+		camera.SetPosition(target);
+	}
+
+	//バネカメラ更新
+	camera.UpdateSpringCamera();
+
+	//カメラコリジョン処理の実行。
+	CVector3 newPos;
+	if (!ChengeCamera && cameraCollisionSolver.Execute(newPos, camera.GetPosition(), camera.GetTarget())) 
+	{
+		camera.SetPosition(newPos);
+		camera.ClearSpringParame();
+	}
+
+	//カメラ更新
+	camera.UpdateCamera();
+}
+
+void Camera::Move()
+{
+	//切り替わり時は処理しない
+	if (g_gameScene->isStep() != GameScene::step_nomal) { return; }
+
 	//カメラを回転させる。
 	float rStick_x = Pad(0).GetRStickXF();
 	float rStick_y = Pad(0).GetRStickYF();
@@ -67,59 +112,6 @@ void Camera::Update()
 			toPosition = toPositionOld;
 		}
 	}
-
-	CVector3 target = g_gameScene->getPlayer()->GetPosition();
-
-	//ターゲット微調整
-	target.y += 2.0f;
-
-	//視点設定
-	camera.SetTarTarget(target);
-
-	CVector3	chengePos;
-	chengePos = { target.x,target.y + 100.0f,target.z };
-
-	//Aボタンが押されたら視点を変える
-	if (Pad(0).IsTrigger(enButtonX)) {
-		//上視点に変更
-		if (ChengeTrigger == false) {
-			chengePos.Add(toPosition);
-			camera.SetPosition(chengePos);
-			ChengeCamera = true;
-			ChengeTrigger = true;
-		}
-		//後ろ視点に変更
-		else {
-			target.Add(toPosition);
-			camera.SetPosition(target);
-			ChengeCamera = false;
-			ChengeTrigger = false;
-		}
-	}
-	//ボタンが押されてない間
-	else {
-		//上視点の状態
-		if (ChengeCamera == true) {
-			//カメラ位置セット
-			chengePos.Add(toPosition);
-			camera.SetPosition(chengePos);
-		}
-		//後ろ視点の状態
-		else {
-			//カメラ位置セット
-			target.Add(toPosition);
-			camera.SetPosition(target);
-		}
-	}
-
-	camera.UpdateSpringCamera();
-	//カメラコリジョン処理の実行。
-	CVector3 newPos;
-	if (cameraCollisionSolver.Execute(newPos, camera.GetPosition(), camera.GetTarget())) {
-		camera.SetPosition(newPos);
-		camera.ClearSpringParame();
-	}
-	camera.UpdateCamera();
 }
 
 void Camera::Reset()
@@ -131,4 +123,6 @@ void Camera::Reset()
 
 	camera.SetFar(100000.0f);
 	camera.SetViewAngle(CMath::DegToRad(45.0f));	//画角
+
+	ChengeCamera = false;	//後ろ視点
 }

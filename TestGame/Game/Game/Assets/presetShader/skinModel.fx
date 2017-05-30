@@ -768,7 +768,17 @@ PSOutput PSTerrain(VS_OUTPUT In) : COLOR
 	
 	return psOut;
 }
-
+texture g_darkTexture;		//ディフューズテクスチャ。
+sampler g_darkTextureSampler =
+sampler_state
+{
+	Texture = <g_darkTexture>;
+	MipFilter = LINEAR;
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	AddressU = Wrap;
+	AddressV = Wrap;
+};
 /*!
 *@brief	トゥーン
 */
@@ -778,12 +788,14 @@ PSOutput PSToon( VS_OUTPUT In )
 
 	psOut.color = tex2D(g_diffuseTextureSampler, In.Tex0);
 
-	//float uv = dot(In.normal.xyz, -g_diffuseLightDirection.xyz);
-	float uv = 0.3f;
+	float3 normal = normalize(In.Normal);
+	//ディフューズライト
 
-	if (uv < 0.5f) {
+	float uv = dot(In.Normal.xyz, -g_light.diffuseLightDir[0].xyz);
+
+	if (uv < 0.707f) {
 		//色を暗くする
-		psOut.color -= float4(0.5f, 0.5f, 0.5f, 0.0f);
+		psOut.color = tex2D(g_darkTextureSampler, In.Tex0);
 	}
 
 	psOut.depth = In.worldPos_depth.w;

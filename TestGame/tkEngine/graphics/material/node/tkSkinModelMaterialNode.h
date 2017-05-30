@@ -123,6 +123,9 @@ namespace tkEngine{
 	//ディフューズマップ転送ノード。
 	typedef TSkinModelMaterialNode_SendTexture<CSkinModelMaterial::enTextureShaderHandle_DiffuseMap>
 		CSkinModelMaterialNode_SendDiffuseMap;
+	//dark転送ノード。
+	typedef TSkinModelMaterialNode_SendTexture<CSkinModelMaterial::enTextureShaderHandle_DarkTex>
+		CSkinModelMaterialNode_SendDarkTexrure;
 	//シャドウマップ0転送ノード。
 	typedef TSkinModelMaterialNode_SendTexture<CSkinModelMaterial::enTextureShaderHandle_ShadowMap_0>
 		CSkinModelMaterialNode_SendShadowMap_0;

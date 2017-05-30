@@ -9,6 +9,7 @@ public:
 	bool Start();
 	void Update();
 	void Reset();
+	void Move();
 
 //ゲッター
 	const CMatrix& GetViewMatrix() const 
@@ -33,7 +34,6 @@ private:
 	CSpringCamera			camera;			//カメラ
 	CVector3				toPosition;		//注視点から視点へのベクトル。
 	CCameraCollisionSolver	cameraCollisionSolver;
-	bool					ChengeTrigger;	//カメラの視点変更を決定するフラグ
 	bool					ChengeCamera;	//カメラの視点を変えるフラグ
 };
 

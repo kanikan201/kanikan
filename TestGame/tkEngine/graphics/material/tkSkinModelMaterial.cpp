@@ -61,6 +61,8 @@ namespace tkEngine{
 			m_hTexShaderHandle[enTextureShaderHandle_TerrainNormalMap2] = effectDx->GetParameterByName(NULL, "g_terrainNormalMap2");
 			m_hTexShaderHandle[enTextureShaderHandle_TerrainNormalMap3] = effectDx->GetParameterByName(NULL, "g_terrainNormalMap3");
 
+			m_hTexShaderHandle[enTextureShaderHandle_DarkTex] = effectDx->GetParameterByName(NULL, "g_darkTexture");
+
 			//行列のシェーダーハンドル。
 			m_hMatrixShaderHandle[enMatrixShaderHandle_LastFrameViewProj] = effectDx->GetParameterByName(NULL, "g_mViewProjLastFrame");
 			m_hMatrixShaderHandle[enMatrixShaderHandle_ViewProj] = effectDx->GetParameterByName(NULL, "g_mViewProj");
@@ -146,6 +148,7 @@ namespace tkEngine{
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendWorldMatrix(this)));
 			//テクスチャ。
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendDiffuseMap(this)));
+			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendDarkTexrure(this)));
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendShadowMap_0(this)));
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendShadowMap_1(this)));
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendShadowMap_2(this)));

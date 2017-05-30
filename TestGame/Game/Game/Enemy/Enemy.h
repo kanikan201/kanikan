@@ -58,4 +58,5 @@ protected:
 	float		m_timer = 0.0f;
 	float		start;
 	bool isMoving = false;
+	CTexture	darkTex;
 };

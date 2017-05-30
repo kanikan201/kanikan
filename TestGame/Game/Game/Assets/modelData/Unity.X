@@ -9870,7 +9870,7 @@ Frame Character1_Reference {
            0.000000;0.000000;0.000000;;
 
            TextureFilename Diffuse {
-            "utc_all2.tga";
+            "utc_all2_light.png";
            }
           }
          }
@@ -27539,7 +27539,7 @@ Frame Mesh_SD_unitychan {
      0.000000;0.000000;0.000000;;
 
      TextureFilename Diffuse {
-      "utc_all2.tga";
+      "utc_all2_light.png";
      }
     }
    }
@@ -54199,7 +54199,7 @@ Frame Mesh_SD_unitychan {
      0.000000;0.000000;0.000000;;
 
      TextureFilename Diffuse {
-      "utc_all2.tga";
+      "utc_all2_light.png";
      }
     }
    }
@@ -59459,7 +59459,7 @@ Frame Mesh_SD_unitychan {
      0.000000;0.000000;0.000000;;
 
      TextureFilename Diffuse {
-      "utc_all2.tga";
+      "utc_all2_light.png";
      }
     }
    }
@@ -60127,7 +60127,7 @@ Frame Mesh_SD_unitychan {
      0.000000;0.000000;0.000000;;
 
      TextureFilename Diffuse {
-      "utc_all2.tga";
+      "utc_all2_light.png";
      }
     }
    }
@@ -61404,7 +61404,7 @@ Frame Mesh_SD_unitychan {
      0.000000;0.000000;0.000000;;
 
      TextureFilename Diffuse {
-      "utc_all2.tga";
+      "utc_all2_light.png";
      }
     }
    }

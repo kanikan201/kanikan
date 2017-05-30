@@ -37,9 +37,11 @@ bool Player::Start() {
 	animation.SetAnimationEndTime(AnimationRun, 0.8);
 	animation.PlayAnimation(AnimationStand);
 
+	darkTex.Load("Assets/modelData/utc_all2_dark.png");
+
 	//トゥーンシェーダ設定
 	std::vector<CSkinModelMaterial*> matList;
-	skinModelData.GetBody()->FindMaterials(matList, "utc_all2.tga");
+	skinModelData.GetBody()->FindMaterials(matList, "utc_all2_light.png");
 	//リストが空じゃない
 	if (!matList.empty()) {
 		for (size_t i = 0; i < matList.size(); i++)
@@ -50,6 +52,7 @@ bool Player::Start() {
 			else {
 				matList[i]->Build(CSkinModelMaterial::enTypeToonNonSkin);
 			}
+			matList[i]->SetTexture(CSkinModelMaterial::enTextureShaderHandle_DarkTex, darkTex);
 			
 		}
 	}
@@ -77,11 +80,12 @@ void Player::Update()
 		currentAnimSetNo = AnimationRun;
 		//向きを変更
 		rotation.SetRotation(CVector3::AxisY, atan2f(dir.x, dir.z));
-		if (!characterController.IsJump()) {
 
+		if (!characterController.IsJump()) {
 			timer += GameTime().GetFrameDeltaTime();
 
 			if (timer > 0.4f) {
+				//足音
 				CSoundSource* se = NewGO<CSoundSource>(0);
 				se->Init("Assets/sound/footstep.wav");
 				se->Play(false);
@@ -92,7 +96,6 @@ void Player::Update()
 //立ってるとき
 	else 
 	{
-
 		//立ちアニメーション
 		currentAnimSetNo = AnimationStand;
 	}

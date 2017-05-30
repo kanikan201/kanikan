@@ -34,6 +34,8 @@ public:
 
 private:
 	CVector3 Move();
+	CTexture	darkTex;
+
 
 	CSkinModel					skinModel;					//スキンモデル
 	CSkinModelDataHandle				skinModelData;				//スキンモデルデータ。

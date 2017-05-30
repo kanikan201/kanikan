@@ -44,6 +44,7 @@ namespace tkEngine{
 			enTextureShaderHandle_TerrainNormalMap1,	//!<地形の法線マップ1。
 			enTextureShaderHandle_TerrainNormalMap2,	//!<地形の法線マップ2。
 			enTextureShaderHandle_TerrainNormalMap3,	//!<地形の法線マップ3。
+			enTextureShaderHandle_DarkTex,
 			enTextureShaderHandle_Num,
 		};
 		/*!

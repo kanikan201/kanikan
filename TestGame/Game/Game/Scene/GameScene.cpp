@@ -2,6 +2,7 @@
 #include "GameScene.h"
 #include "ResultScene.h"
 #include "fade/Fade.h"
+#include "ClearScene.h"
 
 GameScene* g_gameScene = NULL;
 
@@ -94,6 +95,7 @@ void GameScene::Update()
 				CSoundSource* SE = NewGO<CSoundSource>(0);
 				SE->Init("Assets/sound/V0024.wav");
 				SE->Play(false);
+				NewGO<ClearScene>(0);
 			}
 			//2•b‘Ò‚Á‚Ä‚©‚ç‘JˆÚ
 			else if (timer > 2.0f) {
