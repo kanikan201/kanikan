@@ -16,7 +16,13 @@ bool RouteJudge::Start()
 	return true;
 }
 
-//リセット(引数はプレイヤー初期位置)
+//初期位置設定
+void RouteJudge::Init(int set_x, int set_y) {
+	initialGrid.x = set_x;
+	initialGrid.y = set_y;
+}
+
+//リセット(引数はプレイヤー位置)
 void RouteJudge::Reset(int set_x,int set_y)
 {
 	for (int i = 0; i < HEIGHT; i++) {
@@ -57,9 +63,13 @@ void RouteJudge::Update()
 	//プレイヤーの位置
 	CVector3 pos = g_gameScene->getPlayer()->GetPosition();
 
+	//初期位置補正
+	float dat_x = (float)initialGrid.x + 0.5f;
+	float dat_y = (float)initialGrid.y + 0.5f;
+
 	//現在の位置を更新
-	currentGrid.x = (int)(-pos.x / GRID_SIZE+ WIDTH/2.0f);
-	currentGrid.y = (int)(pos.z / GRID_SIZE+ (HEIGHT-1.5f));
+	currentGrid.x = (int)(-pos.x / GRID_SIZE+ dat_x);
+	currentGrid.y = (int)(pos.z / GRID_SIZE+ dat_y);
 
 	//プレイヤーの初期位置を通ったマスにする
 	if (Perticleflg == false) {
@@ -71,15 +81,6 @@ void RouteJudge::Update()
 	//マスの移動があった時
 	if (prevGrid.x != currentGrid.x || prevGrid.y != currentGrid.y) {
 		int mapTmp = map[currentGrid.y][currentGrid.x];
-
-		//クリア判定(仮)
-		//if (stageCount == routeCount && mapTmp == 6) {
-		//	routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
-		//	routeObject[currentGrid.y][currentGrid.x]->Perticle();
-		//	//ゲームクリア処理
-		//	g_gameScene->setClear(true);
-		//	return;
-		//}
 
 		//通れない場所だった(壁と柱)
 		if (mapTmp == 1) {

@@ -14,6 +14,7 @@ public:
 	bool Start();
 	void Update();
 	void Reset(int set_x, int set_y);	//リセット
+	void Init(int set_x, int set_y);
 
 	bool isDelete()
 	{
@@ -36,7 +37,9 @@ private:
 
 	grid prevGrid;		//前のマス
 	grid currentGrid;	//今のマス
-	int map[HEIGHT][WIDTH];	//マップデータの複製先
+	grid initialGrid;
+
+	int map[20][20];	//マップデータの複製先(とりあえずおっきいサイズに)
 
 	bool Perticleflg;			//パーティクルのフラグ
 	bool isReset = false;

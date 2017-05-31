@@ -789,12 +789,11 @@ PSOutput PSToon( VS_OUTPUT In )
 	psOut.color = tex2D(g_diffuseTextureSampler, In.Tex0);
 
 	float3 normal = normalize(In.Normal);
-	//ディフューズライト
 
 	float uv = dot(In.Normal.xyz, -g_light.diffuseLightDir[0].xyz);
 
-	if (uv < 0.707f) {
-		//色を暗くする
+	if (uv < 0.5f) {
+		//暗くする
 		psOut.color = tex2D(g_darkTextureSampler, In.Tex0);
 	}
 

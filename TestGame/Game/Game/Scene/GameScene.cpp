@@ -175,6 +175,7 @@ void GameScene::CreateStage(state_stage stage)
 		//nextStage = en_Stage2;
 		nextStage = en_end;	//こっちはテスト用
 		step = step_StageLoad;
+		route->Init(3, 7);
 		route->Reset(3, 7);
 
 		bgmSource = NewGO<CSoundSource>(0);
@@ -189,6 +190,7 @@ void GameScene::CreateStage(state_stage stage)
 		currentStage = en_Stage2;
 		nextStage = en_Stage3;
 		step = step_StageLoad;
+		route->Init(3, 7);
 		route->Reset(3, 7);
 
 		bgmSource = NewGO<CSoundSource>(0);
