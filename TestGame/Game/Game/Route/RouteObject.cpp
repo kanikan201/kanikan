@@ -45,6 +45,7 @@ void RouteObject::Update()
 		return;
 	}
 
+	//•\Ž¦‚ðÁ‚·
 	if (g_gameScene->getJudge()->isDelete()) {
 		SetActiveFlag(false);
 		DeleteGO(perticle);
@@ -58,8 +59,6 @@ void RouteObject::Render(CRenderContext& renderContext)
 
 void RouteObject::Perticle()
 {
-	//return;
-
 	perticle = NewGO<CParticleEmitter>(0);
 
 	perticle->Init(g_random, g_gameScene->getCamera()->GetCamera(),

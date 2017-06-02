@@ -7,6 +7,7 @@
 
 Enemy::Enemy()
 {
+	//“®‚«n‚ß‚éŠÔ‚ğ‚¸‚ç‚·
 	CRandom rand;
 	rand.Init((unsigned long)time(NULL));
 	start = rand.GetRandInt() % 15;

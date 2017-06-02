@@ -6,6 +6,11 @@
 
 GameScene* g_gameScene = NULL;
 
+
+namespace {
+	const CVector2 Size = { 300.0f, 160.0f };
+	const CVector2 Pos = { 0.0f,100.0f };
+}
 //ステージ1の配置情報
 SMapInfo Stage1[] = {
 #include "locationInfo/stage1.h"
@@ -56,6 +61,12 @@ bool GameScene::Start()
 		step = step_StageLoad;
 		isDelete = false;
 		isClear = false;
+
+		/*テスト?*/
+		texture.Load("Assets/sprite/test2.png");
+		sprite.Init(&texture);
+		sprite.SetSize(Size);
+		sprite.SetPosition(Pos);
 
 		return false;
 	}
@@ -135,10 +146,15 @@ void GameScene::Update()
 		}
 		break;
 	case step_WaitGameOver:
+		timer += GameTime().GetFrameDeltaTime();
+		if (!isMiss && timer > 1.7f) {
+			isMiss = true;
+		}
 		if (!GameOverSE.IsPlaying()) {
 			step = step_GameOver;
 			gameOver = NewGO<GameOverScene>(0);
-
+			timer = 0.0f;
+			isMiss = false;
 		}
 		break;
 	//ゲームオーバーの時
@@ -173,10 +189,9 @@ void GameScene::CreateStage(state_stage stage)
 
 		currentStage = en_Stage1;
 		//nextStage = en_Stage2;
-		nextStage = en_end;	//こっちはテスト用
+		nextStage = en_end;	//こっちはテスト用(次のステージがない)
 		step = step_StageLoad;
-		route->Init(3, 7);
-		route->Reset(3, 7);
+		route->Init(3, 7, en_Stage1);
 
 		bgmSource = NewGO<CSoundSource>(0);
 		bgmSource->Init("Assets/sound/Dungeon.wav");
@@ -190,8 +205,7 @@ void GameScene::CreateStage(state_stage stage)
 		currentStage = en_Stage2;
 		nextStage = en_Stage3;
 		step = step_StageLoad;
-		route->Init(3, 7);
-		route->Reset(3, 7);
+		route->Init(3, 7, en_Stage2);	//ダミー
 
 		bgmSource = NewGO<CSoundSource>(0);
 		bgmSource->Init("Assets/sound/GameBGM.wav");
@@ -203,9 +217,11 @@ void GameScene::CreateStage(state_stage stage)
 /*!
 *@brief	描画関数。
 */
-void GameScene::Render(CRenderContext& renderContext)
+void GameScene::PostRender(CRenderContext& renderContext)
 {
-
+	if (isMiss) {
+		sprite.Draw(renderContext);
+	}
 }
 
 //生成したものを解放する

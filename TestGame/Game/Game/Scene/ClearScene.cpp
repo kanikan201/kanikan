@@ -3,7 +3,7 @@
 #include "GameScene.h"
 
 namespace {
-	const CVector2 Size = { 420.0f, 130.0f };
+	const CVector2 Size = { 420.0f, 160.0f };
 	const CVector2 Pos = { 0.0f,100.0f };
 }
 

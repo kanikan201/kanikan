@@ -9,7 +9,7 @@ class Enemy : public IGameObject
 {
 public:
 	Enemy();
-	~Enemy();
+	virtual ~Enemy();
 	void Init(CVector3 FirstPosition);
 	void Update();
 	void Render(CRenderContext& renderContext);
