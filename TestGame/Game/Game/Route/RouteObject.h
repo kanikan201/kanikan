@@ -24,4 +24,4 @@ private:
 	CParticleEmitter*			perticle;		//パーティクル
 };
 
-extern RouteObject* routeObject[HEIGHT][WIDTH];
+extern RouteObject* routeObject[20][20];

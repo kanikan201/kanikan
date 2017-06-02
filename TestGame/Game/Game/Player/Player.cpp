@@ -121,7 +121,7 @@ CVector3 Player::Move()
 
 	//キャラクターの移動速度取得
 	CVector3 move = characterController.GetMoveSpeed();
-	if (g_gameScene->GetClear()) { 
+	if (g_gameScene->GetClear() || g_gameScene->getCamera()->GetChengeIn()) {
 		move.x = 0.0f;
 		move.z = 0.0f;
 		return move; 

@@ -101,6 +101,9 @@
     <ClCompile Include="Scene\GameScene.cpp">
       <Filter>Source Files\Scene\GameScene</Filter>
     </ClCompile>
+    <ClCompile Include="MapData.cpp">
+      <Filter>Source Files\Map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">

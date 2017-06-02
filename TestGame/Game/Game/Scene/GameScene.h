@@ -12,6 +12,7 @@
 #include "Interface/DisplayTime.h"
 #include "Route/RouteJudge.h"
 #include "GameOverScene.h"
+#include "../Map/MapDate.h"
 
 class GameScene :
 	public IGameObject
@@ -69,6 +70,11 @@ public:
 		return route;
 	}
 
+	//マップデータクラス取得
+	MapData* getMapData() {
+		return mapData;
+	}
+
 	//クリアフラグセット
 	void setClear(bool flag) {
 		isClear = flag;
@@ -115,6 +121,7 @@ private:
 	RouteJudge*			route;				//ルート判定
 	CSoundSource*		bgmSource = nullptr;
 	GameOverScene*		gameOver;
+	MapData*			mapData;
 
 	//変数
 	bool				isDelete;			//オブジェクト消去フラグ

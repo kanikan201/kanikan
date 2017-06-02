@@ -23,10 +23,18 @@ public:
 
 	//すべて通ったか
 	bool isPassed() {
-		if (stageCount == routeCount) {
+		if (StageCount == RouteCount) {
 			return true;
 		}
 		return false;
+	}
+
+	int GetinitialGrid_x() {
+		return initialGrid.x;
+	}
+
+	int GetinitialGrid_y() {
+		return initialGrid.y;
 	}
 private:
 	struct grid
@@ -44,7 +52,7 @@ private:
 	bool Perticleflg;			//パーティクルのフラグ
 	bool isReset = false;
 
-	int stageCount;		//stage1をクリアするために必要なマスの数
-	int routeCount;		//現在のstageで通ったマスの数
+	int StageCount;		//stage1をクリアするために必要なマスの数
+	int RouteCount;		//現在のstageで通ったマスの数
 };
 

@@ -25,9 +25,7 @@ void RouteJudge::Init(int set_x, int set_y) {
 //リセット(引数はプレイヤー位置)
 void RouteJudge::Reset(int set_x,int set_y)
 {
-	for (int i = 0; i < HEIGHT; i++) {
-		memcpy(map[i], sMap[i], sizeof(sMap[i]));
-	}
+	g_gameScene->getMapData()->GetMapCpy(map);
 	map[set_y][set_x] = 5;
 	currentGrid.x = set_x;
 	currentGrid.y = set_y;
@@ -35,17 +33,10 @@ void RouteJudge::Reset(int set_x,int set_y)
 	Perticleflg = false;
 	isReset = false;
 
-	routeCount = 0;
-	stageCount = 0;
+	RouteCount = 0;
+	StageCount = 0;
 
-	for (int i = 0; i < HEIGHT; i++) {
-		for (int j = 0; j < WIDTH; j++) {
-			int tmp = map[i][j];
-			if (tmp == 0 || tmp == 2) {
-				stageCount++;
-			}
-		}
-	}
+	StageCount = 27;
 }
 
 void RouteJudge::Update()
@@ -68,14 +59,15 @@ void RouteJudge::Update()
 	float dat_y = (float)initialGrid.y + 0.5f;
 
 	//現在の位置を更新
-	currentGrid.x = (int)(-pos.x / GRID_SIZE+ dat_x);
-	currentGrid.y = (int)(pos.z / GRID_SIZE+ dat_y);
+	currentGrid.x = (int)(pos.x / GRID_SIZE+ dat_x);
+	currentGrid.y = (int)(-pos.z / GRID_SIZE+ dat_y);
 
 	//プレイヤーの初期位置を通ったマスにする
 	if (Perticleflg == false) {
 		routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
 		routeObject[currentGrid.y][currentGrid.x]->Perticle();
 		Perticleflg = true;
+		RouteCount++;
 	}
 
 	//マスの移動があった時
@@ -102,7 +94,12 @@ void RouteJudge::Update()
 			//通ったマスを描画する
 			routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
 			routeObject[currentGrid.y][currentGrid.x]->Perticle();
-			routeCount++;
+			RouteCount++;
 		}
+	}
+
+	//クリア判定
+	if (isPassed()) {
+		g_gameScene->setClear(true);
 	}
 }

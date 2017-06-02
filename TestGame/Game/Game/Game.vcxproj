@@ -170,6 +170,7 @@
     <ClCompile Include="Interface\inventory.cpp" />
     <ClCompile Include="Interface\Number.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MapData.cpp" />
     <ClCompile Include="Map\ClearMarker.cpp" />
     <ClCompile Include="Map\Map.cpp" />
     <ClCompile Include="Map\MapChip.cpp" />

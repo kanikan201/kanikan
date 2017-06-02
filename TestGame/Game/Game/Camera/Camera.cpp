@@ -14,6 +14,12 @@ Camera::~Camera()
 {
 }
 
+void Camera::Init(int count) 
+{
+	ChengeCount = count;
+	ChengeIn = false;
+}
+
 bool Camera::Start()
 {
 	//カメラの位置設定
@@ -26,6 +32,7 @@ bool Camera::Start()
 	cameraCollisionSolver.Init(0.2f);
 
 	ChengeCamera = false;	//後ろ視点
+	timer = 0.0f;
 
 	return true;
 }
@@ -33,8 +40,9 @@ bool Camera::Start()
 void Camera::Update()
 {
 	//Xボタンが押されたら視点を変える
-	if (Pad(0).IsTrigger(enButtonX)) {
-			ChengeCamera = !ChengeCamera;
+	if (Pad(0).IsTrigger(enButtonX) && timer == 0.0f && ChengeCount > 0) {
+		ChengeCamera = !ChengeCamera;
+		ChengeCount--;
 	}
 
 	Move();	//カメラを動かす
@@ -43,6 +51,11 @@ void Camera::Update()
 	target.y += 2.0f;				//ターゲット微調整
 	camera.SetTarTarget(target);	//視点設定
 
+	if (timer > 2.0f) {
+		ChengeCamera = !ChengeCamera;
+		timer = 0.0f;
+	}
+
 	//上視点の状態
 	if (ChengeCamera) {
 		target.y += 100.0f;	//高さ調整
@@ -50,12 +63,15 @@ void Camera::Update()
 		//カメラ位置セット
 		target.Add(toPosition);
 		camera.SetPosition(target);
+		timer += GameTime().GetFrameDeltaTime();
+		ChengeIn = true;
 	}
 	//後ろ視点の状態
 	else {
 		//カメラ位置セット
 		target.Add(toPosition);
 		camera.SetPosition(target);
+		ChengeIn = false;
 	}
 
 	//バネカメラ更新
@@ -125,4 +141,5 @@ void Camera::Reset()
 	camera.SetViewAngle(CMath::DegToRad(45.0f));	//画角
 
 	ChengeCamera = false;	//後ろ視点
+	timer = 0.0f;
 }

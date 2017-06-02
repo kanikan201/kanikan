@@ -3,7 +3,7 @@
 #include "scene/GameScene.h"
 #include "scene/SceneManager.h"
 
-RouteObject* routeObject[HEIGHT][WIDTH];
+RouteObject* routeObject[20][20];
 
 RouteObject::RouteObject()
 {
