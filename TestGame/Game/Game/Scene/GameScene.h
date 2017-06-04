@@ -14,6 +14,14 @@
 #include "GameOverScene.h"
 #include "../Map/MapDate.h"
 
+//ステージ番号
+enum state_stage {
+	en_Stage1,	//ステージ1
+	en_Stage2,	//ステージ2
+	en_Stage3,	//ステージ3
+	en_end,		//ゲームクリア処理用のダミー
+};
+
 class GameScene :
 	public IGameObject
 {
@@ -29,14 +37,6 @@ public:
 	void Release();		//解放
 	void SetGameOver();	//ゲームオーバーをセット
 	void Reset();
-
-	//ステージ番号
-	enum state_stage {
-		en_Stage1,	//ステージ1
-		en_Stage2,	//ステージ2
-		en_Stage3,	//ステージ3
-		en_end,		//ゲームクリア処理用のダミー
-	};
 
 	//フェードの状態
 	enum Step {

@@ -31,16 +31,6 @@ public:
 	int GetWidth();
 
 	void GetMapCpy(void *value);
-
-	enum mapObj {
-		Empty,
-		Wall,
-		Pole,
-		Trap1,	//邪魔パネル(仮)
-		Trap2,	//リセットパネル(仮)
-		Trap3,	//ワープパネル(仮)
-		Path,
-	};
 };
 //namespace {
 //	const int WIDTH = 7;
@@ -60,13 +50,13 @@ public:
 //	};
 //}
 //
-//enum mapObj {
-//	Empty,	//何もない
-//	Wall,	//壁
-//	Pole,	//柱
-//	Trap1,	//邪魔パネル(仮)
-//	Trap2,	//リセットパネル(仮)
-//	Trap3,	//ワープパネル(仮)
-//	Path,	//通った
-//	Gaul,	//ゴール
-//};
+enum mapObj {
+	Empty,	//何もない
+	Wall,	//壁
+	Pole,	//柱
+	Trap1,	//邪魔パネル(仮)
+	ResetTrap,	//リセットパネル(仮)
+	WarpTrap,	//ワープパネル(仮)
+	Path,	//通った
+	Gaul,	//ゴール
+};

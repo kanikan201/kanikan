@@ -26,7 +26,7 @@ void RouteJudge::Init(int set_x, int set_y) {
 void RouteJudge::Reset(int set_x,int set_y)
 {
 	g_gameScene->getMapData()->GetMapCpy(map);
-	map[set_y][set_x] = 5;
+	map[set_y][set_x] = Path;
 	currentGrid.x = set_x;
 	currentGrid.y = set_y;
 
@@ -75,22 +75,22 @@ void RouteJudge::Update()
 		int mapTmp = map[currentGrid.y][currentGrid.x];
 
 		//通れない場所だった(壁と柱)
-		if (mapTmp == 1) {
+		if (mapTmp == Wall) {
 			currentGrid = prevGrid;
 		}
-		//リセットパネル(仮)
-		else if (mapTmp == 4) {
+		//リセットパネル
+		else if (mapTmp == ResetTrap) {
 			isReset = true;
 		}
 		//すでに通ったマスに移動
 		//または、邪魔パネル(仮)
-		else if (mapTmp == 5|| mapTmp == 3) {
+		else if (mapTmp == Path || mapTmp == Trap1) {
 			//ゲームオーバー処理
 			g_gameScene->SetGameOver();
 		}
 		//まだ通ってない道
 		else{
-			map[currentGrid.y][currentGrid.x] = 5;
+			map[currentGrid.y][currentGrid.x] = Path;
 			//通ったマスを描画する
 			routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
 			routeObject[currentGrid.y][currentGrid.x]->Perticle();

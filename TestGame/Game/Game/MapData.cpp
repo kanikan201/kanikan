@@ -81,10 +81,10 @@ int MapData::GetWidth()
 
 void MapData::GetMapCpy(void *value) 
 {
-	if (g_gameScene->GetStage() == 0) {
+	if (g_gameScene->GetStage() == en_Stage1) {
 		memcpy(value, sMap_00, sizeof(sMap_00));
 	}
-	else if (g_gameScene->GetStage() == 1) {
+	else if (g_gameScene->GetStage() == en_Stage2) {
 		memcpy(value, sMap_01, sizeof(sMap_01));
 	}
 }
