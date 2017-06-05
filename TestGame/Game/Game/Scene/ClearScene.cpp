@@ -3,22 +3,27 @@
 #include "GameScene.h"
 
 namespace {
-	const CVector2 Size = { 420.0f, 130.0f };
-	const CVector2 Pos = { 0.0f,100.0f };
+	const CVector2 Size = { 1280.0f, 720.0f };
+	const CVector2 Pos = { 0.0f,0.0f };
 }
 
 ClearScene::ClearScene()
 {
+	bgmSource = NewGO<CSoundSource>(0);
+	bgmSource->Init("Assets/sound/clearBGM.wav");
+	bgmSource->Play(false);
 }
 
 
 ClearScene::~ClearScene()
 {
+	DeleteGO(bgmSource);
+
 }
 
-bool ClearScene::Start() 
+bool ClearScene::Start()
 {
-	texture.Load("Assets/sprite/test.png");
+	texture.Load("Assets/sprite/clear.png");
 	sprite.Init(&texture);
 	sprite.SetSize(Size);
 	sprite.SetPosition(Pos);

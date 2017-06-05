@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "scene/GameScene.h"
 
-#define SPEED 7.0f
+#define SPEED 17.0f
 
 Player::Player()
 {

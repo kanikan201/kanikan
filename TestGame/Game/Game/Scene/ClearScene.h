@@ -11,5 +11,7 @@ public:
 private:
 	CSprite			sprite;		//スプライト
 	CTexture		texture;	//テクスチャ
+	CSoundSource* bgmSource;
+
 };
 
