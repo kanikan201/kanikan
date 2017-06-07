@@ -74,7 +74,8 @@ void Player::Update()
 	position = characterController.GetPosition();	//実行結果を受け取る
 
 //移動してる
-	if (!g_gameScene->GetClear() && (Pad(0).GetLStickXF()!=0.0f || Pad(0).GetLStickYF() != 0.0f))
+	if (!(g_gameScene->GetClear() || g_gameScene->getCamera()->GetChengeIn())
+		&& (Pad(0).GetLStickXF()!=0.0f || Pad(0).GetLStickYF() != 0.0f))
 	{
 		//走りアニメーション
 		currentAnimSetNo = AnimationRun;

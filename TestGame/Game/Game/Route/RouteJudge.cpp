@@ -20,13 +20,18 @@ bool RouteJudge::Start()
 void RouteJudge::Init(int set_x, int set_y) {
 	initialGrid.x = set_x;
 	initialGrid.y = set_y;
+
+	Reset(set_x, set_y);
 }
 
 //リセット(引数はプレイヤー位置)
 void RouteJudge::Reset(int set_x,int set_y)
 {
-	for (int x = 0; x < g_gameScene->getMapData()->GetWidth(); x++) {
-		for (int y = 0; y < g_gameScene->getMapData()->GetHeight(); y++) {
+	int	Width = g_gameScene->getMapData()->GetWidth();
+	int Height = g_gameScene->getMapData()->GetHeight();
+
+	for (int x = 0; x < Width; x++) {
+		for (int y = 0; y < Height; y++) {
 			map[y][x] = g_gameScene->getMapData()->GetMapInfo(x, y);
 		}
 	}
@@ -39,7 +44,7 @@ void RouteJudge::Reset(int set_x,int set_y)
 	isReset = false;
 
 	RouteCount = 0;
-	StageCount = 0;
+	//StageCount = 0;
 
 	StageCount = 27;
 }

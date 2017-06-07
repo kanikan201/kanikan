@@ -15,6 +15,11 @@ SMapInfo Stage2[] = {
 #include "locationInfo/stage2.h"
 };
 
+namespace {
+	const CVector2 Size = { 300.0f, 160.0f };
+	const CVector2 Pos = { 0.0f,100.0f };
+}
+
 GameScene::GameScene()
 {
 	
@@ -57,6 +62,12 @@ bool GameScene::Start()
 		isDelete = false;
 		isClear = false;
 
+		/*テスト?*/
+		texture.Load("Assets/sprite/test2.png");
+		sprite.Init(&texture);
+		sprite.SetSize(Size);
+		sprite.SetPosition(Pos);
+
 		return false;
 	}
 	else {
@@ -97,16 +108,15 @@ void GameScene::Update()
 				SE->Play(false);
 				NewGO<ClearScene>(0);
 			}
-			//2秒待ってから遷移
-			else if (timer > 2.0f) {
+			//3秒待ってから遷移
+			else if (timer > 3.0f) {
+				//最後のステージをクリアした
 				if (nextStage == en_end) {
-					//最後のステージをクリアした
 					step = step_GameClear;
 				}
 				else{
 					g_fade->StartFadeOut();
 					step = step_WaitFadeOut;
-					//route->Reset(3, 7);	//テスト用(あとで変更)
 				}
 				totalTime += gameTime;
 				timer = 0.0f;
@@ -134,11 +144,18 @@ void GameScene::Update()
 			isDelete = true;
 		}
 		break;
+	//ゲームオーバー待ち
 	case step_WaitGameOver:
+		timer += GameTime().GetFrameDeltaTime();
+		if (!isMiss && timer > 1.7f) {
+			isMiss = true;
+		}
+		//SEが終わった
 		if (!GameOverSE.IsPlaying()) {
 			step = step_GameOver;
 			gameOver = NewGO<GameOverScene>(0);
-
+			timer = 0.0f;
+			isMiss = false;
 		}
 		break;
 	//ゲームオーバーの時
@@ -150,14 +167,12 @@ void GameScene::Update()
 				g_fade->StartFadeOut();
 				step = step_WaitFadeOut;
 				nextStage = currentStage;
-				//Reset();
 			}
 			//やめるを選択
 			else if (gameOver->GetState()== GameOverScene::enEnd) {
 				step = step_GameEnd;
 			}
 		}
-
 		break;
 	}
 }
@@ -169,16 +184,13 @@ void GameScene::CreateStage(state_stage stage)
 	switch (stage) {
 	case en_Stage1:
 		route->Init(3, 7);
-		route->Reset(3, 7);
+		camera->Init(2);
 
 		//マップに配置されているオブジェクト数を計算
 		numObject = sizeof(Stage1) / sizeof(Stage1[0]);
 		map->Create(Stage1, numObject);
 
-		camera->Init(2);
-
 		nextStage = en_Stage2;
-		//nextStage = en_end;	//こっちはテスト用
 		step = step_StageLoad;
 
 		bgmSource = NewGO<CSoundSource>(0);
@@ -187,16 +199,15 @@ void GameScene::CreateStage(state_stage stage)
 		break;
 	case en_Stage2:
 		route->Init(1, 5);
-		route->Reset(1, 5);
+		camera->Init(3);
 
 		//マップに配置されているオブジェクト数を計算
 		numObject = sizeof(Stage2) / sizeof(Stage2[0]);
 		map->Create(Stage2, numObject);
 
-		camera->Init(3);
-
-		nextStage = en_Stage3;
+		//nextStage = en_Stage3;
 		step = step_StageLoad;
+		nextStage = en_end;	//こっちはテスト用
 
 		bgmSource = NewGO<CSoundSource>(0);
 		bgmSource->Init("Assets/sound/GameBGM.wav");
@@ -208,9 +219,11 @@ void GameScene::CreateStage(state_stage stage)
 /*!
 *@brief	描画関数。
 */
-void GameScene::Render(CRenderContext& renderContext)
+void GameScene::PostRender(CRenderContext& renderContext)
 {
-
+	if (isMiss) {
+		sprite.Draw(renderContext);
+	}
 }
 
 //生成したものを解放する
@@ -234,6 +247,7 @@ void GameScene::SetGameOver() {
 	GameOverSE.Init("Assets/sound/jingle.wav");
 	GameOverSE.Play(false);
 	step = step_WaitGameOver;
+	timer = 0.0f;
 }
 
 //リセット

@@ -48,6 +48,7 @@ void RouteObject::Update()
 		return;
 	}
 
+	//ルートがリセット
 	if (g_gameScene->getJudge()->isDelete()) {
 		SetActiveFlag(false);
 		DeleteGO(perticle);

@@ -3,7 +3,7 @@
 #include "Map/ClearMarker.h"
 #include "Enemy/TestEnemy.h"
 #include "Route/RouteObject.h"
-#include "../Scene/GameScene.h"
+#include "Scene/GameScene.h"
 
 Map::Map()
 {
@@ -34,8 +34,8 @@ void Map::Create(SMapInfo* mapLocInfo, int numObject)
 			enemy->Init(mapLocInfo[i].position);
 		}
 		else if (strcmp("route", mapLocInfo[i].modelName) == 0) {
-			float datx = (float)(g_gameScene->getJudge()->GetinitialGrid_x() + 0.5f);
-			float daty = (float)(g_gameScene->getJudge()->GetinitialGrid_y() + 0.5f);
+			float datx = (float)(g_gameScene->getJudge()->GetInitialGrid_x() + 0.5f);
+			float daty = (float)(g_gameScene->getJudge()->GetInitialGrid_y() + 0.5f);
 			int routex = (int)(-mapLocInfo[i].position.x / GRID_SIZE + datx);
 			int routey = (int)(mapLocInfo[i].position.z / GRID_SIZE + daty);
 			routeObject[routey][routex] = NewGO<RouteObject>(0);
