@@ -22,6 +22,7 @@ private:
 	CVector3					position;		//位置
 	CQuaternion					rotation;		//回転
 	CParticleEmitter*			perticle;		//パーティクル
+	CLight						light;
 };
 
 extern RouteObject* routeObject[20][20];

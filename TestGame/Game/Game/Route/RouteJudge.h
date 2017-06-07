@@ -49,7 +49,7 @@ private:
 
 	int map[20][20];	//マップデータの複製先(とりあえずおっきいサイズに)
 
-	bool Perticleflg;			//パーティクルのフラグ
+	bool InitroutePos;			//パーティクルのフラグ
 	bool isReset = false;
 
 	int StageCount;		//stage1をクリアするために必要なマスの数

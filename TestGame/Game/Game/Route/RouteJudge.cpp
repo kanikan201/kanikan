@@ -25,12 +25,17 @@ void RouteJudge::Init(int set_x, int set_y) {
 //リセット(引数はプレイヤー位置)
 void RouteJudge::Reset(int set_x,int set_y)
 {
-	g_gameScene->getMapData()->GetMapCpy(map);
+	for (int x = 0; x < g_gameScene->getMapData()->GetWidth(); x++) {
+		for (int y = 0; y < g_gameScene->getMapData()->GetHeight(); y++) {
+			map[y][x] = g_gameScene->getMapData()->GetMapInfo(x, y);
+		}
+	}
+
 	map[set_y][set_x] = Path;
 	currentGrid.x = set_x;
 	currentGrid.y = set_y;
 
-	Perticleflg = false;
+	InitroutePos = false;
 	isReset = false;
 
 	RouteCount = 0;
@@ -59,14 +64,14 @@ void RouteJudge::Update()
 	float dat_y = (float)initialGrid.y + 0.5f;
 
 	//現在の位置を更新
-	currentGrid.x = (int)(pos.x / GRID_SIZE+ dat_x);
-	currentGrid.y = (int)(-pos.z / GRID_SIZE+ dat_y);
+	currentGrid.x = (int)(-pos.x / GRID_SIZE+ dat_x);
+	currentGrid.y = (int)(pos.z / GRID_SIZE+ dat_y);
 
 	//プレイヤーの初期位置を通ったマスにする
-	if (Perticleflg == false) {
+	if (InitroutePos == false) {
 		routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
 		routeObject[currentGrid.y][currentGrid.x]->Perticle();
-		Perticleflg = true;
+		InitroutePos = true;
 		RouteCount++;
 	}
 
@@ -98,8 +103,11 @@ void RouteJudge::Update()
 		}
 	}
 
+	if (Pad(0).IsTrigger(enButtonStart)) {
+		g_gameScene->setClear(true);
+	}
 	//クリア判定
 	if (isPassed()) {
-		g_gameScene->setClear(true);
+		
 	}
 }

@@ -21,35 +21,14 @@ class MapData {
 	static const int MAP_2_WIDTH = 10;
 	static int sMap_02[MAP_2_HEIGHT][MAP_2_WIDTH];
 public:
-	//マップ情報の
-	void SetMapInfo(int mapTmp, int x, int y);
 	//マップ情報の取得
 	int GetMapInfo(int x, int y);
 	//マップの高さ
 	int GetHeight();
 	//マップの幅
 	int GetWidth();
-
-	void GetMapCpy(void *value);
 };
-//namespace {
-//	const int WIDTH = 7;
-//	const int HEIGHT = 9;
-//
-//	//0は地面、1は壁、2は柱、5はすでに通ったマス、6はゴール
-//	static int sMap[HEIGHT][WIDTH] = {
-//		{ 1, 1, 1, 1, 1, 1, 1 },
-//		{ 1, 0, 0, /*6*/0, 0, 0, 1 },
-//		{ 1, 0, 2, 0, 1, 0, 1 },
-//		{ 1, 0, 0, 0, 0, 0, 1 },
-//		{ 1, 1, 2, 1, 1, 1, 1 },
-//		{ 1, 0, 0, 1, 0, 0, 1 },
-//		{ 1, 0, 0, 0, 0, 0, 1 },
-//		{ 1, 1, 1, 0, 0, 4, 1 },
-//		{ 1, 1, 1, 1, 1, 1, 1 },
-//	};
-//}
-//
+
 enum mapObj {
 	Empty,	//何もない
 	Wall,	//壁

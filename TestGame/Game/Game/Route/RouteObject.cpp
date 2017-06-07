@@ -23,7 +23,10 @@ void RouteObject::Init(CVector3 position, CQuaternion rotation)
 	skinModel.Init(skinModelData.GetBody());
 
 	//デフォルトライト設定
-	skinModel.SetLight(&g_gameScene->getLight());
+	CVector3 ambientLight = { 0.0f, 0.59f , 0.85f  };
+	ambientLight.Scale(2.8f);
+	light.SetAmbinetLight(ambientLight);
+	skinModel.SetLight(&light);
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 

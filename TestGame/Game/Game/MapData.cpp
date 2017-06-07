@@ -39,16 +39,6 @@ int MapData::sMap_02[MAP_2_HEIGHT][MAP_2_WIDTH] = {
 	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
 };
 
-void MapData::SetMapInfo(int mapTmp, int x, int y)
-{
-	if (g_gameScene->GetStage() == 0) {
-		sMap_00[y][x] = mapTmp;
-	}
-	else if (g_gameScene->GetStage() == 1) {
-		sMap_01[y][x] = mapTmp;
-	}
-}
-
 int MapData::GetMapInfo(int x, int y)
 {
 	if (g_gameScene->GetStage() == 0) {
@@ -76,15 +66,5 @@ int MapData::GetWidth()
 	}
 	else if (g_gameScene->GetStage() == 1) {
 		return MAP_1_WIDTH;
-	}
-}
-
-void MapData::GetMapCpy(void *value) 
-{
-	if (g_gameScene->GetStage() == en_Stage1) {
-		memcpy(value, sMap_00, sizeof(sMap_00));
-	}
-	else if (g_gameScene->GetStage() == en_Stage2) {
-		memcpy(value, sMap_01, sizeof(sMap_01));
 	}
 }
