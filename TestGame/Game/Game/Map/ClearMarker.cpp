@@ -44,7 +44,7 @@ void ClearMarker::Update()
 
 	//プレイヤーと自身の距離
 	float dist = g_gameScene->getPlayer()->Distance(position);
-	if (!flag && (dist < 3.0f) && g_gameScene->getJudge()->isPassed()) {
+	if (!flag && (dist < 4.0f) && g_gameScene->getJudge()->isPassed()) {
 		flag = true;
 		g_gameScene->setClear(true);
 	}

@@ -70,6 +70,31 @@ namespace tkEngine{
 			}
 		}
 		
+		//Z-prePass?
+		CEngine::Instance().SetZPrepass(true);
+
+		if (numRenderContext == 1) {
+			CPIXPerfTag tag(renderContext[0], L"Render MainRenderTarget");
+			//シングルスレッド描画。
+			//深度書き込み用のレンダリングターゲットを設定。
+			renderContext[0].SetRenderTarget(1, Dof().GetDepthRenderTarget());
+			//速度書き込み用のレンダリングターゲットを設定。
+			renderContext[0].SetRenderTarget(2, MotionBlur().GetVelocityMapRenderTarget());
+			for (GameObjectList objList : m_gameObjectListArray) {
+				for (IGameObject* obj : objList) {
+					obj->RenderWrapper(renderContext[0]);
+				}
+			}
+		}
+		else {
+			//マルチスレッド描画。
+			TK_ASSERT(0, "not implement!!");
+
+		}
+
+		CEngine::Instance().SetZPrepass(false);
+
+		//オブジェクトの描画?
 		if (numRenderContext == 1) {
 			CPIXPerfTag tag(renderContext[0], L"Render MainRenderTarget");
 			//シングルスレッド描画。

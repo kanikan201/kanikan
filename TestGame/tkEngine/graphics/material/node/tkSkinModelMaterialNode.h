@@ -126,6 +126,9 @@ namespace tkEngine{
 	//dark転送ノード。
 	typedef TSkinModelMaterialNode_SendTexture<CSkinModelMaterial::enTextureShaderHandle_DarkTex>
 		CSkinModelMaterialNode_SendDarkTexrure;
+	//depth texture 転送ノード。
+	typedef TSkinModelMaterialNode_SendTexture<CSkinModelMaterial::enTextureShaderHandle_DepthTex>
+		CSkinModelMaterialNode_SendDepthTexrure;
 	//シャドウマップ0転送ノード。
 	typedef TSkinModelMaterialNode_SendTexture<CSkinModelMaterial::enTextureShaderHandle_ShadowMap_0>
 		CSkinModelMaterialNode_SendShadowMap_0;
@@ -214,4 +217,7 @@ namespace tkEngine{
 	//!<スキニングを行うボーンの数。
 	typedef TSkinModelMaterialNode_SendInt<CSkinModelMaterial::enIntshaderHandle_CurNumBone>
 		CSkinModelMaterialNode_CurNumBone;
+	//!<スキニングを行うボーンの数。
+	typedef TSkinModelMaterialNode_SendInt<CSkinModelMaterial::enIntShaderHandle_IsZPrepass>
+		CSkinModelMaterialNode_IsZPrepass;
 }

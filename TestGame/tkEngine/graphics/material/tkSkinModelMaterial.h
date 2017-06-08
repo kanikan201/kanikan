@@ -45,6 +45,7 @@ namespace tkEngine{
 			enTextureShaderHandle_TerrainNormalMap2,	//!<地形の法線マップ2。
 			enTextureShaderHandle_TerrainNormalMap3,	//!<地形の法線マップ3。
 			enTextureShaderHandle_DarkTex,
+			enTextureShaderHandle_DepthTex,				//!<shindo no texture 
 			enTextureShaderHandle_Num,
 		};
 		/*!
@@ -82,6 +83,7 @@ namespace tkEngine{
 		enum EnIntShaderHandle {
 			enIntShaderHandle_NumBone,			//!<ボーンの数。
 			enIntshaderHandle_CurNumBone,		//!<スキニングを行うボーンの数。
+			enIntShaderHandle_IsZPrepass,		//!<ZPrepas?
 			enIntShaderHandle_Num,
 		};
 		

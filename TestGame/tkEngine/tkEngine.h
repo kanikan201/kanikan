@@ -73,7 +73,7 @@ namespace tkEngine{
 			m_currentMainRenderTarget(0)
 		{}
 		~CEngine() {}
-	public:
+		public:
 		/*!
 		 * @brief	初期化。
 		 *@param[in]	初期化パラメータ
@@ -252,6 +252,16 @@ namespace tkEngine{
 		{
 			return m_sky;
 		}
+
+		bool isZPrepass()
+		{
+			return zPrepass;
+		}
+
+		void SetZPrepass(bool flag)
+		{
+			zPrepass = flag;
+		}
 	private:
 		/*!
 		* @brief	メインレンダリングターゲットの内容をバックバッファにコピー。
@@ -305,6 +315,7 @@ namespace tkEngine{
 		CSoundEngine							m_soundEngine;				//!<サウンドエンジン。
 		CPhysicsWorld							m_physicsWorld;				//!<物理ワールド。
 		CSky									m_sky;						//!<空。
+		bool									zPrepass=false;
 	};
 	static inline CEngine& Engine()
 	{

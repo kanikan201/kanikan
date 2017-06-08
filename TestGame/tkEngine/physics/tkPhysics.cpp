@@ -55,6 +55,8 @@ namespace tkEngine{
 	}
 	void CPhysicsWorld::RemoveRigidBody(CRigidBody* rb)
 	{
-		dynamicWorld->removeRigidBody(rb->GetBody());
+		if (rb->GetBody() != NULL) {
+			dynamicWorld->removeRigidBody(rb->GetBody());
+		}
 	}
 }

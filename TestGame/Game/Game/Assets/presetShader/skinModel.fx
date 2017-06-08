@@ -779,11 +779,25 @@ sampler_state
 	AddressU = Wrap;
 	AddressV = Wrap;
 };
+
+texture g_depthTexture;		//shindo no テクスチャ。
+sampler g_depthTextureSampler =
+sampler_state
+{
+	Texture = <g_depthTexture>;
+	MipFilter = LINEAR;
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+	AddressU = Wrap;
+	AddressV = Wrap;
+};
+int g_isZPrepass;		//ZPrepass?
 /*!
 *@brief	トゥーン
 */
 PSOutput PSToon( VS_OUTPUT In )
 {
+	
 	PSOutput psOut = (PSOutput)0;
 
 	psOut.color = tex2D(g_diffuseTextureSampler, In.Tex0);
@@ -798,7 +812,43 @@ PSOutput PSToon( VS_OUTPUT In )
 	}
 
 	psOut.depth = In.worldPos_depth.w;
-
+	if(!g_isZPrepass){
+		
+		
+		float2 screenPos = In.screenPos.xy / In.screenPos.w;
+		screenPos *= float2(0.5f, -0.5f);
+		screenPos += 0.5f;
+		float depth = tex2D(g_depthTextureSampler, screenPos);
+		float2 offset = float2(0.5f/ 1280.0f, 0.5f / 720.0f);
+		//右側を調べる。
+		float2 screenPos_0 = screenPos;
+		screenPos_0.x += offset.x;
+		float depth1 = tex2D(g_depthTextureSampler, screenPos_0);
+		if(abs(depth-depth1) > 0.05f){
+			psOut.color = float4(0.0f, 0.0f, 0.0f, 1.0f);
+		}
+		//左側を調べる。
+		screenPos_0 = screenPos;
+		screenPos_0.x -= offset.x;
+		depth1 = tex2D(g_depthTextureSampler, screenPos_0);
+		if(abs(depth-depth1) > 0.05f){
+			psOut.color = float4(0.0f, 0.0f, 0.0f, 1.0f);
+		}
+		//上側を調べる。
+		screenPos_0 = screenPos;
+		screenPos_0.y += offset.y;
+		depth1 = tex2D(g_depthTextureSampler, screenPos_0);
+		if(abs(depth-depth1) > 0.05f){
+			psOut.color = float4(0.0f, 0.0f, 0.0f, 1.0f);
+		}
+		//下側を調べる。
+		screenPos_0 = screenPos;
+		screenPos_0.y -= offset.y;
+		depth1 = tex2D(g_depthTextureSampler, screenPos_0);
+		if(abs(depth-depth1) > 0.05f){
+			psOut.color = float4(0.0f, 0.0f, 0.0f, 1.0f);
+		}
+	}
 	return psOut;
 }
 

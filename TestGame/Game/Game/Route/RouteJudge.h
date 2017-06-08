@@ -4,7 +4,7 @@
 
 
 #pragma once
-#include "Map\MapDate.h"
+#include "Map/MapData.h"
 
 class RouteJudge :public IGameObject
 {
@@ -13,9 +13,9 @@ public:
 	~RouteJudge();
 	bool Start();
 	void Update();
-	void Reset(int set_x, int set_y);	//リセット
 	void Init(int set_x, int set_y);
 
+	//ルートオブジェクトをリセットするか
 	bool isDelete()
 	{
 		return isReset;
@@ -29,14 +29,16 @@ public:
 		return false;
 	}
 
-	int GetinitialGrid_x() {
+	int GetInitialGrid_x() {
 		return initialGrid.x;
 	}
 
-	int GetinitialGrid_y() {
+	int GetInitialGrid_y() {
 		return initialGrid.y;
 	}
 private:
+	void Reset(int set_x, int set_y);	//リセット
+
 	struct grid
 	{
 		int x;
@@ -47,7 +49,7 @@ private:
 	grid currentGrid;	//今のマス
 	grid initialGrid;
 
-	int map[20][20];	//マップデータの複製先(とりあえずおっきいサイズに)
+	int map[20][20];	//マップデータの複製先(とりあえず大きいサイズに)
 
 	bool InitroutePos;			//パーティクルのフラグ
 	bool isReset = false;

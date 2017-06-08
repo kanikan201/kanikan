@@ -23,7 +23,7 @@ TitleScene::~TitleScene()
 }
 bool TitleScene::Start()
 {
-	texture.Load("Assets/sprite/title.png");
+	texture.Load("Assets/sprite/starsky.png");
 
 	sprite.Init(&texture);
 	sprite.SetSize(BackSize);

@@ -38,14 +38,12 @@ bool Player::Start() {
 	animation.PlayAnimation(AnimationStand);
 
 	darkTex.Load("Assets/modelData/utc_all2_dark.png");
-
-	//トゥーンシェーダ設定
 	std::vector<CSkinModelMaterial*> matList;
 	skinModelData.GetBody()->FindMaterials(matList, "utc_all2_light.png");
 	//リストが空じゃない
 	if (!matList.empty()) {
 		for (size_t i = 0; i < matList.size(); i++)
-		{	
+		{
 			if (matList[i]->GetTechnique() == CSkinModelMaterial::enTecShaderHandle_SkinModel) {
 				matList[i]->Build(CSkinModelMaterial::enTypeToon);
 			}
@@ -53,10 +51,8 @@ bool Player::Start() {
 				matList[i]->Build(CSkinModelMaterial::enTypeToonNonSkin);
 			}
 			matList[i]->SetTexture(CSkinModelMaterial::enTextureShaderHandle_DarkTex, darkTex);
-			
 		}
 	}
-
 	return true;
 }
 
@@ -74,7 +70,8 @@ void Player::Update()
 	position = characterController.GetPosition();	//実行結果を受け取る
 
 //移動してる
-	if (!g_gameScene->GetClear() && (Pad(0).GetLStickXF()!=0.0f || Pad(0).GetLStickYF() != 0.0f))
+	if (!(g_gameScene->GetClear() || g_gameScene->getCamera()->GetChengeIn())
+		&& (Pad(0).GetLStickXF()!=0.0f || Pad(0).GetLStickYF() != 0.0f))
 	{
 		//走りアニメーション
 		currentAnimSetNo = AnimationRun;
@@ -121,7 +118,7 @@ CVector3 Player::Move()
 
 	//キャラクターの移動速度取得
 	CVector3 move = characterController.GetMoveSpeed();
-	if (g_gameScene->GetClear() || g_gameScene->getCamera()->GetChengeIn()) {
+	if (g_gameScene->GetClear()|| g_gameScene->getCamera()->GetChengeIn()) {
 		move.x = 0.0f;
 		move.z = 0.0f;
 		return move; 
@@ -176,6 +173,18 @@ CVector3 Player::Move()
 
 void Player::Render(CRenderContext& renderContext)
 {
+	//トゥーンシェーダ設定
+	std::vector<CSkinModelMaterial*> matList;
+	skinModelData.GetBody()->FindMaterials(matList, "utc_all2_light.png");
+	//リストが空じゃない
+	if (!matList.empty()) {
+		for (size_t i = 0; i < matList.size(); i++)
+		{
+			matList[i]->SetTexture(CSkinModelMaterial::enTextureShaderHandle_DepthTex, *Dof().GetDepthRenderTarget()->GetTexture());
+			matList[i]->SetInt(CSkinModelMaterial::enIntShaderHandle_IsZPrepass, CEngine::Instance().isZPrepass());
+		}
+	}
+
 	skinModel.Draw(renderContext, g_gameScene->getCamera()->GetViewMatrix(), g_gameScene->getCamera()->GetProjectionMatrix());
 }
 

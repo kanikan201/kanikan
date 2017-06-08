@@ -12,15 +12,8 @@
 #include "Interface/DisplayTime.h"
 #include "Route/RouteJudge.h"
 #include "GameOverScene.h"
-#include "../Map/MapDate.h"
-
-//ステージ番号
-enum state_stage {
-	en_Stage1,	//ステージ1
-	en_Stage2,	//ステージ2
-	en_Stage3,	//ステージ3
-	en_end,		//ゲームクリア処理用のダミー
-};
+#include "Map/MapData.h"
+#include "BackGround.h"
 
 class GameScene :
 	public IGameObject
@@ -32,7 +25,7 @@ public:
 	~GameScene();
 	bool Start() override;
 	void Update() override;
-	void Render(CRenderContext& renderContext);
+	void PostRender(CRenderContext& renderContext);
 
 	void Release();		//解放
 	void SetGameOver();	//ゲームオーバーをセット
@@ -115,6 +108,7 @@ private:
 	Camera*				camera;				//カメラ
 	CLight				light;				//ライト
 	Player*				player;				//プレイヤー
+	BackGround*			background;			//背景
 	Map*				map;				//マップ
 	inventory*			ivt;				//インベントリ
 	DisplayTime*		time;				//タイム表示
@@ -135,6 +129,12 @@ private:
 	state_stage			currentStage = en_Stage1;	//現在のステージ
 	state_stage			nextStage = en_Stage2;		//次のステージ
 	CSoundSource		GameOverSE;					//ゲームオーバーのSE
+
+	/*試しに*/
+	CSprite			sprite;		//スプライト
+	CTexture		texture;	//テクスチャ
+
+	bool isMiss = false;
 };
 
 extern GameScene* g_gameScene;
