@@ -15,6 +15,7 @@ public:
 	void Update();
 	void Render(CRenderContext& renderContext);
 	void Perticle();	//パーティクル
+	void GameOvered();
 private:
 	CSkinModel					skinModel;		//スキンモデル
 	CSkinModelDataHandle		skinModelData;	//スキンモデルデータ

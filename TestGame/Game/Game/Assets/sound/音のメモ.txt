@@ -9,3 +9,6 @@
 ・決定音		Decision.wav
 ・選択音		Choice.wav
 ・キャラクターの足音	footstep.wav
+
+decision26	カメラ切り替え音?
+cancel6		カメラ切り替え不可時

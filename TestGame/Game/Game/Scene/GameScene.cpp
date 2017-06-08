@@ -182,6 +182,7 @@ void GameScene::CreateStage(state_stage stage)
 {
 	int numObject;
 	currentStage = stage;
+
 	switch (stage) {
 	case en_Stage1:
 		route->Init(3, 7);
@@ -192,6 +193,7 @@ void GameScene::CreateStage(state_stage stage)
 		map->Create(Stage1, numObject);
 
 		nextStage = en_Stage2;
+		nextStage = en_end;	//こっちはテスト用
 		step = step_StageLoad;
 
 		bgmSource = NewGO<CSoundSource>(0);
@@ -248,6 +250,7 @@ void GameScene::SetGameOver() {
 	AddGO(0, &GameOverSE);
 	GameOverSE.Init("Assets/sound/jingle.wav");
 	GameOverSE.Play(false);
+
 	step = step_WaitGameOver;
 	timer = 0.0f;
 }

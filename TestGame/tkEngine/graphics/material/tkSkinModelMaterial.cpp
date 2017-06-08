@@ -62,6 +62,7 @@ namespace tkEngine{
 			m_hTexShaderHandle[enTextureShaderHandle_TerrainNormalMap3] = effectDx->GetParameterByName(NULL, "g_terrainNormalMap3");
 
 			m_hTexShaderHandle[enTextureShaderHandle_DarkTex] = effectDx->GetParameterByName(NULL, "g_darkTexture");
+			m_hTexShaderHandle[enTextureShaderHandle_DepthTex] = effectDx->GetParameterByName(NULL, "g_depthTexture");
 
 			//行列のシェーダーハンドル。
 			m_hMatrixShaderHandle[enMatrixShaderHandle_LastFrameViewProj] = effectDx->GetParameterByName(NULL, "g_mViewProjLastFrame");
@@ -80,6 +81,7 @@ namespace tkEngine{
 			//整数のシェーダーハンドル。
 			m_hIntShaderHandle[enIntShaderHandle_NumBone] = effectDx->GetParameterByName(NULL, "g_numBone");
 			m_hIntShaderHandle[enIntshaderHandle_CurNumBone] = effectDx->GetParameterByName(NULL, "CurNumBones");
+			m_hIntShaderHandle[enIntShaderHandle_IsZPrepass] = effectDx->GetParameterByName(NULL, "g_isZPrepass");
 			//大気錯乱のシェーダーハンドル。
 			m_hAtmosShaderHandle = effectDx->GetParameterByName(NULL, "g_atmosParam");
 			//ライトのシェーダーハンドル。
@@ -126,6 +128,7 @@ namespace tkEngine{
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendShadowMap_2(this)));
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendNormalMap(this)));
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendSpecularMap(this)));
+			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendDepthTexrure(this)));
 			//浮動小数点ベクトル。
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendCameraPos(this)));
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendFogParam(this)));
@@ -138,6 +141,8 @@ namespace tkEngine{
 			//整数。
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_NumBone(this)));
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_CurNumBone(this)));
+			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_IsZPrepass(this)));
+
 			SetTechnique(enTecShaderHandle_ToonNonSkin);
 			break;
 		case enTypeToon:
@@ -154,6 +159,8 @@ namespace tkEngine{
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendShadowMap_2(this)));
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendNormalMap(this)));
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendSpecularMap(this)));
+			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendDepthTexrure(this)));
+
 			//浮動小数点ベクトル。
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendCameraPos(this)));
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_SendFogParam(this)));
@@ -166,7 +173,7 @@ namespace tkEngine{
 			//整数。
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_NumBone(this)));
 			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_CurNumBone(this)));
-
+			m_materialNodes.push_back(ISkinModelMaterialNodePtr(new CSkinModelMaterialNode_IsZPrepass(this)));
 			SetTechnique(enTecShaderHandle_Toon);
 			break;
 		case enTypeStandard:

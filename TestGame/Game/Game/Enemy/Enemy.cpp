@@ -64,8 +64,14 @@ void Enemy::Update()
 
 	move = characterController.GetMoveSpeed();
 
-	//動き
-	Move();
+	if (g_gameScene->GetClear() || g_gameScene->getCamera()->GetChengeIn()) {
+		move.x = 0.0f;
+		move.z = 0.0f;
+	}
+	else {
+		//動き
+		Move();
+	}
 
 	characterController.SetMoveSpeed(move);		//移動速度を設定
 	characterController.Execute(GameTime().GetFrameDeltaTime());	//キャラクターコントロール実行

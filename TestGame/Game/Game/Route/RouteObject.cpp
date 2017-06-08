@@ -48,9 +48,19 @@ void RouteObject::Update()
 		return;
 	}
 
+	//暗くなる
+	if (g_gameScene->isStep() == GameScene::step_WaitGameOver) {
+		GameOvered();
+	}
+
 	//ルートがリセット
 	if (g_gameScene->getJudge()->isDelete()) {
 		SetActiveFlag(false);
+		CVector3 ambientLight = { 0.0f, 0.59f , 0.85f };
+		ambientLight.Scale(2.8f);
+		light.SetAmbinetLight(ambientLight);
+		skinModel.SetLight(&light);
+
 		DeleteGO(perticle);
 	}
 }
@@ -94,4 +104,12 @@ void RouteObject::Perticle()
 		{ 1.0f,1.0f,1.0f },					//!<乗算カラー。
 	},
 		position);							//パーティクルの位置
+}
+
+void RouteObject::GameOvered() {
+	//暗いライト(仮)
+	CVector3 ambientLight = { 0.0f, 0.20f , 0.20f };
+	ambientLight.Scale(2.8f);
+	light.SetAmbinetLight(ambientLight);
+	skinModel.SetLight(&light);
 }

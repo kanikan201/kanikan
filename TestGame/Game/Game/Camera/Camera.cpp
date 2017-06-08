@@ -40,9 +40,20 @@ bool Camera::Start()
 void Camera::Update()
 {
 	//Xボタンが押されたら視点を変える
-	if (Pad(0).IsTrigger(enButtonX) && timer == 0.0f && ChengeCount > 0) {
-		ChengeCamera = !ChengeCamera;
-		ChengeCount--;
+	if (Pad(0).IsTrigger(enButtonX)) {
+		if (timer == 0.0f && ChengeCount > 0) {
+			ChengeCamera = !ChengeCamera;
+			ChengeCount--;
+
+			CSoundSource* se = NewGO<CSoundSource>(0);
+			se->Init("Assets/sound/decision26.wav");
+			se->Play(false);
+		}
+		else if (ChengeCount == 0) {
+			CSoundSource* se = NewGO<CSoundSource>(0);
+			se->Init("Assets/sound/cancel6.wav");
+			se->Play(false);
+		}
 	}
 
 	Move();	//カメラを動かす
