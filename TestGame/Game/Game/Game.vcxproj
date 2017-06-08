@@ -177,6 +177,7 @@
     <ClCompile Include="Player\Player.cpp" />
     <ClCompile Include="Route\RouteJudge.cpp" />
     <ClCompile Include="Route\RouteObject.cpp" />
+    <ClCompile Include="Scene\BackGround.cpp" />
     <ClCompile Include="Scene\ClearScene.cpp" />
     <ClCompile Include="Scene\GameOverScene.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="Player\Player.h" />
     <ClInclude Include="Route\RouteJudge.h" />
     <ClInclude Include="Route\RouteObject.h" />
+    <ClInclude Include="Scene\BackGround.h" />
     <ClInclude Include="Scene\ClearScene.h" />
     <ClInclude Include="Scene\GameOverScene.h" />
     <ClInclude Include="Scene\GameScene.h" />

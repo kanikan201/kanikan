@@ -13,6 +13,7 @@
 #include "Route/RouteJudge.h"
 #include "GameOverScene.h"
 #include "Map/MapData.h"
+#include "BackGround.h"
 
 class GameScene :
 	public IGameObject
@@ -107,6 +108,7 @@ private:
 	Camera*				camera;				//カメラ
 	CLight				light;				//ライト
 	Player*				player;				//プレイヤー
+	BackGround*			background;			//背景
 	Map*				map;				//マップ
 	inventory*			ivt;				//インベントリ
 	DisplayTime*		time;				//タイム表示

@@ -47,6 +47,7 @@ bool GameScene::Start()
 		//light.SetLimLightColor(CVector4(0.6f, 0.6f, 0.6f, 1.0f));
 		//light.SetLimLightDirection(CVector3(0.0f, 0.0f, -1.0f));
 
+		background = NewGO<BackGround>(0);//背景
 		map = NewGO<Map>(0);		//マップ生成
 
 		player = NewGO<Player>(0);		//プレイヤー生成
@@ -230,6 +231,7 @@ void GameScene::PostRender(CRenderContext& renderContext)
 void GameScene::Release() {
 	DeleteGO(camera);	//カメラ
 	DeleteGO(player);	//プレイヤー
+	DeleteGO(background);//背景
 	DeleteGO(map);		//マップ
 	DeleteGO(ivt);
 	time->DeleteNum();

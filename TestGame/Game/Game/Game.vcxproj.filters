@@ -104,6 +104,9 @@
     <ClCompile Include="Map\MapData.cpp">
       <Filter>Source Files\Map</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\BackGround.cpp">
+      <Filter>Source Files\Scene\GameScene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -168,6 +171,9 @@
     </ClInclude>
     <ClInclude Include="Map\MapData.h">
       <Filter>Source Files\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\BackGround.h">
+      <Filter>Source Files\Scene\GameScene</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
