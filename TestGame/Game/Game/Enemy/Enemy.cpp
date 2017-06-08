@@ -11,6 +11,7 @@ Enemy::Enemy()
 	rand.Init((unsigned long)time(NULL));
 	start = rand.GetRandInt() % 15;
 	start /= 10.0f;
+	move = CVector3::Zero;
 }
 
 
@@ -32,9 +33,9 @@ void Enemy::Init(CVector3 pos)
 	rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(90.0f));
 
 	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
+	characterController.SetMoveSpeed(move);
 
-
-	//animation.PlayAnimation(AnimationStand);
+	animation.PlayAnimation(AnimationStand);
 }
 
 void Enemy::Update()
@@ -53,7 +54,7 @@ void Enemy::Update()
 	//プレイヤーと自身の距離
 	float dist = g_gameScene->getPlayer()->Distance(position);
 	if (dist < 2.0f) {
-		g_gameScene->SetGameOver();
+		//g_gameScene->SetGameOver();
 	}
 
 	m_timer += GameTime().GetFrameDeltaTime();
@@ -72,7 +73,8 @@ void Enemy::Update()
 	position = characterController.GetPosition();	//実行結果の受け取り
 	centralPos.Add(position, central);
 
-	skinModel.Update(position, rotation, { 2.5f, 2.5f, 2.5f });
+	animation.Update(GameTime().GetFrameDeltaTime());
+	skinModel.Update(position, rotation, { 1.5f, 1.5f, 1.5f });
 }
 
 //動き

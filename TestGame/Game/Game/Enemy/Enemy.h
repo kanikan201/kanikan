@@ -20,14 +20,21 @@ protected:
 
 	//モーション(仮)
 	enum AnimationNo {
-		AnimationDeath,		//死
-		AnimationRun,		//走り
 		AnimationStand,		//立ち
+		AnimationWalk,		//歩き
+		AnimationAttack,	//攻撃
 	};
 
 	CAnimation			animation;			//アニメーション。
 	AnimationNo			currentAnimSetNo;	//今のモーション
 	AnimationNo			prevAnim;			//変更前のモーション
+
+	enum EState {
+		eState_Search,	//探索状態
+		eState_Find,	//発見状態
+	};
+
+	EState		Estate = eState_Search;		//敵の状態
 
 	char filePath[256];	//ファイルパス
 

@@ -442,3 +442,21 @@
 	CVector3(0.00f, -0.15f, -32.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
+//D_Unity
+{
+	"D_Unity",
+	CVector3(-16.00f, 0.05f, 16.00f),             //平行移動
+	CQuaternion(0.00f, 0.00f, 0.00f, 0.00f),  //回転
+},
+//D_Unity
+{
+	"D_Unity",
+	CVector3(-32.00f, 0.05f, 0.00f),             //平行移動
+	CQuaternion(0.00f, 0.00f, 0.00f, 0.00f),  //回転
+},
+//D_Unity
+{
+	"D_Unity",
+	CVector3(-24.00f, 0.05f, -16.00f),             //平行移動
+	CQuaternion(0.00f, 0.00f, 0.00f, 0.00f),  //回転
+},

@@ -18,7 +18,7 @@ class MapData {
 	static int sMap_01[MAP_1_HEIGHT][MAP_1_WIDTH];
 	//マップ２
 	static const int MAP_2_HEIGHT = 10;
-	static const int MAP_2_WIDTH = 10;
+	static const int MAP_2_WIDTH = 8;
 	static int sMap_02[MAP_2_HEIGHT][MAP_2_WIDTH];
 public:
 	//マップ情報の取得

@@ -1,10 +1,11 @@
 #include "stdafx.h"
 #include "TestEnemy.h"
+#include "scene/GameScene.h"
 
 
 TestEnemy::TestEnemy()
 {
-	skinModelData.LoadModelData("Assets/modelData/D_Unity.X", &animation);
+	skinModelData.LoadModelData("Assets/modelData/enemy_00.X", &animation);
 }
 
 
@@ -14,12 +15,45 @@ TestEnemy::~TestEnemy()
 
 void TestEnemy::Move()
 {
-	if (!isMoving) { return; }
+	CVector3 toPlayer;
+	CVector3 direction;
+	CMatrix wMatrix = skinModel.GetWorldMatrix();
+	direction.x = wMatrix.m[2][0];
+	direction.y = wMatrix.m[2][1];
+	direction.z = wMatrix.m[2][2];
+	direction.Normalize();
 
-	if (m_timer > 2.0f) {
-		dir *= -1.0f;
-		m_timer = 0.0f;
-		rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(90.0f*dir));
+	moveFrameCount++;
+	if (Estate == eState_Search) {
+		if (moveFrameCount % 20 == 0) {
+			rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(90.0f * dir));
+			dir += 1.0f;
+		}
+		toPlayer.Subtract(g_gameScene->getPlayer()->GetPosition(), position);
+		float length = toPlayer.Length();
+		toPlayer.Normalize();
+		float angle = toPlayer.Dot(direction);
+		angle = acos(angle);
+		if (fabsf(angle) < D3DXToRadian(45.0f) && length < 5.0f) {
+			Estate = eState_Find;
+		}
+		move = CVector3::Zero;
 	}
-	move.x = dir*5.0f;
+	else if (Estate == eState_Find) {
+		//”­Œ©ó‘Ô
+		toPlayer.Subtract(g_gameScene->getPlayer()->GetPosition(), position);
+		toPlayer.y = 0.0f;
+		toPlayer.Normalize();
+		float angle = toPlayer.Dot(CVector3::AxisZ);
+		angle = acos(angle);
+		if (toPlayer.x <= 0.0f)
+		{
+			angle *= -1.0f;
+		}
+		move = toPlayer;
+		toPlayer.Scale(0.2f);
+		position.Add(toPlayer);
+		rotation.SetRotation(CVector3::AxisY, angle);
+		animation.PlayAnimation(AnimationWalk);
+	}
 }

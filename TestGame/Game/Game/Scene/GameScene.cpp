@@ -15,6 +15,10 @@ SMapInfo Stage2[] = {
 #include "locationInfo/stage2.h"
 };
 
+SMapInfo Stage3[] = {
+#include "locationInfo/stage3.h"
+};
+
 GameScene::GameScene()
 {
 	
@@ -46,7 +50,7 @@ bool GameScene::Start()
 
 		player = NewGO<Player>(0);		//プレイヤー生成
 		camera = NewGO<Camera>(0);		//カメラ生成
-		ivt = NewGO<inventory>(0);		//インベントリ生成
+		//ivt = NewGO<inventory>(0);		//インベントリ生成
 		time = NewGO<DisplayTime>(0);	//タイム表示生成
 		route = NewGO<RouteJudge>(0);
 
@@ -202,6 +206,23 @@ void GameScene::CreateStage(state_stage stage)
 		bgmSource->Init("Assets/sound/GameBGM.wav");
 		bgmSource->Play(true);
 		break;
+	case en_Stage3:
+		route->Init(5, 8);
+		route->Reset(5, 8);
+
+		//マップに配置されているオブジェクト数を計算
+		numObject = sizeof(Stage3) / sizeof(Stage3[0]);
+		map->Create(Stage3, numObject);
+
+		camera->Init(4);
+
+		nextStage = en_end;
+		step = step_StageLoad;
+
+		bgmSource = NewGO<CSoundSource>(0);
+		bgmSource->Init("Assets/sound/GameBGM.wav");
+		bgmSource->Play(true);
+		break;
 	}
 	step = step_StageLoad;
 }
@@ -234,6 +255,7 @@ void GameScene::SetGameOver() {
 	GameOverSE.Init("Assets/sound/jingle.wav");
 	GameOverSE.Play(false);
 	step = step_WaitGameOver;
+	route->Reset(route->GetinitialGrid_x(), route->GetinitialGrid_y());
 }
 
 //リセット

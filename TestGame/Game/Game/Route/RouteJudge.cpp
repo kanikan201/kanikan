@@ -31,6 +31,16 @@ void RouteJudge::Reset(int set_x,int set_y)
 		}
 	}
 
+	StageCount = 0;
+
+	for (int i = 0; i < g_gameScene->getMapData()->GetWidth(); i++) {
+		for (int j = 0; j < g_gameScene->getMapData()->GetHeight(); j++) {
+			if (map[j][i] == 0 || map[j][i] == 2) {
+				StageCount++;
+			}
+		}
+	}
+
 	map[set_y][set_x] = Path;
 	currentGrid.x = set_x;
 	currentGrid.y = set_y;
@@ -39,9 +49,6 @@ void RouteJudge::Reset(int set_x,int set_y)
 	isReset = false;
 
 	RouteCount = 0;
-	StageCount = 0;
-
-	StageCount = 27;
 }
 
 void RouteJudge::Update()
@@ -103,11 +110,11 @@ void RouteJudge::Update()
 		}
 	}
 
-	if (Pad(0).IsTrigger(enButtonStart)) {
-		g_gameScene->setClear(true);
-	}
 	//ƒNƒŠƒA”»’è
 	if (isPassed()) {
-		
+		g_gameScene->setClear(true);
+	}
+	if (Pad(0).IsTrigger(enButtonStart)) {
+		g_gameScene->setClear(true);
 	}
 }

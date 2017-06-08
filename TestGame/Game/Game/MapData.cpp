@@ -27,16 +27,16 @@ int MapData::sMap_01[MAP_1_HEIGHT][MAP_1_WIDTH] = {
 };
 
 int MapData::sMap_02[MAP_2_HEIGHT][MAP_2_WIDTH] = {
-	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 0, 0, 0, 0, 0, 0, 0, 0, 1 },
-	{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 }
+	{ 1, 1, 1, 1, 1, 1, 1, 1 },
+	{ 1, 1, 0, 0, 1, 0, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 0, 1 },
+	{ 1, 0, 0, 0, 0, 0, 1, 1 },
+	{ 1, 0, 0, 0, 0, 0, 1, 1 },
+	{ 1, 1, 1, 1, 1, 1, 1, 1 },
 };
 
 int MapData::GetMapInfo(int x, int y)
@@ -46,6 +46,9 @@ int MapData::GetMapInfo(int x, int y)
 	}
 	else if (g_gameScene->GetStage() == 1) {
 		return sMap_01[y][x];
+	}
+	else {
+		return sMap_02[y][x];
 	}
 };
 
@@ -57,6 +60,9 @@ int MapData::GetHeight()
 	else if (g_gameScene->GetStage() == 1) {
 		return MAP_1_HEIGHT;
 	}
+	else {
+		return MAP_2_HEIGHT;
+	}
 };
 
 int MapData::GetWidth()
@@ -66,5 +72,8 @@ int MapData::GetWidth()
 	}
 	else if (g_gameScene->GetStage() == 1) {
 		return MAP_1_WIDTH;
+	}
+	else {
+		return MAP_2_WIDTH;
 	}
 }
