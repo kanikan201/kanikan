@@ -7,9 +7,9 @@
 namespace {
 	const CVector2 BackSize = { 1280.0f, 720.0f };
 	const CVector2 BackPos = { 0.0f,0.0f };
-	const CVector2 strSize = { 182.0f,68.0f };
-	const CVector2 conPos = { 200.0f,-120.0f };
-	const CVector2 endPos = { 200.0f,-210.0f };
+	const CVector2 strSize = { 255.0f,85.0f };
+	const CVector2 conPos = { 250.0f,-100.0f };
+	const CVector2 endPos = { 250.0f,-200.0f };
 }
 
 TitleScene::TitleScene()
@@ -68,6 +68,19 @@ void TitleScene::Update()
 
 	if (isChoice) { return; }
 
+	timer += GameTime().GetFrameDeltaTime();
+	if (timer >= 2.6f) { 
+		timer = 0.0f; 
+		alpha = 1.0f;
+	}
+	if(timer>=1.5f && timer<2.0f){
+		alpha -= 0.06f;
+	}
+	else if(timer>=2.0f &&timer<2.5f) {
+		alpha += 0.06;
+	}
+
+
 	float input = Pad(0).GetLStickYF();
 
 	//ã‘I‘ð(‚Â‚Ã‚¯‚é)
@@ -77,6 +90,8 @@ void TitleScene::Update()
 			SE->Init("Assets/sound/Choice.wav");
 			SE->Play(false);
 			state = enStart;
+			alpha = 1.0f;
+			timer = 0.0f;
 		}
 	}
 	//‰º‘I‘ð(‚¨‚í‚é)
@@ -86,6 +101,8 @@ void TitleScene::Update()
 			SE->Init("Assets/sound/Choice.wav");
 			SE->Play(false);
 			state = enExit;
+			timer = 0.0f;
+			alpha = 1.0f;
 		}
 	}
 
@@ -104,11 +121,19 @@ void TitleScene::PostRender(CRenderContext& renderContext)
 	sprite.Draw(renderContext);
 	sprite.Draw(renderContext);
 	if (state == enStart) {
+		continue1.SetAlpha(alpha);
+		//if (timer >= 0 && timer <= 1.3) {
+		//	continue1.Draw(renderContext);
+		//}
 		continue1.Draw(renderContext);
 		end2.Draw(renderContext);
 	}
 	else {
 		continue2.Draw(renderContext);
+		//if (timer >= 0 && timer <= 1.3) {
+		//	end1.Draw(renderContext);
+		//}
+		end1.SetAlpha(alpha);
 		end1.Draw(renderContext);
 	}
 }

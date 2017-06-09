@@ -9,8 +9,8 @@ namespace {
 	const CVector2 BackSize = { 1280.0f, 720.0f };
 	const CVector2 BackPos = { 0.0f,0.0f };
 	const CVector2 strSize = { 182.0f,68.0f };
-	const CVector2 conPos= { 200.0f,-150.0f };
-	const CVector2 endPos= { 200.0f,-220.0f };
+	const CVector2 conPos= { 240.0f,-140.0f };
+	const CVector2 endPos= { 240.0f,-220.0f };
 }
 
 GameOverScene::GameOverScene()

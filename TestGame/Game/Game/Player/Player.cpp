@@ -124,8 +124,8 @@ CVector3 Player::Move()
 		return move; 
 	}
 
-	//Aボタンでジャンプ
-	if (Pad(0).IsTrigger(enButtonA) && !characterController.IsJump()) {
+	//Bボタンでジャンプ
+	if (Pad(0).IsTrigger(enButtonB) && !characterController.IsJump()) {
 		move.y = 8.0f;
 		characterController.Jump();
 		CSoundSource* SE = NewGO<CSoundSource>(0);
@@ -173,7 +173,7 @@ CVector3 Player::Move()
 
 void Player::Render(CRenderContext& renderContext)
 {
-	//トゥーンシェーダ設定
+	//エッジ設定
 	std::vector<CSkinModelMaterial*> matList;
 	skinModelData.GetBody()->FindMaterials(matList, "utc_all2_light.png");
 	//リストが空じゃない

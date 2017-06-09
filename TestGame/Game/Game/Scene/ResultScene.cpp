@@ -10,8 +10,8 @@ namespace {
 	const CVector2 BackPos = { 0.0f,0.0f };
 
 	const CVector2 NumSize = { 62.0f, 78.5f };	//数字のサイズ
-	const CVector2 StrSize = { 182.0f, 84.0f };	//文字のサイズ
-	const CVector2 StrPos = { -100.0f, 0.0f };	//文字のポジション
+	const CVector2 StrSize = { 393.0f, 84.0f };	//文字のサイズ
+	const CVector2 StrPos = { -160.0f, 0.0f };	//文字のポジション
 
 	const CVector2 colonSize = { 32.0f, 78.0f };
 }
@@ -32,7 +32,7 @@ bool ResultScene::Start()
 	sprite.SetSize(BackSize);
 	sprite.SetPosition(BackPos);
 
-	m_StrTex.Load("Assets/sprite/time.png");
+	m_StrTex.Load("Assets/sprite/total_time.png");
 
 	m_Str.Init(&m_StrTex);
 	m_Str.SetSize(StrSize);

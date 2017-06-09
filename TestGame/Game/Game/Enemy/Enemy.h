@@ -59,11 +59,13 @@ protected:
 	//AnimationNo		currentAnimSetNo;	//今のモーション
 	//AnimationNo		anim;				//変更前のモーション
 
-	Status state;	//敵のステータス
+	Status				state;	//敵のステータス
 
-	float		length = 0.0f;	//プレイヤーとの距離
-	float		m_timer = 0.0f;
-	float		start;
-	bool isMoving = false;
-	CTexture	darkTex;
+	float				length = 0.0f;	//プレイヤーとの距離
+	float				m_timer = 0.0f;
+	float				start;
+	bool				isMoving = false;
+
+	CTexture			darkTex;
+	char				TexName[128];	//テクスチャのファイルパス
 };
