@@ -197,7 +197,7 @@ void GameScene::CreateStage(state_stage stage)
 		map->Create(Stage1, numObject);
 
 		nextStage = en_Stage2;
-		nextStage = en_end;	//こっちはテスト用
+		//nextStage = en_end;	//こっちはテスト用
 		step = step_StageLoad;
 
 		bgmSource = NewGO<CSoundSource>(0);
@@ -212,9 +212,9 @@ void GameScene::CreateStage(state_stage stage)
 		numObject = sizeof(Stage2) / sizeof(Stage2[0]);
 		map->Create(Stage2, numObject);
 
-		//nextStage = en_Stage3;
+		nextStage = en_Stage3;
 		step = step_StageLoad;
-		nextStage = en_end;	//こっちはテスト用
+		//nextStage = en_end;	//こっちはテスト用
 
 		bgmSource = NewGO<CSoundSource>(0);
 		bgmSource->Init("Assets/sound/GameBGM.wav");

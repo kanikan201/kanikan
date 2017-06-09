@@ -25,7 +25,7 @@ void TestEnemy::Move()
 
 	moveFrameCount++;
 	if (Estate == eState_Search) {
-		if (moveFrameCount % 20 == 0) {
+		if (moveFrameCount % 40 == 0) {
 			rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(90.0f * dir));
 			dir += 1.0f;
 		}
@@ -58,6 +58,17 @@ void TestEnemy::Move()
 		if (WalkAnimation == false) {
 			animation.PlayAnimation(AnimationWalk);
 			WalkAnimation = true;
+		}
+		//ƒvƒŒƒCƒ„[‚Æ‚Ì‹——£‚ª‹ß‚¯‚ê‚ÎUŒ‚
+		if (length < 2.0f && animation.GetPlayAnimNo() == AnimationWalk) {
+			animation.PlayAnimation(AnimationAttack);
+		}
+		//UŒ‚’†‚ÍˆÚ“®‚µ‚È‚¢
+		if (animation.GetPlayAnimNo() == AnimationAttack) {
+			move = CVector3::Zero;
+			if (length >= 2.0f) {
+				WalkAnimation = false;
+			}
 		}
 	}
 }
