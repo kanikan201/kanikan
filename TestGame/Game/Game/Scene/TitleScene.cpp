@@ -90,7 +90,7 @@ void TitleScene::Update()
 	}
 
 	//Œˆ’è
-	if (Pad(0).IsTrigger(enButtonB)) {
+	if (Pad(0).IsTrigger(enButtonA)) {
 		DeleteGO(bgm);
 		//ƒTƒEƒ“ƒh
 		CSoundSource* SE = NewGO<CSoundSource>(0);

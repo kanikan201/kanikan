@@ -32,6 +32,9 @@ public:
 	bool GetChengeIn() {
 		return ChengeIn;
 	}
+	float GetTimer() {
+		return timer;
+	}
 private:
 	CSpringCamera			camera;			//カメラ
 	CVector3				toPosition;		//注視点から視点へのベクトル。

@@ -94,7 +94,7 @@ void GameOverScene::Update()
 	}
 
 	//Œˆ’è
-	if (Pad(0).IsTrigger(enButtonB)) {
+	if (Pad(0).IsTrigger(enButtonA)) {
 		//ƒTƒEƒ“ƒh
 		CSoundSource* SE = NewGO<CSoundSource>(0);
 		SE->Init("Assets/sound/Decision.wav");

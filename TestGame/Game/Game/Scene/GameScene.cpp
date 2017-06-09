@@ -56,7 +56,7 @@ bool GameScene::Start()
 
 		player = NewGO<Player>(0);		//プレイヤー生成
 		camera = NewGO<Camera>(0);		//カメラ生成
-		//ivt = NewGO<inventory>(0);		//インベントリ生成
+		ivt = NewGO<inventory>(0);		//インベントリ生成
 		time = NewGO<DisplayTime>(0);	//タイム表示生成
 		route = NewGO<RouteJudge>(0);
 
@@ -139,6 +139,7 @@ void GameScene::Update()
 		if (isDelete == true) {
 			//ステージの切り替え
 			CreateStage(nextStage);
+			ivt->Reset();
 			isDelete = false;
 		}
 		//フェードが終わった
@@ -256,6 +257,7 @@ void GameScene::Release() {
 	DeleteGO(player);	//プレイヤー
 	DeleteGO(background);//背景
 	DeleteGO(map);		//マップ
+	ivt->Delete();
 	DeleteGO(ivt);
 	time->DeleteNum();
 	DeleteGO(time);

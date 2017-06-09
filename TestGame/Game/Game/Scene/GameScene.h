@@ -124,7 +124,7 @@ private:
 
 	float				gameTime = 0.0f;	//プレイ時間
 	float				totalTime = 0.0f;	//合計プレイ時間
-	float				timer = 0.0f;	
+	float				timer = 0.0f;
 
 	state_stage			currentStage = en_Stage1;	//現在のステージ
 	state_stage			nextStage = en_Stage2;		//次のステージ

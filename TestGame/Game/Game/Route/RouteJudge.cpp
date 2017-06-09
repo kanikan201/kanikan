@@ -119,7 +119,4 @@ void RouteJudge::Update()
 	if (isPassed()) {
 		g_gameScene->setClear(true);
 	}
-	if (Pad(0).IsTrigger(enButtonStart)) {
-		g_gameScene->setClear(true);
-	}
 }
