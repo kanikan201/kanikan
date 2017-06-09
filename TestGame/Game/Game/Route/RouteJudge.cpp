@@ -38,8 +38,8 @@ void RouteJudge::Reset(int set_x,int set_y)
 
 	StageCount = 0;
 
-	for (int i = 0; i < g_gameScene->getMapData()->GetWidth(); i++) {
-		for (int j = 0; j < g_gameScene->getMapData()->GetHeight(); j++) {
+	for (int i = 0; i < Width; i++) {
+		for (int j = 0; j < Height; j++) {
 			if (map[j][i] == 0 || map[j][i] == 2) {
 				StageCount++;
 			}
