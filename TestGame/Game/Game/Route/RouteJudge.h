@@ -36,8 +36,10 @@ public:
 	int GetInitialGrid_y() {
 		return initialGrid.y;
 	}
-private:
+
 	void Reset(int set_x, int set_y);	//ƒŠƒZƒbƒg
+private:
+	
 
 	struct grid
 	{

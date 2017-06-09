@@ -273,7 +273,7 @@ void GameScene::SetGameOver() {
 	GameOverSE.Play(false);
 
 	step = step_WaitGameOver;
-	route->Reset(route->GetinitialGrid_x(), route->GetinitialGrid_y());
+	route->Reset(route->GetInitialGrid_x(), route->GetInitialGrid_y());
 	//‚±‚ñ‚Ó‚è‚­‚ÆAŒã“ú‘Š’k
 	timer = 0.0f;
 }

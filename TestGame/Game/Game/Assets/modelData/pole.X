@@ -242,7 +242,7 @@ Frame Box001 {
     0.000000;0.000000;0.000000;;
 
     TextureFilename Diffuse {
-     "pole.jpg";
+     "pole.png";
     }
    }
   }

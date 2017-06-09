@@ -42,6 +42,7 @@ void TestEnemy::Move()
 	else if (Estate == eState_Find) {
 		//”­Œ©ó‘Ô
 		toPlayer.Subtract(g_gameScene->getPlayer()->GetPosition(), position);
+		float length = toPlayer.Length();
 		toPlayer.y = 0.0f;
 		toPlayer.Normalize();
 		float angle = toPlayer.Dot(CVector3::AxisZ);
@@ -54,6 +55,9 @@ void TestEnemy::Move()
 		toPlayer.Scale(0.2f);
 		position.Add(toPlayer);
 		rotation.SetRotation(CVector3::AxisY, angle);
-		animation.PlayAnimation(AnimationWalk);
+		if (WalkAnimation == false) {
+			animation.PlayAnimation(AnimationWalk);
+			WalkAnimation = true;
+		}
 	}
 }

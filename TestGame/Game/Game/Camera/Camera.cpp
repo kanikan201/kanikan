@@ -62,7 +62,7 @@ void Camera::Update()
 	target.y += 2.0f;				//ターゲット微調整
 	camera.SetTarTarget(target);	//視点設定
 
-	if (timer > 2.0f) {
+	if (timer > 6.0f) {
 		ChengeCamera = !ChengeCamera;
 		timer = 0.0f;
 	}
