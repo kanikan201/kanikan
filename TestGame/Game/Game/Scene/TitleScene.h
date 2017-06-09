@@ -44,5 +44,9 @@ private:
 	CSoundSource*	bgm;
 	bool			isChoice;
 	State			state;
+
+	float				timer = 0.0f;	//タイマー。
+
+	float			alpha=1.0f;
 };
 

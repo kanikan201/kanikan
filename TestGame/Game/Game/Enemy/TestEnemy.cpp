@@ -6,6 +6,12 @@
 TestEnemy::TestEnemy()
 {
 	skinModelData.LoadModelData("Assets/modelData/enemy_00.X", &animation);
+
+	////影用のテクスチャパス
+	//darkTex.Load("Assets/modelData/Dutc_all2_dark.png");
+
+	////モデルのテクスチャ名
+	//sprintf(TexName, "Dutc_all2_light.png");
 }
 
 

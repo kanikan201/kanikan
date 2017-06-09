@@ -48,7 +48,7 @@ void SceneManager::Update()
 		}
 		//通常時
 		else if(f_step==step_nomal){
-			//スタートボタンを押した
+			//決定をした
 			if (title->GetChoice()) {
 				if (title->GetState()== TitleScene::enStart) {
 					g_fade->StartFadeOut();
@@ -112,8 +112,8 @@ void SceneManager::Update()
 		}
 		//通常時
 		else if (f_step == step_nomal) {
-			//スタートボタンを押した
-			if (Pad(0).IsTrigger(enButtonStart)) {
+			//Aボタンを押した
+			if (Pad(0).IsTrigger(enButtonA)) {
 				g_fade->StartFadeOut();
 				f_step = step_WaitFadeOut;
 			}
