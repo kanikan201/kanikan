@@ -49,7 +49,7 @@ void BackGround::Update()
 
 	//アニメーション更新
 	animation.Update(1.0f / 30.0f);
-	skinModel.Update(CVector3(50.0f, 0.0f, 10.0f), View, CVector3(50.0f, 50.0f, 50.0f));
+	skinModel.Update(CVector3(60.0f, 0.0f, 10.0f), View, CVector3(50.0f, 50.0f, 50.0f));
 }
 
 void BackGround::Render(CRenderContext& renderContext)
