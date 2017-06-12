@@ -20,7 +20,7 @@ class MapData {
 
 	//マップ２（ステージ3）
 	static const int MAP_2_HEIGHT = 10;
-	static const int MAP_2_WIDTH = 10;
+	static const int MAP_2_WIDTH = 8;
 	static int sMap_02[MAP_2_HEIGHT][MAP_2_WIDTH];
 public:
 	//マップ情報の取得

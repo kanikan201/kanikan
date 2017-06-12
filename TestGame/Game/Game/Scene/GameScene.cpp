@@ -223,7 +223,7 @@ void GameScene::CreateStage(state_stage stage)
 		break;
 	case en_Stage3:
 		route->Init(5, 8);
-		route->Reset(5, 8);
+		//route->Reset(5, 8);
 
 		//マップに配置されているオブジェクト数を計算
 		numObject = sizeof(Stage3) / sizeof(Stage3[0]);
