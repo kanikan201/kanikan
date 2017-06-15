@@ -14,6 +14,7 @@ public:
 	bool Start();
 	void Update();
 	void Init(int set_x, int set_y);
+	void Warp();
 
 	//ルートオブジェクトをリセットするか
 	bool isDelete()
@@ -49,7 +50,9 @@ private:
 
 	grid prevGrid;		//前のマス
 	grid currentGrid;	//今のマス
-	grid initialGrid;
+	grid initialGrid;	//初期マス
+	grid warpGrid[2];	//ワープグリッド
+
 
 	int map[20][20];	//マップデータの複製先(とりあえず大きいサイズに)
 
