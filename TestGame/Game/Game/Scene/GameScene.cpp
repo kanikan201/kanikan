@@ -218,7 +218,9 @@ void GameScene::CreateStage(state_stage stage)
 		//nextStage = en_end;	//こっちはテスト用
 
 		bgmSource = NewGO<CSoundSource>(0);
-		bgmSource->Init("Assets/sound/Dungeon.wav");
+
+		//仮BGM
+		bgmSource->Init("Assets/sound/tw022.wav");
 		bgmSource->Play(true);
 		break;
 	case en_Stage3:
@@ -234,7 +236,9 @@ void GameScene::CreateStage(state_stage stage)
 		step = step_StageLoad;
 
 		bgmSource = NewGO<CSoundSource>(0);
-		bgmSource->Init("Assets/sound/Dungeon.wav");
+
+		//仮BGM
+		bgmSource->Init("Assets/sound/tw081.wav");
 		bgmSource->Play(true);
 		break;
 	}
