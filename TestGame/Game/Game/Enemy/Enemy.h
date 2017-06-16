@@ -23,6 +23,7 @@ protected:
 		AnimationStand,		//立ち
 		AnimationWalk,		//歩き
 		AnimationAttack,	//攻撃
+		Waiting				//待機中
 	};
 
 	CAnimation			animation;			//アニメーション。

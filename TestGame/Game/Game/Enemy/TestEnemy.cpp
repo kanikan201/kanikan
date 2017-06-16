@@ -7,6 +7,8 @@ TestEnemy::TestEnemy()
 {
 	skinModelData.LoadModelData("Assets/modelData/enemy_00.X", &animation);
 
+	currentAnimSetNo = AnimationStand;
+
 	////影用のテクスチャパス
 	//darkTex.Load("Assets/modelData/Dutc_all2_dark.png");
 
@@ -30,28 +32,34 @@ void TestEnemy::Move()
 	direction.Normalize();
 
 	moveFrameCount++;
-	if (Estate == eState_Search) {
+	float length = 0.0f;
+	float angle = 0.0f;
+	switch (currentAnimSetNo)
+	{
+	case AnimationStand:
 		if (moveFrameCount % 40 == 0) {
 			rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(90.0f * dir));
 			dir += 1.0f;
 		}
 		toPlayer.Subtract(g_gameScene->getPlayer()->GetPosition(), position);
-		float length = toPlayer.Length();
+		length = toPlayer.Length();
 		toPlayer.Normalize();
-		float angle = toPlayer.Dot(direction);
+		angle = toPlayer.Dot(direction);
 		angle = acos(angle);
 		if (fabsf(angle) < D3DXToRadian(45.0f) && length < 5.0f) {
-			Estate = eState_Find;
+			//歩きアニメーション
+			animation.PlayAnimation(AnimationWalk);
+			currentAnimSetNo = AnimationWalk;
 		}
 		move = CVector3::Zero;
-	}
-	else if (Estate == eState_Find) {
+		break;
+	case AnimationWalk:
 		//発見状態
 		toPlayer.Subtract(g_gameScene->getPlayer()->GetPosition(), position);
-		float length = toPlayer.Length();
+		length = toPlayer.Length();
 		toPlayer.y = 0.0f;
 		toPlayer.Normalize();
-		float angle = toPlayer.Dot(CVector3::AxisZ);
+		angle = toPlayer.Dot(CVector3::AxisZ);
 		angle = acos(angle);
 		if (toPlayer.x <= 0.0f)
 		{
@@ -61,20 +69,39 @@ void TestEnemy::Move()
 		toPlayer.Scale(0.2f);
 		position.Add(toPlayer);
 		rotation.SetRotation(CVector3::AxisY, angle);
-		if (WalkAnimation == false) {
-			animation.PlayAnimation(AnimationWalk);
-			WalkAnimation = true;
-		}
 		//プレイヤーとの距離が近ければ攻撃
-		if (length < 2.0f && animation.GetPlayAnimNo() == AnimationWalk) {
+		if (length < 2.5f) {
 			animation.PlayAnimation(AnimationAttack);
+			currentAnimSetNo = AnimationAttack;
 		}
-		//攻撃中は移動しない
-		if (animation.GetPlayAnimNo() == AnimationAttack) {
-			move = CVector3::Zero;
-			if (length >= 2.0f) {
-				WalkAnimation = false;
+		break;
+	case AnimationAttack:
+		//攻撃中は動かない
+		move = CVector3::Zero;
+		timer += GameTime().GetFrameDeltaTime();
+		if (timer > 2.5f) {
+			currentAnimSetNo = Waiting;
+			timer = 0.0f;
+			animation.PlayAnimation(AnimationStand);
+		}
+		break;
+	case Waiting:
+		timer += GameTime().GetFrameDeltaTime();
+		if (timer > 1.0f) {
+			toPlayer.Subtract(g_gameScene->getPlayer()->GetPosition(), position);
+			length = toPlayer.Length();
+			if (length > 2.0f) {
+				currentAnimSetNo = AnimationWalk;
+				animation.PlayAnimation(AnimationWalk);
 			}
+			else {
+				currentAnimSetNo = AnimationAttack;
+				animation.PlayAnimation(AnimationAttack);
+			}
+			timer = 0.0f;
 		}
+		break;
+	default:
+		break;
 	}
 }

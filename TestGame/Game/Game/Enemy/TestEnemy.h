@@ -12,8 +12,7 @@ public:
 private:
 	void Move()override;
 	float		dir = 1.0f;
-	int moveFrameCount = 0;
-	bool WalkAnimation = false;
-	float timer = 0.0f;
+	float		timer = 0.0f;			//タイマー
+	int			moveFrameCount = 0;
 };
 
