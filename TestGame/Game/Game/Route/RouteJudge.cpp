@@ -37,11 +37,21 @@ void RouteJudge::Reset(int set_x,int set_y)
 	}
 
 	StageCount = 0;
+	int warpCount = 0;
 
 	for (int i = 0; i < Width; i++) {
 		for (int j = 0; j < Height; j++) {
-			if (map[j][i] == 0 || map[j][i] == 2) {
+			int tmp = map[j][i];
+			//何もないor柱
+			if (tmp == Empty || tmp == Pole) {
 				StageCount++;
+			}
+
+			//ワープトラップ
+			if (warpCount<2 && tmp == WarpTrap) {
+				warpGrid[warpCount].x= i;
+				warpGrid[warpCount].y= j;
+				warpCount ++;
 			}
 		}
 	}
@@ -91,27 +101,45 @@ void RouteJudge::Update()
 	if (prevGrid.x != currentGrid.x || prevGrid.y != currentGrid.y) {
 		int mapTmp = map[currentGrid.y][currentGrid.x];
 
+		CSoundSource* se = NewGO<CSoundSource>(0);
+
+		switch (mapTmp) {
 		//通れない場所だった(壁と柱)
-		if (mapTmp == Wall) {
+		case Wall:
 			currentGrid = prevGrid;
-		}
+			break;
+
 		//リセットパネル
-		else if (mapTmp == ResetTrap) {
+		case ResetTrap:
 			isReset = true;
-		}
-		//すでに通ったマスに移動
-		//または、邪魔パネル(仮)
-		else if (mapTmp == Path || mapTmp == Trap1) {
+
+			se->Init("Assets/sound/kira2.wav");
+			se->Play(false);
+			break;
+
+		//ワープパネル
+		case WarpTrap:
+			Warp();
+
+			se->Init("Assets/sound/warp.wav");
+			se->Play(false);
+			break;
+
+		//すでに通ったマスに移動。または、邪魔パネル(仮)
+		case Path:
+		case Trap1:
 			//ゲームオーバー処理
 			g_gameScene->SetGameOver();
-		}
+			break;
+
 		//まだ通ってない道
-		else{
+		default:
 			map[currentGrid.y][currentGrid.x] = Path;
 			//通ったマスを描画する
 			routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
 			routeObject[currentGrid.y][currentGrid.x]->Perticle();
 			RouteCount++;
+			break;
 		}
 	}
 
@@ -122,4 +150,24 @@ void RouteJudge::Update()
 	if (Pad(0).IsTrigger(enButtonStart)) {
 		g_gameScene->setClear(true);
 	}
+}
+
+void RouteJudge::Warp()
+{
+	CVector3 work = CVector3::Zero;
+	int warpNum = 0;
+
+	if (warpGrid[warpNum].x == currentGrid.x && warpGrid[warpNum].y == currentGrid.y)
+	{
+		warpNum = 1;
+	}
+
+	currentGrid = warpGrid[warpNum];
+
+	//移動先ポジション計算
+	work.x = -(warpGrid[warpNum].x - initialGrid.x)*GRID_SIZE;
+	work.z = (warpGrid[warpNum].y - initialGrid.y)*GRID_SIZE;
+
+	//プレイヤーの位置セット
+	g_gameScene->getPlayer()->SetPosition(work);
 }

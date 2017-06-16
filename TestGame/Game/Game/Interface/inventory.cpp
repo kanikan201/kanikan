@@ -4,8 +4,8 @@
 
 namespace {
 	const CVector2 NumSize = { 46.5f, 58.5f };	//数字のサイズ
-	const CVector2 frameSize = { 120.0f, 120.0f };		//枠のサイズ(仮)
-	const CVector2 framePos = { -570.0f,-290.0f };		//枠の位置(仮)
+	const CVector2 frameSize = { 200.0f, 120.0f };		//枠のサイズ(仮)
+	const CVector2 framePos = { -520.0f,-290.0f };		//枠の位置(仮)
 }
 
 inventory::inventory()
@@ -48,7 +48,7 @@ void inventory::Reset()
 bool inventory::Start()
 {
 	//テクスチャロード
-	texture.Load("Assets/sprite/Camera.jpg");
+	texture.Load("Assets/sprite/Camera.png");
 
 	sprite.Init(&texture);
 	sprite.SetSize(frameSize);
@@ -58,7 +58,7 @@ bool inventory::Start()
 
 	Reset();
 
-	float work = framePos.x + (frameSize.x / 2.0f) + (NumSize.x / 2.0f) + 3.0f;
+	float work = framePos.x + (NumSize.x / 2.0f)+10.0;
 
 	num->Init({ (work), framePos.y }, NumSize);
 
