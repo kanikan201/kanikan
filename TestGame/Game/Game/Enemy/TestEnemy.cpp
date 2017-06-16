@@ -2,6 +2,7 @@
 #include "TestEnemy.h"
 #include "scene/GameScene.h"
 
+TestEnemy* enemy;
 
 TestEnemy::TestEnemy()
 {

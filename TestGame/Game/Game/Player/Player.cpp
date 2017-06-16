@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Player.h"
+#include "../Enemy/TestEnemy.h"
 #include "scene/GameScene.h"
 
 #define SPEED 7.0f
@@ -35,6 +36,7 @@ bool Player::Start() {
 	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
 
 	animation.SetAnimationEndTime(AnimationRun, 0.8);
+	animation.SetAnimationLoopFlag(AnimationDown, false);
 	animation.PlayAnimation(AnimationStand);
 
 	darkTex.Load("Assets/modelData/utc_all2_dark.png");
@@ -58,6 +60,11 @@ bool Player::Start() {
 
 void Player::Update()
 {
+
+	skinModel.Update(position, rotation, { 2.5f, 2.5f, 2.5f });
+	//アニメーション更新
+	animation.Update(1.0f / 30.0f);
+
 	//切り替わり時は処理しない
 	if (g_gameScene->isStep() != GameScene::step_nomal) { return; }
 
@@ -91,20 +98,16 @@ void Player::Update()
 		}
 	}
 //立ってるとき
-	else 
+	else
 	{
 		//立ちアニメーション
 		currentAnimSetNo = AnimationStand;
 	}
-
 //モーションが変わってたら変更する
 	if (currentAnimSetNo != prevAnim) {
 		animation.PlayAnimation(currentAnimSetNo,0.3f);
 	}
 
-	//アニメーション更新
-	animation.Update(1.0f / 30.0f);
-	skinModel.Update(position, rotation, {2.5f, 2.5f, 2.5f});
 
 	//影
 	ShadowMap().SetLightTarget(position);
@@ -217,4 +220,11 @@ void Player::Reset()
 {
 	rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(180.0f));
 	SetPosition({ 0.0f,0.0f,0.0f });
+	animation.PlayAnimation(AnimationStand);
+}
+
+void Player::DeadAnimation() 
+{
+	//敵と接触したとき
+	animation.PlayAnimation(AnimationDown);
 }

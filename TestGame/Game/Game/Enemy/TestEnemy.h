@@ -8,7 +8,9 @@ class TestEnemy : public Enemy
 public:
 	TestEnemy();
 	~TestEnemy();
-
+	CVector3 GetPosition() {
+		return position;
+	}
 private:
 	void Move()override;
 	float		dir = 1.0f;
@@ -16,3 +18,4 @@ private:
 	int			moveFrameCount = 0;
 };
 
+extern TestEnemy* enemy;

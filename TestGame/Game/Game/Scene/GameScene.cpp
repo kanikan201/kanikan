@@ -18,7 +18,7 @@ SMapInfo Stage2[] = {
 SMapInfo Stage3[] = {
 #include "locationInfo/stage3.h"
 };
-//こんふりくと、後日相談
+
 namespace {
 	const CVector2 Size = { 300.0f, 160.0f };
 	const CVector2 Pos = { 0.0f,100.0f };
@@ -272,11 +272,10 @@ void GameScene::SetGameOver() {
 	AddGO(0, &GameOverSE);
 	GameOverSE.Init("Assets/sound/jingle.wav");
 	GameOverSE.Play(false);
-
 	step = step_WaitGameOver;
 	route->Reset(route->GetInitialGrid_x(), route->GetInitialGrid_y());
-	//こんふりくと、後日相談
 	timer = 0.0f;
+	getPlayer()->DeadAnimation();
 }
 
 //リセット

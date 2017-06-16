@@ -30,7 +30,7 @@ void Map::Create(SMapInfo* mapLocInfo, int numObject)
 			marker->Init(mapLocInfo[i].position, mapLocInfo[i].rotation);
 		}
 		else if (strcmp("D_Unity", mapLocInfo[i].modelName) == 0) {
-			TestEnemy* enemy = NewGO<TestEnemy>(0);
+			enemy = NewGO<TestEnemy>(0);
 			enemy->Init(mapLocInfo[i].position);
 		}
 		else if (strcmp("route", mapLocInfo[i].modelName) == 0) {
