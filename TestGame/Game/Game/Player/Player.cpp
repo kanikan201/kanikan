@@ -65,11 +65,16 @@ void Player::Update()
 	//アニメーション更新
 	animation.Update(1.0f / 30.0f);
 
-	//切り替わり時は処理しない
-	if (g_gameScene->isStep() != GameScene::step_nomal) { return; }
+	//モーションが変わってたら変更する
+	if (currentAnimSetNo != prevAnim) {
+		animation.PlayAnimation(currentAnimSetNo, 0.3f);
+	}
 
 	//前のアニメーションを保存
 	prevAnim = currentAnimSetNo;
+
+	//切り替わり時は処理しない
+	if (g_gameScene->isStep() != GameScene::step_nomal) { return; }
 
 	//移動
 	characterController.SetMoveSpeed(Move());	//移動速度を設定
@@ -103,10 +108,7 @@ void Player::Update()
 		//立ちアニメーション
 		currentAnimSetNo = AnimationStand;
 	}
-//モーションが変わってたら変更する
-	if (currentAnimSetNo != prevAnim) {
-		animation.PlayAnimation(currentAnimSetNo,0.3f);
-	}
+
 
 
 	//影
@@ -220,11 +222,11 @@ void Player::Reset()
 {
 	rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(180.0f));
 	SetPosition({ 0.0f,0.0f,0.0f });
-	animation.PlayAnimation(AnimationStand);
+	currentAnimSetNo = AnimationStand;
 }
 
 void Player::DeadAnimation() 
 {
-	//敵と接触したとき
-	animation.PlayAnimation(AnimationDown);
+	//敵と接触したときのアニメーション
+	currentAnimSetNo = AnimationDown;
 }
