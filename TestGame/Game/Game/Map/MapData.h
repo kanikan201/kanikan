@@ -49,4 +49,5 @@ enum mapObj {
 	WarpTrap,		//ワープパネル(仮)
 	Path,			//通った
 	Gaul,			//ゴール
+	Dummy			//隠し通路
 };

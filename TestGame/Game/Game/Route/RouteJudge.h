@@ -38,6 +38,14 @@ public:
 		return initialGrid.y;
 	}
 
+	int GetCurrentGrid_x() {
+		return currentGrid.x;
+	}
+
+	int GetCurrentGrid_y() {
+		return currentGrid.y;
+	}
+
 	void Reset(int set_x, int set_y);	//ƒŠƒZƒbƒg
 private:
 	
