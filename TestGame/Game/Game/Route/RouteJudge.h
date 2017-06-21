@@ -14,6 +14,7 @@ public:
 	bool Start();
 	void Update();
 	void Init(int set_x, int set_y);
+	void Reset(int set_x, int set_y);	//リセット
 	void Warp();
 
 	//ルートオブジェクトをリセットするか
@@ -45,8 +46,6 @@ public:
 	int GetCurrentGrid_y() {
 		return currentGrid.y;
 	}
-
-	void Reset(int set_x, int set_y);	//リセット
 private:
 	
 

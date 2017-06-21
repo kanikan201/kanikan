@@ -197,6 +197,8 @@ void GameScene::CreateStage(state_stage stage)
 		numObject = sizeof(Stage1) / sizeof(Stage1[0]);
 		map->Create(Stage1, numObject);
 
+		route->Reset(1, 5);
+
 		nextStage = en_Stage2;
 		//nextStage = en_end;	//こっちはテスト用
 		step = step_StageLoad;
@@ -212,6 +214,8 @@ void GameScene::CreateStage(state_stage stage)
 		//マップに配置されているオブジェクト数を計算
 		numObject = sizeof(Stage2) / sizeof(Stage2[0]);
 		map->Create(Stage2, numObject);
+
+		route->Reset(5, 8);
 
 		nextStage = en_Stage3;
 		step = step_StageLoad;
@@ -231,6 +235,7 @@ void GameScene::CreateStage(state_stage stage)
 		map->Create(Stage3, numObject);
 
 		camera->Init(4);
+		route->Reset(2, 5);
 
 		nextStage = en_end;
 		step = step_StageLoad;

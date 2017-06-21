@@ -56,10 +56,7 @@ void RouteObject::Update()
 	//ルートがリセット
 	if (g_gameScene->getJudge()->isDelete()) {
 		SetActiveFlag(false);
-		CVector3 ambientLight = { 0.0f, 0.59f , 0.85f };
-		ambientLight.Scale(2.8f);
-		light.SetAmbinetLight(ambientLight);
-		skinModel.SetLight(&light);
+		LightReset();
 
 		DeleteGO(perticle);
 	}
@@ -109,6 +106,24 @@ void RouteObject::Perticle()
 void RouteObject::GameOvered() {
 	//暗いライト(仮)
 	CVector3 ambientLight = { 0.0f, 0.20f , 0.20f };
+	ambientLight.Scale(2.8f);
+	light.SetAmbinetLight(ambientLight);
+	skinModel.SetLight(&light);
+}
+
+void RouteObject::LightReset()
+{
+	CVector3 ambientLight = { 0.0f, 0.59f , 0.85f };
+	ambientLight.Scale(2.8f);
+	light.SetAmbinetLight(ambientLight);
+	skinModel.SetLight(&light);
+}
+
+void RouteObject::SetWorp()
+{
+	SetActiveFlag(true);
+	//ワープの色(仮)
+	CVector3 ambientLight = { 0.0f, 0.00f , 1.00f };
 	ambientLight.Scale(2.8f);
 	light.SetAmbinetLight(ambientLight);
 	skinModel.SetLight(&light);
