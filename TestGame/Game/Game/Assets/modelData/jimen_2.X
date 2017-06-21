@@ -242,7 +242,7 @@ Frame Box001 {
     0.000000;0.000000;0.000000;;
 
     TextureFilename Diffuse {
-     "jimen2.png";
+     "jimen2_2.png";
     }
    }
   }

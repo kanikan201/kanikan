@@ -23,7 +23,15 @@ void RouteObject::Init(CVector3 position, CQuaternion rotation)
 	skinModel.Init(skinModelData.GetBody());
 
 	//デフォルトライト設定
-	CVector3 ambientLight = { 0.0f, 0.59f , 0.85f  };
+	if (g_gameScene->GetStage() == en_Stage1) {
+		ambientLight = { 0.0f, 0.59f , 0.85f };
+	}
+	else if (g_gameScene->GetStage() == en_Stage2) {
+		ambientLight = { 0.99f, 0.0f , 0.24f };
+	}
+	else {
+		ambientLight = { 0.03f, 0.69f , 0.0f };
+	}
 	ambientLight.Scale(2.8f);
 	light.SetAmbinetLight(ambientLight);
 	skinModel.SetLight(&light);

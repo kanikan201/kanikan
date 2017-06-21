@@ -284,7 +284,6 @@ void GameScene::SetGameOver() {
 	step = step_WaitGameOver;
 	route->Reset(route->GetInitialGrid_x(), route->GetInitialGrid_y());
 	timer = 0.0f;
-	getPlayer()->DeadAnimation();
 }
 
 //ƒŠƒZƒbƒg
