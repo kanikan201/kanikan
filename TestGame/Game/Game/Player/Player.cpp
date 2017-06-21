@@ -37,6 +37,8 @@ bool Player::Start() {
 
 	animation.SetAnimationEndTime(AnimationRun, 0.8);
 	animation.SetAnimationLoopFlag(AnimationDown, false);
+	animation.SetAnimationLoopFlag(AnimationKneelDown, false);
+	animation.SetAnimationLoopFlag(AnimationSalute, false);
 	animation.PlayAnimation(AnimationStand);
 
 	darkTex.Load("Assets/modelData/utc_all2_dark.png");
@@ -225,8 +227,20 @@ void Player::Reset()
 	currentAnimSetNo = AnimationStand;
 }
 
-void Player::DeadAnimation() 
+void Player::DownAnimation() 
 {
 	//敵と接触したときのアニメーション
 	currentAnimSetNo = AnimationDown;
+}
+
+void Player::KneelDownAnimation()
+{
+	//同じマスを通ったときのアニメーション
+	currentAnimSetNo = AnimationKneelDown;
+}
+
+void Player::SaluteAnimation()
+{
+	//クリア時ポーズアニメーション
+	currentAnimSetNo = AnimationSalute;
 }

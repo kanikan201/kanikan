@@ -13,7 +13,9 @@ public:
 	void SetPosition(CVector3 pos);
 	void Render(CRenderContext& renderContext);
 	float Distance(CVector3& objectPos);	//プレイヤーとの距離を返す
-	void DeadAnimation();
+	void DownAnimation();
+	void KneelDownAnimation();
+	void SaluteAnimation();
 
 //プレイヤーの位置を返す
 	CVector3 GetPosition() {
@@ -31,7 +33,9 @@ public:
 		AnimationWalk,		//歩き
 		AnimationRun,		//走り
 		AnimationJump,		//ジャンプ
-		AnimationDown,		//ダウン
+		AnimationDown,		//敵と接触のダウン
+		AnimationKneelDown, //パネルミスのダウン
+		AnimationSalute,	//クリア時ポーズ
 	};
 
 private:

@@ -1,288 +1,288 @@
-﻿//jimen
+﻿//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(-8.00f, -1.00f, 0.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(0.00f, -1.00f, 0.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(8.00f, -1.00f, 0.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(16.00f, -1.00f, 0.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(24.00f, -1.00f, 0.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(32.00f, -1.00f, 0.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(-8.00f, -1.00f, -8.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(0.00f, -1.00f, -8.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(8.00f, -1.00f, -8.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(16.00f, -1.00f, -8.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(24.00f, -1.00f, -8.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(32.00f, -1.00f, -8.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(-8.00f, -1.00f, -16.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(0.00f, -1.00f, -16.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(8.00f, -1.00f, -16.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(16.00f, -1.00f, -16.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(24.00f, -1.00f, -16.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(32.00f, -1.00f, -16.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(-8.00f, -1.00f, -24.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(0.00f, -1.00f, -24.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(8.00f, -1.00f, -24.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(16.00f, -1.00f, -24.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(24.00f, -1.00f, -24.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(32.00f, -1.00f, -24.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(-8.00f, -1.00f, -32.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(0.00f, -1.00f, -32.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(8.00f, -1.00f, -32.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(16.00f, -1.00f, -32.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(24.00f, -1.00f, -32.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(32.00f, -1.00f, -32.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(-8.00f, -1.00f, -40.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(0.00f, -1.00f, -40.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(8.00f, -1.00f, -40.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(16.00f, -1.00f, -40.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(24.00f, -1.00f, -40.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(32.00f, -1.00f, -40.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(-8.00f, -1.00f, -48.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(0.00f, -1.00f, -48.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(8.00f, -1.00f, -48.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(16.00f, -1.00f, -48.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(24.00f, -1.00f, -48.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(32.00f, -1.00f, -48.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(-8.00f, -1.00f, -56.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(0.00f, -1.00f, -56.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(8.00f, -1.00f, -56.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(16.00f, -1.00f, -56.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(24.00f, -1.00f, -56.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//jimen
+//jimen_2
 {
-	"jimen",
+	"jimen_2",
 	CVector3(32.00f, -1.00f, -56.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
@@ -538,65 +538,65 @@
 	CVector3(24.00f, -0.15f, -56.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//pole
+//pole_2
 {
-	"pole",
+	"pole_2",
 	CVector3(-8.00f, -0.50f, 0.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//pole
+//pole_2
 {
-	"pole",
+	"pole_2",
 	CVector3(-8.00f, -0.50f, -8.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//pole
+//pole_2
 {
-	"pole",
+	"pole_2",
 	CVector3(8.00f, -0.50f, -56.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//pole
+//pole_2
 {
-	"pole",
+	"pole_2",
 	CVector3(32.00f, -0.50f, -56.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//pole
+//pole_2
 {
-	"pole",
+	"pole_2",
 	CVector3(24.00f, -0.50f, -24.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//pole
+//pole_2
 {
-	"pole",
+	"pole_2",
 	CVector3(8.00f, -0.50f, -32.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//Wall3
+//Wall3_2
 {
-	"Wall3",
+	"Wall3_2",
 	CVector3(37.00f, 13.00f, -28.00f),             //平行移動
 	CQuaternion(-0.50f, 0.50f, 0.50f, -0.50f ),  //回転
 },
-//Wall3
+//Wall3_2
 {
-	"Wall3",
+	"Wall3_2",
 	CVector3(-13.00f, 13.00f, -28.00f),             //平行移動
 	CQuaternion(-0.50f, 0.50f, -0.50f, 0.50f ),  //回転
 },
-//Wall4
+//Wall4_2
 {
-	"Wall4",
+	"Wall4_2",
 	CVector3(11.50f, 13.00f, 5.00f),             //平行移動
 	CQuaternion(-1.00f, 0.00f, 0.00f, 0.00f ),  //回転
 },
-//Wall4
+//Wall4_2
 {
-	"Wall4",
+	"Wall4_2",
 	CVector3(11.50f, 13.00f, -60.00f),             //平行移動
-	CQuaternion(-1.00f, 0.00f, 0.00f, 0.00f ),  //回転
+	CQuaternion(0.00f, 0.00f, 1.00f, 0.00f ),  //回転
 },
 //D_Unity
 {
