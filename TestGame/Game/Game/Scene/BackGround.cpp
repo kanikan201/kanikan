@@ -49,7 +49,23 @@ void BackGround::Update()
 
 	//アニメーション更新
 	animation.Update(1.0f / 30.0f);
-	skinModel.Update(CVector3(60.0f, 0.0f, 10.0f), View, CVector3(50.0f, 50.0f, 50.0f));
+
+	//ステージによって背景のユニティちゃんの位置を変更
+	switch (g_gameScene->GetStage())
+	{
+	case 0:
+		skinModel.Update(CVector3(40.0f, 0.0f, 10.0f), View, CVector3(50.0f, 50.0f, 50.0f));
+		break;
+	case 1:
+		skinModel.Update(CVector3(70.0f, 0.0f, -10.0f), View, CVector3(50.0f, 50.0f, 50.0f));
+		break;
+	case 2:
+		skinModel.Update(CVector3(50.0f, 0.0f, 20.0f), View, CVector3(50.0f, 50.0f, 50.0f));
+		break;
+	default:
+		break;
+	}
+
 }
 
 void BackGround::Render(CRenderContext& renderContext)

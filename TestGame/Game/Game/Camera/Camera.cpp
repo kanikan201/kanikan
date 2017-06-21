@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Camera.h"
 #include "Scene/GameScene.h"
+#include "Map/MapData.h"
 
 #define SPEED 0.05f
 
@@ -18,6 +19,7 @@ void Camera::Init(int count)
 {
 	ChengeCount = count;
 	ChengeIn = false;
+	Hidden = false;
 }
 
 bool Camera::Start()
@@ -56,6 +58,17 @@ void Camera::Update()
 		}
 	}
 
+	//隠し通路に入ったら
+	if (g_gameScene->getMapData()->GetMapInfo
+		(g_gameScene->getJudge()->GetCurrentGrid_x(),
+		g_gameScene->getJudge()->GetCurrentGrid_y())==8)
+	{
+		Hidden = true;
+	}
+	else {
+		Hidden = false;
+	}
+
 	Move();	//カメラを動かす
 
 	CVector3 target = g_gameScene->getPlayer()->GetPosition();
@@ -77,6 +90,11 @@ void Camera::Update()
 		timer += GameTime().GetFrameDeltaTime();
 		ChengeIn = true;
 	}
+	else if (Hidden) {
+		target.y += 20.0f;
+
+		target.Add(toPosition);
+		camera.SetTarPosition(target);	}
 	//後ろ視点の状態
 	else {
 		//カメラ位置セット

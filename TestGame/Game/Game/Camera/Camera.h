@@ -40,6 +40,7 @@ private:
 	CVector3				toPosition;		//注視点から視点へのベクトル。
 	CCameraCollisionSolver	cameraCollisionSolver;
 	bool					ChengeCamera;	//カメラの視点を変えるフラグ
+	bool					Hidden;			//隠し通路に入ったか
 	float					timer;			//上視点のタイマー
 	int						ChengeCount;	//カメラの視点変更回数
 	bool					ChengeIn;		//カメラ変更中フラグ
