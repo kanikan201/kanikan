@@ -21,7 +21,7 @@ void RouteJudge::Init(int set_x, int set_y) {
 	initialGrid.x = set_x;
 	initialGrid.y = set_y;
 
-	Reset(set_x, set_y);
+	//Reset(set_x, set_y);
 }
 
 //リセット(引数はプレイヤー位置)
@@ -52,6 +52,8 @@ void RouteJudge::Reset(int set_x,int set_y)
 				warpGrid[warpCount].x= i;
 				warpGrid[warpCount].y= j;
 				warpCount ++;
+
+				routeObject[j][i]->SetWorp();
 			}
 		}
 	}
@@ -120,6 +122,7 @@ void RouteJudge::Update()
 		//ワープパネル
 		case WarpTrap:
 			Warp();
+			
 
 			se->Init("Assets/sound/warp.wav");
 			se->Play(false);
@@ -172,4 +175,9 @@ void RouteJudge::Warp()
 
 	//プレイヤーの位置セット
 	g_gameScene->getPlayer()->SetPosition(work);
+
+	for (warpNum = 0; warpNum < 2; warpNum++) {
+		map[warpGrid[warpNum].y][warpGrid[warpNum].x] = Path;
+		routeObject[warpGrid[warpNum].y][warpGrid[warpNum].x]->LightReset();
+	}
 }
