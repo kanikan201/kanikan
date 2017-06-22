@@ -790,36 +790,6 @@
 	CVector3(0.00f, -0.15f, -32.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
-//WallSide
-{
-	"WallSide",
-	CVector3(-48.00f, -1.00f, 24.00f),             //平行移動
-	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
-},
-//WallSide
-{
-	"WallSide",
-	CVector3(-40.00f, -1.00f, 24.00f),             //平行移動
-	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
-},
-//WallSide
-{
-	"WallSide",
-	CVector3(-32.00f, -1.00f, 24.00f),             //平行移動
-	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
-},
-//WallSide
-{
-	"WallSide",
-	CVector3(-48.00f, -1.00f, 16.00f),             //平行移動
-	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
-},
-//WallSide
-{
-	"WallSide",
-	CVector3(-48.00f, -1.00f, 8.00f),             //平行移動
-	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
-},
 //WallUnder
 {
 	"WallUnder",
@@ -837,6 +807,36 @@
 	"WallUnder",
 	CVector3(-32.00f, -0.50f, -24.10f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
+},
+//WallSide1
+{
+	"WallSide1",
+	CVector3(-48.00f, -1.00f, 16.00f),             //平行移動
+	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
+},
+//WallSide1
+{
+	"WallSide1",
+	CVector3(-40.00f, -1.00f, 24.00f),             //平行移動
+	CQuaternion(-0.50f, 0.50f, 0.50f, 0.50f ),  //回転
+},
+//WallSide1
+{
+	"WallSide1",
+	CVector3(-32.00f, -1.00f, 24.00f),             //平行移動
+	CQuaternion(-0.50f, 0.50f, 0.50f, 0.50f ),  //回転
+},
+//WallSide2
+{
+	"WallSide2",
+	CVector3(-48.00f, -1.00f, 8.00f),             //平行移動
+	CQuaternion(0.00f, 0.71f, 0.71f, 0.00f ),  //回転
+},
+//WallSide2
+{
+	"WallSide2",
+	CVector3(-48.00f, -1.00f, 24.00f),             //平行移動
+	CQuaternion(-0.50f, -0.50f, -0.50f, 0.50f ),  //回転
 },
 //D_Unity
 {

@@ -41,27 +41,29 @@ bool Camera::Start()
 
 void Camera::Update()
 {
-	//Xボタンが押されたら視点を変える
-	if (Pad(0).IsTrigger(enButtonX)) {
-		if (timer == 0.0f && ChengeCount > 0) {
-			ChengeCamera = !ChengeCamera;
-			ChengeCount--;
+	if (Hidden == false) {
+		//Xボタンが押されたら視点を変える
+		if (Pad(0).IsTrigger(enButtonX)) {
+			if (timer == 0.0f && ChengeCount > 0) {
+				ChengeCamera = !ChengeCamera;
+				ChengeCount--;
 
-			CSoundSource* se = NewGO<CSoundSource>(0);
-			se->Init("Assets/sound/decision26.wav");
-			se->Play(false);
-		}
-		else if (ChengeCount == 0) {
-			CSoundSource* se = NewGO<CSoundSource>(0);
-			se->Init("Assets/sound/cancel6.wav");
-			se->Play(false);
+				CSoundSource* se = NewGO<CSoundSource>(0);
+				se->Init("Assets/sound/decision26.wav");
+				se->Play(false);
+			}
+			else if (ChengeCount == 0) {
+				CSoundSource* se = NewGO<CSoundSource>(0);
+				se->Init("Assets/sound/cancel6.wav");
+				se->Play(false);
+			}
 		}
 	}
 
 	//隠し通路に入ったら
 	if (g_gameScene->getMapData()->GetMapInfo
 		(g_gameScene->getJudge()->GetCurrentGrid_x(),
-		g_gameScene->getJudge()->GetCurrentGrid_y())==8)
+		g_gameScene->getJudge()->GetCurrentGrid_y()) == 8)
 	{
 		Hidden = true;
 	}
@@ -91,10 +93,11 @@ void Camera::Update()
 		ChengeIn = true;
 	}
 	else if (Hidden) {
-		target.y += 20.0f;
+		target.y += 120.0f;
 
 		target.Add(toPosition);
-		camera.SetTarPosition(target);	}
+		camera.SetTarPosition(target);
+	}
 	//後ろ視点の状態
 	else {
 		//カメラ位置セット
@@ -108,7 +111,7 @@ void Camera::Update()
 
 	//カメラコリジョン処理の実行。
 	CVector3 newPos;
-	if (!ChengeCamera && cameraCollisionSolver.Execute(newPos, camera.GetPosition(), camera.GetTarget())) 
+	if (!ChengeCamera && cameraCollisionSolver.Execute(newPos, camera.GetPosition(), camera.GetTarget()))
 	{
 		camera.SetPosition(newPos);
 		camera.ClearSpringParame();
