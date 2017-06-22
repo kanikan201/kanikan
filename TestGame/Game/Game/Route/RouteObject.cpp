@@ -23,15 +23,7 @@ void RouteObject::Init(CVector3 position, CQuaternion rotation)
 	skinModel.Init(skinModelData.GetBody());
 
 	//デフォルトライト設定
-	if (g_gameScene->GetStage() == en_Stage1) {
-		ambientLight = { 0.0f, 0.59f , 0.85f };
-	}
-	else if (g_gameScene->GetStage() == en_Stage2) {
-		ambientLight = { 0.99f, 0.0f , 0.24f };
-	}
-	else {
-		ambientLight = { 0.03f, 0.69f , 0.0f };
-	}
+	CVector3 ambientLight = { 0.0f, 0.59f , 0.85f  };
 	ambientLight.Scale(2.8f);
 	light.SetAmbinetLight(ambientLight);
 	skinModel.SetLight(&light);
@@ -57,7 +49,7 @@ void RouteObject::Update()
 	}
 
 	//暗くなる
-	if (g_gameScene->isStep() == GameScene::step_WaitGameOver) {
+	if (!flag && g_gameScene->isStep() == GameScene::step_WaitGameOver) {
 		GameOvered();
 	}
 
@@ -125,6 +117,7 @@ void RouteObject::LightReset()
 	ambientLight.Scale(2.8f);
 	light.SetAmbinetLight(ambientLight);
 	skinModel.SetLight(&light);
+	flag = false;
 }
 
 void RouteObject::SetWorp()
@@ -135,4 +128,15 @@ void RouteObject::SetWorp()
 	ambientLight.Scale(2.8f);
 	light.SetAmbinetLight(ambientLight);
 	skinModel.SetLight(&light);
+	flag = true;
+}
+
+void RouteObject::SetResetLight() {
+	SetActiveFlag(true);
+	//リセットの色(仮)
+	CVector3 ambientLight = { 0.0f, 1.00f , 0.00f };
+	ambientLight.Scale(2.8f);
+	light.SetAmbinetLight(ambientLight);
+	skinModel.SetLight(&light);
+	flag = true;
 }

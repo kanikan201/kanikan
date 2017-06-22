@@ -55,14 +55,22 @@ void RouteJudge::Reset(int set_x,int set_y)
 
 				routeObject[j][i]->SetWorp();
 			}
+			if (!isReset && tmp == ResetTrap) {
+				routeObject[j][i]->SetResetLight();
+			}
 		}
 	}
 
-	map[set_y][set_x] = Path;
 	currentGrid.x = set_x;
 	currentGrid.y = set_y;
 
-	InitroutePos = false;
+	//プレイヤーの初期位置を通ったマスにする
+	map[set_y][set_x] = Path;
+	routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
+	routeObject[currentGrid.y][currentGrid.x]->Perticle();
+
+	RouteCount++;
+
 	isReset = false;
 
 	RouteCount = 0;
@@ -91,14 +99,6 @@ void RouteJudge::Update()
 	currentGrid.x = (int)(-pos.x / GRID_SIZE+ dat_x);
 	currentGrid.y = (int)(pos.z / GRID_SIZE+ dat_y);
 
-	//プレイヤーの初期位置を通ったマスにする
-	if (InitroutePos == false) {
-		routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
-		routeObject[currentGrid.y][currentGrid.x]->Perticle();
-		InitroutePos = true;
-		RouteCount++;
-	}
-
 	//マスの移動があった時
 	if (prevGrid.x != currentGrid.x || prevGrid.y != currentGrid.y) {
 		int mapTmp = map[currentGrid.y][currentGrid.x];
@@ -114,7 +114,6 @@ void RouteJudge::Update()
 		//リセットパネル
 		case ResetTrap:
 			isReset = true;
-
 			se->Init("Assets/sound/kira2.wav");
 			se->Play(false);
 			break;
@@ -131,7 +130,6 @@ void RouteJudge::Update()
 		//すでに通ったマスに移動。または、邪魔パネル(仮)
 		case Path:
 		case Trap1:
-			g_gameScene->getPlayer()->KneelDownAnimation();
 			//ゲームオーバー処理
 			g_gameScene->SetGameOver();
 			break;
@@ -149,11 +147,9 @@ void RouteJudge::Update()
 
 	//クリア判定
 	if (isPassed()) {
-		g_gameScene->getPlayer()->SaluteAnimation();
 		g_gameScene->setClear(true);
 	}
 	if (Pad(0).IsTrigger(enButtonStart)) {
-		g_gameScene->getPlayer()->SaluteAnimation();
 		g_gameScene->setClear(true);
 	}
 }

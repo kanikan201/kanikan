@@ -15,8 +15,9 @@ public:
 	void Update();
 	void Render(CRenderContext& renderContext);
 	void Perticle();	//パーティクル
-	void SetWorp();
 	void LightReset();
+	void SetWorp();
+	void SetResetLight();
 	void GameOvered();
 private:
 	CSkinModel					skinModel;		//スキンモデル
@@ -26,7 +27,8 @@ private:
 	CQuaternion					rotation;		//回転
 	CParticleEmitter*			perticle;		//パーティクル
 	CLight						light;			//ライト
-	CVector3					ambientLight;	//環境光
+
+	bool						flag = false;
 };
 
 extern RouteObject* routeObject[20][20];
