@@ -68,7 +68,6 @@ void RouteObject::Update()
 		ambientLight.Scale(2.8f);
 		light.SetAmbinetLight(ambientLight);
 		skinModel.SetLight(&light);
-
 		DeleteGO(perticle);
 	}
 }
@@ -116,7 +115,17 @@ void RouteObject::Perticle()
 
 void RouteObject::GameOvered() {
 	//暗いライト(仮)
+	//デフォルトライト設定
 	CVector3 ambientLight = { 0.0f, 0.20f , 0.20f };
+	if (g_gameScene->GetStage() == en_Stage1) {
+		ambientLight = { 0.0f, 0.20f , 0.20f };
+	}
+	else if (g_gameScene->GetStage() == en_Stage2) {
+		ambientLight = { 0.20f, 0.0f , 0.10f };
+	}
+	else {
+		ambientLight = { 0.03f, 0.20f , 0.0f };
+	}
 	ambientLight.Scale(2.8f);
 	light.SetAmbinetLight(ambientLight);
 	skinModel.SetLight(&light);

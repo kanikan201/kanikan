@@ -67,7 +67,7 @@ void TestEnemy::Move()
 			angle *= -1.0f;
 		}
 		move = toPlayer;
-		toPlayer.Scale(0.2f);
+		toPlayer.Scale(0.8f);
 		position.Add(toPlayer);
 		rotation.SetRotation(CVector3::AxisY, angle);
 		//ƒvƒŒƒCƒ„[‚Æ‚Ì‹——£‚ª‹ß‚¯‚ê‚ÎUŒ‚
