@@ -24,13 +24,13 @@ void RouteObject::Init(CVector3 position, CQuaternion rotation)
 
 	//デフォルトライト設定
 	if (g_gameScene->GetStage() == en_Stage1) {
-		ambientLight = { 0.0f, 0.59f , 0.85f };
+		ambientLight = { 0.0f, 0.30f , 0.42f };
 	}
 	else if (g_gameScene->GetStage() == en_Stage2) {
-		ambientLight = { 0.99f, 0.0f , 0.24f };
+		ambientLight = { 0.40f, 0.0f , 0.10f };
 	}
 	else {
-		ambientLight = { 0.03f, 0.69f , 0.0f };
+		ambientLight = { 0.01f, 0.35f , 0.0f };
 	}
 	ambientLight.Scale(2.8f);
 	light.SetAmbinetLight(ambientLight);
@@ -140,7 +140,7 @@ void RouteObject::SetWorp()
 {
 	SetActiveFlag(true);
 	//ワープの色(仮)
-	CVector3 aLight = { 0.0f, 0.00f , 1.00f };
+	CVector3 aLight = { 0.30f, 0.30f , 0.00f };
 	aLight.Scale(2.8f);
 	light.SetAmbinetLight(aLight);
 	skinModel.SetLight(&light);
@@ -150,7 +150,7 @@ void RouteObject::SetWorp()
 void RouteObject::SetResetLight() {
 	SetActiveFlag(true);
 	//リセットの色(仮)
-	CVector3 aLight = { 0.0f, 1.00f , 0.00f };
+	CVector3 aLight = { 0.30f, 0.30f , 0.30f };
 	aLight.Scale(2.8f);
 	light.SetAmbinetLight(aLight);
 	skinModel.SetLight(&light);
