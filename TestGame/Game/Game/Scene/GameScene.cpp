@@ -51,21 +51,21 @@ bool GameScene::Start()
 		//light.SetLimLightColor(CVector4(0.6f, 0.6f, 0.6f, 1.0f));
 		//light.SetLimLightDirection(CVector3(0.0f, 0.0f, -1.0f));
 
-		background = NewGO<BackGround>(0);//背景
-		map = NewGO<Map>(0);		//マップ生成
+		background	= NewGO<BackGround>(0);//背景
+		map			= NewGO<Map>(0);		//マップ生成
 
-		player = NewGO<Player>(0);		//プレイヤー生成
-		camera = NewGO<Camera>(0);		//カメラ生成
-		ivt = NewGO<inventory>(0);		//インベントリ生成
-		time = NewGO<DisplayTime>(0);	//タイム表示生成
-		route = NewGO<RouteJudge>(0);
+		player		= NewGO<Player>(0);		//プレイヤー生成
+		camera		= NewGO<Camera>(0);		//カメラ生成
+		ivt			= NewGO<inventory>(0);		//インベントリ生成
+		time		= NewGO<DisplayTime>(0);	//タイム表示生成
+		route		= NewGO<RouteJudge>(0);
 
-		bgmSource = NULL;
+		bgmSource	= NULL;
 		CreateStage(currentStage);
 
-		step = step_StageLoad;
-		isDelete = false;
-		isClear = false;
+		step		= step_StageLoad;
+		isDelete	= false;
+		isClear		= false;
 
 		/*テスト?*/
 		texture.Load("Assets/sprite/test2.png");
@@ -197,8 +197,6 @@ void GameScene::CreateStage(state_stage stage)
 		numObject = sizeof(Stage1) / sizeof(Stage1[0]);
 		map->Create(Stage1, numObject);
 
-		route->Reset(1, 5);
-
 		nextStage = en_Stage2;
 		//nextStage = en_end;	//こっちはテスト用
 		step = step_StageLoad;
@@ -214,8 +212,6 @@ void GameScene::CreateStage(state_stage stage)
 		//マップに配置されているオブジェクト数を計算
 		numObject = sizeof(Stage2) / sizeof(Stage2[0]);
 		map->Create(Stage2, numObject);
-
-		route->Reset(5, 8);
 
 		nextStage = en_Stage3;
 		step = step_StageLoad;
@@ -235,7 +231,6 @@ void GameScene::CreateStage(state_stage stage)
 		map->Create(Stage3, numObject);
 
 		camera->Init(4);
-		route->Reset(2, 5);
 
 		nextStage = en_end;
 		step = step_StageLoad;
@@ -248,6 +243,8 @@ void GameScene::CreateStage(state_stage stage)
 		break;
 	}
 	step = step_StageLoad;
+
+	route->Reset(route->GetInitialGrid_x(), route->GetInitialGrid_y());
 }
 /*!
 *@brief	描画関数。
@@ -282,7 +279,6 @@ void GameScene::SetGameOver() {
 	GameOverSE.Init("Assets/sound/jingle.wav");
 	GameOverSE.Play(false);
 	step = step_WaitGameOver;
-	route->Reset(route->GetInitialGrid_x(), route->GetInitialGrid_y());
 	timer = 0.0f;
 }
 
