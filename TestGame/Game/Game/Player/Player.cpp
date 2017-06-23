@@ -111,7 +111,11 @@ void Player::Update()
 		currentAnimSetNo = AnimationStand;
 	}
 
-
+	//‹²‚Ü‚ê‚½‚çƒXƒP[ƒ‹‚ð¬‚³‚­‚·‚é(‰¼)
+	if (Pad(0).IsTrigger(enButtonB)) {
+		characterController.GetCollider()->ReCreate(0.2f, 2.0f);
+		scale.x = 0.2;
+	}
 
 	//‰e
 	ShadowMap().SetLightTarget(position);

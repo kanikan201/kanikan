@@ -16,6 +16,7 @@ public:
 	void Render(CRenderContext& renderContext);
 	void Perticle();	//パーティクル
 	void LightReset();
+	void SetTrap();
 	void SetWorp();
 	void SetResetLight();
 	void GameOvered();
