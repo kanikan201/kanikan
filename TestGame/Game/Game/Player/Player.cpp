@@ -25,6 +25,7 @@ bool Player::Start() {
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
+	scale = { 2.5f,2.5f,2.5f };
 	rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(180.0f));
 
 	CVector3 lightPos = CVector3(0.0f, 20.5f, 24.5f);
@@ -33,7 +34,7 @@ bool Player::Start() {
 	toLightPos.Subtract(lightPos, position);
 
 	ShadowMap().SetCalcLightViewFunc(CShadowMap::enCalcLightViewFunc_PositionTarget);
-	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
+	characterController.Init(0.2f, 1.0f, position);	//キャラクタコントローラの初期化。
 
 	animation.SetAnimationEndTime(AnimationRun, 0.8);
 	animation.SetAnimationLoopFlag(AnimationDown, false);
@@ -63,7 +64,7 @@ bool Player::Start() {
 void Player::Update()
 {
 
-	skinModel.Update(position, rotation, { 2.5f, 2.5f, 2.5f });
+	skinModel.Update(position, rotation, scale);
 	//アニメーション更新
 	animation.Update(1.0f / 30.0f);
 
@@ -111,7 +112,9 @@ void Player::Update()
 		currentAnimSetNo = AnimationStand;
 	}
 
-
+	if (Pad(0).IsTrigger(enButtonB)) {
+		scale.x = 0.1;
+	}
 
 	//影
 	ShadowMap().SetLightTarget(position);
@@ -132,13 +135,13 @@ CVector3 Player::Move()
 	}
 
 	//Bボタンでジャンプ
-	if (Pad(0).IsTrigger(enButtonB) && !characterController.IsJump()) {
+	/*if (Pad(0).IsTrigger(enButtonB) && !characterController.IsJump()) {
 		move.y = 8.0f;
 		characterController.Jump();
 		CSoundSource* SE = NewGO<CSoundSource>(0);
 		SE->Init("Assets/sound/V0001.wav");
 		SE->Play(false);
-	}
+	}*/
 
 	//キャラの進行方向の計算
 	CVector3 moveDirLocal;	//入力された方向

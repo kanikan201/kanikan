@@ -85,18 +85,18 @@ void Camera::Update()
 	//上視点の状態
 	if (ChengeCamera) {
 		target.y += 100.0f;	//高さ調整
-
+		timer += GameTime().GetFrameDeltaTime();
+		ChengeIn = true;
 		//カメラ位置セット
 		target.Add(toPosition);
 		camera.SetPosition(target);
-		timer += GameTime().GetFrameDeltaTime();
-		ChengeIn = true;
 	}
 	else if (Hidden) {
-		target.y += 120.0f;
+		camera.SetTarget(target);
+		target.y += 50.0f;
 
 		target.Add(toPosition);
-		camera.SetTarPosition(target);
+		camera.SetPosition(target);
 	}
 	//後ろ視点の状態
 	else {
@@ -107,11 +107,13 @@ void Camera::Update()
 	}
 
 	//バネカメラ更新
-	camera.UpdateSpringCamera();
+	if (Hidden == false) {
+		camera.UpdateSpringCamera();
+	}
 
 	//カメラコリジョン処理の実行。
 	CVector3 newPos;
-	if (!ChengeCamera && cameraCollisionSolver.Execute(newPos, camera.GetPosition(), camera.GetTarget()))
+	if (!ChengeCamera && Hidden == false && cameraCollisionSolver.Execute(newPos, camera.GetPosition(), camera.GetTarget()))
 	{
 		camera.SetPosition(newPos);
 		camera.ClearSpringParame();
