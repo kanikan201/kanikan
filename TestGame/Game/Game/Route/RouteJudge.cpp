@@ -47,13 +47,17 @@ void RouteJudge::Reset(int set_x,int set_y)
 				StageCount++;
 			}
 
+			if (tmp == Trap1) {
+				routeObject[j][i]->SetTrap();
+			}
+
 			//ワープトラップ
 			if (warpCount<2 && tmp == WarpTrap) {
 				warpGrid[warpCount].x= i;
 				warpGrid[warpCount].y= j;
 				warpCount ++;
 
-				routeObject[j][i]->SetWorp();
+				routeObject[j][i]->SetTrap();
 			}
 			if (!isReset && tmp == ResetTrap) {
 				routeObject[j][i]->SetResetLight();
@@ -69,11 +73,18 @@ void RouteJudge::Reset(int set_x,int set_y)
 	routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
 	routeObject[currentGrid.y][currentGrid.x]->Perticle();
 
+	InitroutePos = false;
 	RouteCount++;
 
 	isReset = false;
 
+
 	RouteCount = 0;
+	if (isChange) {
+		StageCount += CountPlus;
+		isChange = false;
+		Change();
+	}
 }
 
 void RouteJudge::Update()
@@ -113,18 +124,34 @@ void RouteJudge::Update()
 
 		//リセットパネル
 		case ResetTrap:
-			isReset = true;
-			se->Init("Assets/sound/kira2.wav");
-			se->Play(false);
+			if (StageCount - RouteCount <= 1) {
+				isChange = true;
+				Change();
+				se->Init("Assets/sound/kira2.wav");
+				se->Play(false);
+				ResetEnd = true;
+			}
+			else {
+				g_gameScene->getPlayer()->KneelDownAnimation();
+				//ゲームオーバー処理
+				g_gameScene->SetGameOver();
+			}
 			break;
 
 		//ワープパネル
 		case WarpTrap:
-			Warp();
-			
 
-			se->Init("Assets/sound/warp.wav");
-			se->Play(false);
+			if (ResetEnd==true) {
+				Warp();
+
+				se->Init("Assets/sound/warp.wav");
+				se->Play(false);
+			}
+			else {
+				g_gameScene->getPlayer()->KneelDownAnimation();
+				//ゲームオーバー処理
+				g_gameScene->SetGameOver();
+			}
 			break;
 
 		//すでに通ったマスに移動。または、邪魔パネル(仮)
@@ -179,5 +206,36 @@ void RouteJudge::Warp()
 	for (warpNum = 0; warpNum < 2; warpNum++) {
 		map[warpGrid[warpNum].y][warpGrid[warpNum].x] = Path;
 		routeObject[warpGrid[warpNum].y][warpGrid[warpNum].x]->LightReset();
+	}
+}
+
+void RouteJudge::Change() 
+{
+	CountPlus = 0;
+	int	Width = g_gameScene->getMapData()->GetWidth();
+	int Height = g_gameScene->getMapData()->GetHeight();
+	for (int i = 0; i < Width; i++) {
+		for (int j = 0; j < Height; j++) {
+			int tmp = map[j][i];
+			if (tmp == Trap1) {
+				map[j][i] = 0;
+				routeObject[j][i]->LightReset();
+				routeObject[j][i]->SetActiveFlag(false);
+				CountPlus++;
+			}
+			if (tmp == ResetTrap) {
+				map[j][i] = 0;
+				routeObject[j][i]->Perticle();
+				map[j][i] == Path;
+				CountPlus++;
+			}
+			if (tmp == WarpTrap) {
+				routeObject[j][i]->SetWorp();
+			}
+		}
+	}
+	if (isChange) {
+		CountPlus--;
+		isReset = true;
 	}
 }

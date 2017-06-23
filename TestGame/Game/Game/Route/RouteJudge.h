@@ -16,6 +16,7 @@ public:
 	void Init(int set_x, int set_y);
 	void Reset(int set_x, int set_y);	//リセット
 	void Warp();
+	void Change();
 
 	//ルートオブジェクトをリセットするか
 	bool isDelete()
@@ -60,11 +61,13 @@ private:
 	grid initialGrid;	//初期マス
 	grid warpGrid[2];	//ワープグリッド
 
-
+	int CountPlus = 0;
 	int map[20][20];	//マップデータの複製先(とりあえず大きいサイズに)
 
-	bool InitroutePos;			
+	bool InitroutePos;
+	bool isChange = false;
 	bool isReset = false;
+	bool ResetEnd = false;
 	bool Perticleflg = false;	//パーティクルのフラグ
 
 	int StageCount;		//stage1をクリアするために必要なマスの数
