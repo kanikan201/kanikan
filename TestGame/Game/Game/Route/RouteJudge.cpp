@@ -37,13 +37,14 @@ void RouteJudge::Reset(int set_x,int set_y)
 	}
 
 	StageCount = 0;
+	RouteCount = 0;
 	int warpCount = 0;
 
 	for (int i = 0; i < Width; i++) {
 		for (int j = 0; j < Height; j++) {
 			int tmp = map[j][i];
 			//‰½‚à‚È‚¢or’Œ
-			if (tmp == Empty || tmp == Pole) {
+			if (tmp == Empty || tmp == Pole || tmp == Dummy) {
 				StageCount++;
 			}
 
@@ -72,8 +73,6 @@ void RouteJudge::Reset(int set_x,int set_y)
 	RouteCount++;
 
 	isReset = false;
-
-	RouteCount = 0;
 }
 
 void RouteJudge::Update()

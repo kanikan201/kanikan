@@ -34,7 +34,7 @@ bool Player::Start() {
 	toLightPos.Subtract(lightPos, position);
 
 	ShadowMap().SetCalcLightViewFunc(CShadowMap::enCalcLightViewFunc_PositionTarget);
-	characterController.Init(0.2f/*0.5f*/, 1.0f, position);	//キャラクタコントローラの初期化。
+	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
 
 	animation.SetAnimationEndTime(AnimationRun, 0.8);
 	animation.SetAnimationLoopFlag(AnimationDown, false);
@@ -114,6 +114,7 @@ void Player::Update()
 
 	//挟まれたらスケールを小さくする(仮)
 	if (Pad(0).IsTrigger(enButtonB)) {
+		characterController.GetCollider()->ReCreate(0.2f, 2.0f);
 		scale.x = 0.2;
 	}
 
