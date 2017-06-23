@@ -132,7 +132,7 @@ void RouteJudge::Update()
 		case Trap1:
 			g_gameScene->getPlayer()->KneelDownAnimation();
 			//ゲームオーバー処理
-			//g_gameScene->SetGameOver();
+			g_gameScene->SetGameOver();
 			break;
 
 		//まだ通ってない道
@@ -153,7 +153,6 @@ void RouteJudge::Update()
 	}
 	//デバッグ用
 	if (Pad(0).IsTrigger(enButtonStart)) {
-		g_gameScene->getPlayer()->SaluteAnimation();
 		g_gameScene->setClear(true);
 	}
 }
