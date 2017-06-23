@@ -125,6 +125,7 @@ void Camera::Move()
 {
 	//Ø‚è‘Ö‚í‚è‚Íˆ—‚µ‚È‚¢
 	if (g_gameScene->isStep() != GameScene::step_nomal) { return; }
+	if (g_gameScene->GetClear()) { return; }
 
 	//ƒJƒƒ‰‚ğ‰ñ“]‚³‚¹‚éB
 	float rStick_x = Pad(0).GetRStickXF();

@@ -130,6 +130,7 @@ void RouteJudge::Update()
 		//すでに通ったマスに移動。または、邪魔パネル(仮)
 		case Path:
 		case Trap1:
+			g_gameScene->getPlayer()->KneelDownAnimation();
 			//ゲームオーバー処理
 			g_gameScene->SetGameOver();
 			break;
@@ -147,9 +148,12 @@ void RouteJudge::Update()
 
 	//クリア判定
 	if (isPassed()) {
+		g_gameScene->getPlayer()->SaluteAnimation();
 		g_gameScene->setClear(true);
 	}
+	//デバッグ用
 	if (Pad(0).IsTrigger(enButtonStart)) {
+		g_gameScene->getPlayer()->SaluteAnimation();
 		g_gameScene->setClear(true);
 	}
 }

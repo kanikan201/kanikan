@@ -280,7 +280,6 @@ void GameScene::SetGameOver() {
 	GameOverSE.Play(false);
 	step = step_WaitGameOver;
 	timer = 0.0f;
-	getPlayer()->DeadAnimation();
 }
 
 //ƒŠƒZƒbƒg

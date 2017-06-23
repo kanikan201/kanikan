@@ -23,7 +23,15 @@ void RouteObject::Init(CVector3 position, CQuaternion rotation)
 	skinModel.Init(skinModelData.GetBody());
 
 	//デフォルトライト設定
-	CVector3 ambientLight = { 0.0f, 0.59f , 0.85f  };
+	if (g_gameScene->GetStage() == en_Stage1) {
+		ambientLight = { 0.0f, 0.59f , 0.85f };
+	}
+	else if (g_gameScene->GetStage() == en_Stage2) {
+		ambientLight = { 0.99f, 0.0f , 0.24f };
+	}
+	else {
+		ambientLight = { 0.03f, 0.69f , 0.0f };
+	}
 	ambientLight.Scale(2.8f);
 	light.SetAmbinetLight(ambientLight);
 	skinModel.SetLight(&light);
@@ -107,7 +115,6 @@ void RouteObject::Perticle()
 void RouteObject::GameOvered() {
 	//暗いライト(仮)
 	//デフォルトライト設定
-	CVector3 ambientLight = { 0.0f, 0.20f , 0.20f };
 	if (g_gameScene->GetStage() == en_Stage1) {
 		ambientLight = { 0.0f, 0.20f , 0.20f };
 	}
@@ -124,8 +131,6 @@ void RouteObject::GameOvered() {
 
 void RouteObject::LightReset()
 {
-	CVector3 ambientLight = { 0.0f, 0.59f , 0.85f };
-	ambientLight.Scale(2.8f);
 	light.SetAmbinetLight(ambientLight);
 	skinModel.SetLight(&light);
 	flag = false;
@@ -135,9 +140,9 @@ void RouteObject::SetWorp()
 {
 	SetActiveFlag(true);
 	//ワープの色(仮)
-	CVector3 ambientLight = { 0.0f, 0.00f , 1.00f };
-	ambientLight.Scale(2.8f);
-	light.SetAmbinetLight(ambientLight);
+	CVector3 aLight = { 0.0f, 0.00f , 1.00f };
+	aLight.Scale(2.8f);
+	light.SetAmbinetLight(aLight);
 	skinModel.SetLight(&light);
 	flag = true;
 }
@@ -145,9 +150,9 @@ void RouteObject::SetWorp()
 void RouteObject::SetResetLight() {
 	SetActiveFlag(true);
 	//リセットの色(仮)
-	CVector3 ambientLight = { 0.0f, 1.00f , 0.00f };
-	ambientLight.Scale(2.8f);
-	light.SetAmbinetLight(ambientLight);
+	CVector3 aLight = { 0.0f, 1.00f , 0.00f };
+	aLight.Scale(2.8f);
+	light.SetAmbinetLight(aLight);
 	skinModel.SetLight(&light);
 	flag = true;
 }

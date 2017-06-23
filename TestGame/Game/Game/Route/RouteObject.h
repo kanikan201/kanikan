@@ -27,6 +27,7 @@ private:
 	CQuaternion					rotation;		//回転
 	CParticleEmitter*			perticle;		//パーティクル
 	CLight						light;			//ライト
+	CVector3					ambientLight;	//環境光
 
 	bool						flag = false;
 };
