@@ -160,7 +160,7 @@ void RouteObject::SetResetLight() {
 void RouteObject::SetTrap() {
 	SetActiveFlag(true);
 	//×–‚ƒpƒlƒ‹‚ÌF(‰¼)
-	CVector3 aLight = { 0.01f, 0.01f , 0.01f };
+	CVector3 aLight = { 0.07f, 0.07f , 0.10f };
 	aLight.Scale(2.8f);
 	light.SetAmbinetLight(aLight);
 	skinModel.SetLight(&light);

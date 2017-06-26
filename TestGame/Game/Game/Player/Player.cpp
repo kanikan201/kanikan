@@ -25,6 +25,7 @@ bool Player::Start() {
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
+	scale = { 2.5f,2.5f,2.5f };
 	rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(180.0f));
 
 	CVector3 lightPos = CVector3(0.0f, 20.5f, 24.5f);
@@ -44,16 +45,26 @@ bool Player::Start() {
 	darkTex.Load("Assets/modelData/utc_all2_dark.png");
 	std::vector<CSkinModelMaterial*> matList;
 	skinModelData.GetBody()->FindMaterials(matList, "utc_all2_light.png");
-	//リストが空じゃない
+	static bool isChangeTec = false;
+	if (isChangeTec == false) {
+		//リストが空じゃない
+		if (!matList.empty()) {
+			for (size_t i = 0; i < matList.size(); i++)
+			{
+				if (matList[i]->GetTechnique() == CSkinModelMaterial::enTecShaderHandle_SkinModel) {
+					matList[i]->Build(CSkinModelMaterial::enTypeToon);
+				}
+				else {
+					matList[i]->Build(CSkinModelMaterial::enTypeToonNonSkin);
+				}
+			}
+		}
+		isChangeTec = true;
+	}
+
 	if (!matList.empty()) {
 		for (size_t i = 0; i < matList.size(); i++)
 		{
-			if (matList[i]->GetTechnique() == CSkinModelMaterial::enTecShaderHandle_SkinModel) {
-				matList[i]->Build(CSkinModelMaterial::enTypeToon);
-			}
-			else {
-				matList[i]->Build(CSkinModelMaterial::enTypeToonNonSkin);
-			}
 			matList[i]->SetTexture(CSkinModelMaterial::enTextureShaderHandle_DarkTex, darkTex);
 		}
 	}
@@ -63,7 +74,7 @@ bool Player::Start() {
 void Player::Update()
 {
 
-	skinModel.Update(position, rotation, { 2.5f, 2.5f, 2.5f });
+	skinModel.Update(position, rotation, scale);
 	//アニメーション更新
 	animation.Update(1.0f / 30.0f);
 
@@ -113,7 +124,7 @@ void Player::Update()
 
 	//挟まれたらスケールを小さくする(仮)
 	if (Pad(0).IsTrigger(enButtonB)) {
-		characterController.GetCollider()->ReCreate(0.2f, 2.0f);
+		//characterController.GetCollider()->ReCreate(0.2f, 2.0f);
 		scale.x = 0.2;
 	}
 
@@ -136,13 +147,13 @@ CVector3 Player::Move()
 	}
 
 	//Bボタンでジャンプ
-	if (Pad(0).IsTrigger(enButtonB) && !characterController.IsJump()) {
+	/*if (Pad(0).IsTrigger(enButtonB) && !characterController.IsJump()) {
 		move.y = 8.0f;
 		characterController.Jump();
 		CSoundSource* SE = NewGO<CSoundSource>(0);
 		SE->Init("Assets/sound/V0001.wav");
 		SE->Play(false);
-	}
+	}*/
 
 	//キャラの進行方向の計算
 	CVector3 moveDirLocal;	//入力された方向
