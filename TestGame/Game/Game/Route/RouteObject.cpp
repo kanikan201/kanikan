@@ -22,7 +22,7 @@ void RouteObject::Init(CVector3 position, CQuaternion rotation)
 	skinModelData.LoadModelData("Assets/modelData/route.x", NULL);
 	skinModel.Init(skinModelData.GetBody());
 
-	//デフォルトライト設定
+	//ライト設定
 	if (g_gameScene->GetStage() == en_Stage1) {
 		ambientLight = { 0.0f, 0.30f , 0.42f };
 	}

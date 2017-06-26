@@ -107,7 +107,7 @@
     <ClCompile Include="Scene\BackGround.cpp">
       <Filter>Source Files\Scene\GameScene</Filter>
     </ClCompile>
-    <ClCompile Include="Block.cpp">
+    <ClCompile Include="Map\Block.cpp">
       <Filter>Source Files\Map</Filter>
     </ClCompile>
   </ItemGroup>
@@ -178,7 +178,7 @@
     <ClInclude Include="Scene\BackGround.h">
       <Filter>Source Files\Scene\GameScene</Filter>
     </ClInclude>
-    <ClInclude Include="Block.h">
+    <ClInclude Include="Map\Block.h">
       <Filter>Source Files\Map</Filter>
     </ClInclude>
   </ItemGroup>

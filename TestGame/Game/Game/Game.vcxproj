@@ -162,7 +162,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Block.cpp" />
     <ClCompile Include="Camera\Camera.cpp" />
     <ClCompile Include="Enemy\Enemy.cpp" />
     <ClCompile Include="Enemy\TestEnemy.cpp" />
@@ -171,6 +170,7 @@
     <ClCompile Include="Interface\inventory.cpp" />
     <ClCompile Include="Interface\Number.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map\Block.cpp" />
     <ClCompile Include="Map\ClearMarker.cpp" />
     <ClCompile Include="Map\Map.cpp" />
     <ClCompile Include="Map\MapChip.cpp" />
@@ -193,7 +193,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Block.h" />
     <ClInclude Include="Camera\Camera.h" />
     <ClInclude Include="Enemy\Enemy.h" />
     <ClInclude Include="Enemy\TestEnemy.h" />
@@ -201,6 +200,7 @@
     <ClInclude Include="Interface\DisplayTime.h" />
     <ClInclude Include="Interface\inventory.h" />
     <ClInclude Include="Interface\Number.h" />
+    <ClInclude Include="Map\Block.h" />
     <ClInclude Include="Map\ClearMarker.h" />
     <ClInclude Include="Map\Map.h" />
     <ClInclude Include="Map\MapChip.h" />

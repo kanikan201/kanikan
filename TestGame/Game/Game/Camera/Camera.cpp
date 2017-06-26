@@ -112,7 +112,8 @@ void Camera::Update()
 	}
 	//カメラコリジョン処理の実行。
 	CVector3 newPos;
-	if (!ChengeCamera && Hidden == false && cameraCollisionSolver.Execute(newPos, camera.GetPosition(), camera.GetTarget()))
+	if (!ChengeCamera && Hidden == false 
+		&& cameraCollisionSolver.Execute(newPos, camera.GetPosition(), camera.GetTarget()))
 	{
 		camera.SetPosition(newPos);
 		camera.ClearSpringParame();

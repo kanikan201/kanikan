@@ -2,7 +2,7 @@
 #include "RouteJudge.h"
 #include "scene/GameScene.h"
 #include "RouteObject.h"
-#include "../Block.h"
+#include "Map/Block.h"
 
 RouteJudge::RouteJudge()
 {

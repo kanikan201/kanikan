@@ -4,7 +4,7 @@
 #include "Enemy/TestEnemy.h"
 #include "Route/RouteObject.h"
 #include "Scene/GameScene.h"
-#include "../Block.h"
+#include "Map/Block.h"
 
 Map::Map()
 {

@@ -59,5 +59,4 @@ private:
 	AnimationNo			prevAnim;				//変更前のモーション
 
 	float				timer = 0.0f;		//タイマー。
-	CVector3			scale;
 };

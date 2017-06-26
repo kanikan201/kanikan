@@ -34,7 +34,7 @@ bool Player::Start() {
 	toLightPos.Subtract(lightPos, position);
 
 	ShadowMap().SetCalcLightViewFunc(CShadowMap::enCalcLightViewFunc_PositionTarget);
-	characterController.Init(0.1f, 1.0f, position);	//キャラクタコントローラの初期化。
+	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
 
 	animation.SetAnimationEndTime(AnimationRun, 0.8);
 	animation.SetAnimationLoopFlag(AnimationDown, false);
