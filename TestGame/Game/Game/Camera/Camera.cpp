@@ -94,7 +94,7 @@ void Camera::Update()
 	}
 	else if (Hidden) {
 		camera.SetTarget(target);
-		target.y += 50.0f;
+		target.y += 40.0f;
 
 		target.Add(toPosition);
 		camera.SetPosition(target);
@@ -106,12 +106,10 @@ void Camera::Update()
 		camera.SetPosition(target);
 		ChengeIn = false;
 	}
-
-	//バネカメラ更新
 	if (Hidden == false) {
+		//バネカメラ更新
 		camera.UpdateSpringCamera();
 	}
-
 	//カメラコリジョン処理の実行。
 	CVector3 newPos;
 	if (!ChengeCamera && Hidden == false && cameraCollisionSolver.Execute(newPos, camera.GetPosition(), camera.GetTarget()))

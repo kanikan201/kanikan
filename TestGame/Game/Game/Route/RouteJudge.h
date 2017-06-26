@@ -32,6 +32,14 @@ public:
 		return false;
 	}
 
+	bool GetBlockflg() {
+		return Blockflg;
+	}
+
+	void SetBlockflg(bool flg) {
+		Blockflg = flg;
+	}
+
 	int GetInitialGrid_x() {
 		return initialGrid.x;
 	}
@@ -69,6 +77,7 @@ private:
 	bool isReset = false;
 	bool ResetEnd = false;
 	bool Perticleflg = false;	//パーティクルのフラグ
+	bool Blockflg = false;
 
 	int StageCount;		//stage1をクリアするために必要なマスの数
 	int RouteCount;		//現在のstageで通ったマスの数

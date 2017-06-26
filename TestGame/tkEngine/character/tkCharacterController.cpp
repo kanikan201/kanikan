@@ -278,5 +278,6 @@ namespace tkEngine {
 	void CCharacterController::RemoveRigidBoby()
 	{
 		PhysicsWorld().RemoveRigidBody(&m_rigidBody);
+		m_rigidBody.Release();
 	}
 }

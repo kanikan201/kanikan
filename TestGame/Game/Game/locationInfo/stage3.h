@@ -838,6 +838,12 @@
 	CVector3(-47.50f, -1.30f, 8.00f),             //平行移動
 	CQuaternion(0.00f, 0.71f, 0.71f, 0.00f ),  //回転
 },
+//block
+{
+	"block",
+	CVector3(-8.00f, 20.00f, -24.00f),             //平行移動
+	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
+},
 //D_Unity
 {
 	"D_Unity",
