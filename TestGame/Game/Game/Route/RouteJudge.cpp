@@ -79,7 +79,6 @@ void RouteJudge::Reset(int set_x,int set_y)
 
 	isReset = false;
 
-	RouteCount = 0;
 	if (isChange) {
 		StageCount += CountPlus;
 		isChange = false;
