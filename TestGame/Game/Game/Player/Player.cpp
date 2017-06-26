@@ -113,7 +113,7 @@ void Player::Update()
 
 	//‹²‚Ü‚ê‚½‚çƒXƒP[ƒ‹‚ğ¬‚³‚­‚·‚é(‰¼)
 	if (Pad(0).IsTrigger(enButtonB)) {
-		scale.x = 0.2;
+		
 	}
 
 	//‰e

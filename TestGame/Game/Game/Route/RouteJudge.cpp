@@ -62,6 +62,7 @@ void RouteJudge::Reset(int set_x,int set_y)
 			}
 			if (!isReset && tmp == ResetTrap) {
 				routeObject[j][i]->SetResetLight();
+				StageCount++;
 			}
 		}
 	}
@@ -142,7 +143,7 @@ void RouteJudge::Update()
 
 			if (ResetEnd==true) {
 				Warp();
-
+				RouteCount++;
 				se->Init("Assets/sound/warp.wav");
 				se->Play(false);
 			}
@@ -234,6 +235,7 @@ void RouteJudge::Change()
 			}
 			if (tmp == WarpTrap) {
 				routeObject[j][i]->SetWorp();
+				CountPlus++;
 			}
 		}
 	}
