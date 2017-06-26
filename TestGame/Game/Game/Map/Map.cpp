@@ -4,6 +4,7 @@
 #include "Enemy/TestEnemy.h"
 #include "Route/RouteObject.h"
 #include "Scene/GameScene.h"
+#include "../Block.h"
 
 Map::Map()
 {
@@ -40,6 +41,10 @@ void Map::Create(SMapInfo* mapLocInfo, int numObject)
 			int routey = (int)(mapLocInfo[i].position.z / GRID_SIZE + daty);
 			routeObject[routey][routex] = NewGO<RouteObject>(0);
 			routeObject[routey][routex]->Init(mapLocInfo[i].position, mapLocInfo[i].rotation);
+		}
+		else if (strcmp("block", mapLocInfo[i].modelName) == 0) {
+			block = NewGO<Block>(0);
+			block->Init(mapLocInfo[i].position,mapLocInfo[i].rotation);
 		}
 		else {
 			MapChip* mapChip = NewGO<MapChip>(0);

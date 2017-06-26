@@ -2,6 +2,7 @@
 #include "RouteJudge.h"
 #include "scene/GameScene.h"
 #include "RouteObject.h"
+#include "../Block.h"
 
 RouteJudge::RouteJudge()
 {
@@ -44,7 +45,7 @@ void RouteJudge::Reset(int set_x,int set_y)
 		for (int j = 0; j < Height; j++) {
 			int tmp = map[j][i];
 			//何もないor柱
-			if (tmp == Empty || tmp == Pole || tmp == Dummy) {
+			if (tmp == Empty || tmp == Pole || tmp == Dummy || tmp == Block1) {
 				StageCount++;
 			}
 
@@ -153,13 +154,25 @@ void RouteJudge::Update()
 				g_gameScene->SetGameOver();
 			}
 			break;
+		case Block1:
+			map[currentGrid.y][currentGrid.x] = Path;
+			//通ったマスを描画する
+			routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
+			routeObject[currentGrid.y][currentGrid.x]->Perticle();
+			RouteCount++;
 
+			se->Init("Assets/sound/panel.wav");
+			se->Play(false);
+
+			Blockflg = true;
+
+			break;
 		//すでに通ったマスに移動。または、邪魔パネル(仮)
 		case Path:
 		case Trap1:
-			g_gameScene->getPlayer()->KneelDownAnimation();
-			//ゲームオーバー処理
-			g_gameScene->SetGameOver();
+			//g_gameScene->getPlayer()->KneelDownAnimation();
+			////ゲームオーバー処理
+			//g_gameScene->SetGameOver();
 			break;
 
 		//まだ通ってない道

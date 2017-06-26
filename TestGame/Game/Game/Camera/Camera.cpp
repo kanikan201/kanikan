@@ -93,10 +93,11 @@ void Camera::Update()
 		ChengeIn = true;
 	}
 	else if (Hidden) {
-		target.y += 120.0f;
+		camera.SetTarget(target);
+		target.y += 40.0f;
 
 		target.Add(toPosition);
-		camera.SetTarPosition(target);
+		camera.SetPosition(target);
 	}
 	//後ろ視点の状態
 	else {
@@ -105,13 +106,13 @@ void Camera::Update()
 		camera.SetPosition(target);
 		ChengeIn = false;
 	}
-
-	//バネカメラ更新
-	camera.UpdateSpringCamera();
-
+	if (Hidden == false) {
+		//バネカメラ更新
+		camera.UpdateSpringCamera();
+	}
 	//カメラコリジョン処理の実行。
 	CVector3 newPos;
-	if (!ChengeCamera && cameraCollisionSolver.Execute(newPos, camera.GetPosition(), camera.GetTarget()))
+	if (!ChengeCamera && Hidden == false && cameraCollisionSolver.Execute(newPos, camera.GetPosition(), camera.GetTarget()))
 	{
 		camera.SetPosition(newPos);
 		camera.ClearSpringParame();

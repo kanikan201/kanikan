@@ -50,6 +50,7 @@ private:
 	CVector3			position = CVector3::Zero;			//プレイヤーの座標
 	CQuaternion			rotation = CQuaternion::Identity;	//回転
 	CVector3			dir = { 0.0f,0.0f,1.0f };			//向き
+	CVector3			scale = { 2.5f,2.5f,2.5f };			//プレイヤーのスケール
 
 	CVector3			toLightPos;
 
