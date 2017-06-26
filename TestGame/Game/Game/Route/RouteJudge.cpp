@@ -168,6 +168,9 @@ void RouteJudge::Update()
 			routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
 			routeObject[currentGrid.y][currentGrid.x]->Perticle();
 			RouteCount++;
+
+			se->Init("Assets/sound/panel.wav");
+			se->Play(false);
 			break;
 		}
 	}
@@ -179,6 +182,7 @@ void RouteJudge::Update()
 	}
 	//デバッグ用
 	if (Pad(0).IsTrigger(enButtonStart)) {
+		g_gameScene->getPlayer()->SaluteAnimation();
 		g_gameScene->setClear(true);
 	}
 }

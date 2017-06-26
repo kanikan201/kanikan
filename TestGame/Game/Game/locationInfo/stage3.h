@@ -391,7 +391,7 @@
 //Wall3_3
 {
 	"Wall3_3",
-	CVector3(-52.50f, 13.00f, -4.00f),             //平行移動
+	CVector3(-53.00f, 13.00f, -4.00f),             //平行移動
 	CQuaternion(-0.50f, 0.50f, -0.50f, 0.50f ),  //回転
 },
 //Wall3_3
@@ -403,7 +403,7 @@
 //Wall3_3
 {
 	"Wall3_3",
-	CVector3(-20.00f, 13.00f, 28.50f),             //平行移動
+	CVector3(-20.00f, 13.00f, 29.00f),             //平行移動
 	CQuaternion(-0.71f, 0.71f, 0.00f, 0.00f ),  //回転
 },
 //pole_3
@@ -433,13 +433,13 @@
 //pole_3
 {
 	"pole_3",
-	CVector3(-47.50f, -0.50f, 0.00f),             //平行移動
+	CVector3(-48.00f, -0.50f, 0.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
 //pole_3
 {
 	"pole_3",
-	CVector3(-47.50f, -0.50f, -8.00f),             //平行移動
+	CVector3(-48.00f, -0.50f, -8.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
 //pole_3
@@ -811,8 +811,8 @@
 //WallSide1
 {
 	"WallSide1",
-	CVector3(-32.00f, -1.00f, 24.00f),             //平行移動
-	CQuaternion(-0.50f, 0.50f, 0.50f, 0.50f ),  //回転
+	CVector3(-48.00f, -1.00f, 16.00f),             //平行移動
+	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
 //WallSide1
 {
@@ -823,20 +823,20 @@
 //WallSide1
 {
 	"WallSide1",
-	CVector3(-47.70f, -1.00f, 16.00f),             //平行移動
-	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
+	CVector3(-32.00f, -1.00f, 24.00f),             //平行移動
+	CQuaternion(-0.50f, 0.50f, 0.50f, 0.50f ),  //回転
 },
 //WallSide2
 {
 	"WallSide2",
-	CVector3(-47.65f, -1.30f, 23.75f),             //平行移動
-	CQuaternion(-0.50f, -0.50f, -0.50f, 0.50f ),  //回転
-},
-//WallSide2
-{
-	"WallSide2",
-	CVector3(-47.50f, -1.30f, 8.00f),             //平行移動
+	CVector3(-48.00f, -1.00f, 8.00f),             //平行移動
 	CQuaternion(0.00f, 0.71f, 0.71f, 0.00f ),  //回転
+},
+//WallSide2
+{
+	"WallSide2",
+	CVector3(-48.00f, -1.00f, 24.00f),             //平行移動
+	CQuaternion(-0.50f, -0.50f, -0.50f, 0.50f ),  //回転
 },
 //D_Unity
 {
