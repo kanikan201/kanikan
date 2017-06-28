@@ -10,8 +10,8 @@ public:
 	bool Start() override;
 	void Update() override;
 	void SetPosition(CVector3 pos);
-	void Render(CRenderContext& renderContext) override;
 
+	void Render(CRenderContext& renderContext) override;
 	enum AnimationNo {
 		AnimationStand,		//立ち
 		AnimationWalk,		//歩き
@@ -33,5 +33,6 @@ private:
 	CQuaternion			qRotX, qRotY, View;
 	CVector3			toLightPos;
 	CAnimation			animation;				//アニメーション。
+	CCamera				camera;					//ユニティちゃんカメラ。
 };
 
