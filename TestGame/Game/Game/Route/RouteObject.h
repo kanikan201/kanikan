@@ -19,7 +19,6 @@ public:
 	void SetTrap();
 	void SetWorp();
 	void SetResetLight();
-	void GameOvered();
 private:
 	CSkinModel					skinModel;		//スキンモデル
 	CSkinModelDataHandle		skinModelData;	//スキンモデルデータ

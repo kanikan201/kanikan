@@ -185,6 +185,7 @@ void GameScene::Update()
 
 void GameScene::CreateStage(state_stage stage)
 {
+	CVector3 ambientLight;
 	int numObject;
 	currentStage = stage;
 
@@ -193,12 +194,16 @@ void GameScene::CreateStage(state_stage stage)
 		route->Init(1, 5);
 		camera->Init(2);
 
+		//パネルのライト設定
+		ambientLight = { 0.0f, 0.30f , 0.42f };
+		ambientLight.Scale(2.8f);
+		PanelLight.SetAmbinetLight(ambientLight);
+
 		//マップに配置されているオブジェクト数を計算
 		numObject = sizeof(Stage1) / sizeof(Stage1[0]);
 		map->Create(Stage1, numObject);
 
 		nextStage = en_Stage2;
-		//nextStage = en_end;	//こっちはテスト用
 		step = step_StageLoad;
 
 		bgmSource = NewGO<CSoundSource>(0);
@@ -209,13 +214,17 @@ void GameScene::CreateStage(state_stage stage)
 		route->Init(5, 8);
 		camera->Init(3);
 
+		//パネルのライト設定
+		ambientLight = { 0.40f, 0.0f , 0.10f };
+		ambientLight.Scale(2.8f);
+		PanelLight.SetAmbinetLight(ambientLight);
+
 		//マップに配置されているオブジェクト数を計算
 		numObject = sizeof(Stage2) / sizeof(Stage2[0]);
 		map->Create(Stage2, numObject);
 
 		nextStage = en_Stage3;
 		step = step_StageLoad;
-		//nextStage = en_end;	//こっちはテスト用
 
 		bgmSource = NewGO<CSoundSource>(0);
 
@@ -225,12 +234,16 @@ void GameScene::CreateStage(state_stage stage)
 		break;
 	case en_Stage3:
 		route->Init(2, 5);
+		camera->Init(4);
+
+		//パネルのライト設定
+		ambientLight = { 0.01f, 0.35f , 0.0f };
+		ambientLight.Scale(2.8f);
+		PanelLight.SetAmbinetLight(ambientLight);
 
 		//マップに配置されているオブジェクト数を計算
 		numObject = sizeof(Stage3) / sizeof(Stage3[0]);
 		map->Create(Stage3, numObject);
-
-		camera->Init(4);
 
 		nextStage = en_end;
 		step = step_StageLoad;
@@ -267,7 +280,6 @@ void GameScene::Release() {
 	time->DeleteNum();
 	DeleteGO(time);
 	DeleteGO(bgmSource);
-	bgmSource = nullptr;
 	DeleteGO(route);
 }
 
@@ -280,6 +292,24 @@ void GameScene::SetGameOver() {
 	GameOverSE.Play(false);
 	step = step_WaitGameOver;
 	timer = 0.0f;
+
+	//パネルのライトを暗くする
+	CVector3 ambientLight;
+	switch (currentStage) {
+	case en_Stage1:
+		ambientLight = { 0.0f, 0.20f , 0.20f };
+		break;
+
+	case en_Stage2:
+		ambientLight = { 0.20f, 0.0f , 0.10f };
+		break;
+
+	case en_Stage3:
+		ambientLight = { 0.03f, 0.20f , 0.0f };
+		break;
+	}
+	ambientLight.Scale(2.8f);
+	PanelLight.SetAmbinetLight(ambientLight);
 }
 
 //リセット
