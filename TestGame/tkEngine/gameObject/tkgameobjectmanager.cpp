@@ -40,6 +40,8 @@ namespace tkEngine{
 			}
 		}
 		{
+			//深度書き込み用のレンダリングターゲットを設定。
+			renderContext[0].SetRenderTarget(1, Dof().GetDepthRenderTarget());
 			//レンダリングステートの初期化。
 			renderContext[0].Clear(0, nullptr, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER,
 				D3DCOLOR_RGBA(0, 0, 255, 0), 1.0f, 0
@@ -76,8 +78,7 @@ namespace tkEngine{
 		if (numRenderContext == 1) {
 			CPIXPerfTag tag(renderContext[0], L"Render MainRenderTarget");
 			//シングルスレッド描画。
-			//深度書き込み用のレンダリングターゲットを設定。
-			renderContext[0].SetRenderTarget(1, Dof().GetDepthRenderTarget());
+			
 			//速度書き込み用のレンダリングターゲットを設定。
 			renderContext[0].SetRenderTarget(2, MotionBlur().GetVelocityMapRenderTarget());
 			for (GameObjectList objList : m_gameObjectListArray) {
@@ -100,6 +101,7 @@ namespace tkEngine{
 			//シングルスレッド描画。
 			//深度書き込み用のレンダリングターゲットを設定。
 			renderContext[0].SetRenderTarget(1, Dof().GetDepthRenderTarget());
+			
 			//速度書き込み用のレンダリングターゲットを設定。
 			renderContext[0].SetRenderTarget(2, MotionBlur().GetVelocityMapRenderTarget());
 			for (GameObjectList objList : m_gameObjectListArray) {
