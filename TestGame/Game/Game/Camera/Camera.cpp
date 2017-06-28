@@ -41,7 +41,8 @@ bool Camera::Start()
 
 void Camera::Update()
 {
-	if (Hidden == false) {
+	if (Hidden == false && 
+		g_gameScene->isStep() == GameScene::step_nomal && !g_gameScene->GetClear()) {
 		//Xボタンが押されたら視点を変える
 		if (Pad(0).IsTrigger(enButtonX)) {
 			if (timer == 0.0f && ChengeCount > 0) {
@@ -86,12 +87,11 @@ void Camera::Update()
 	//上視点の状態
 	if (ChengeCamera) {
 		target.y += 100.0f;	//高さ調整
-
+		timer += GameTime().GetFrameDeltaTime();
+		ChengeIn = true;
 		//カメラ位置セット
 		target.Add(toPosition);
 		camera.SetPosition(target);
-		timer += GameTime().GetFrameDeltaTime();
-		ChengeIn = true;
 	}
 	else if (Hidden) {
 		camera.SetTarget(target);
@@ -113,7 +113,8 @@ void Camera::Update()
 	}
 	//カメラコリジョン処理の実行。
 	CVector3 newPos;
-	if (!ChengeCamera && Hidden == false && cameraCollisionSolver.Execute(newPos, camera.GetPosition(), camera.GetTarget()))
+	if (!ChengeCamera && Hidden == false 
+		&& cameraCollisionSolver.Execute(newPos, camera.GetPosition(), camera.GetTarget()))
 	{
 		camera.SetPosition(newPos);
 		camera.ClearSpringParame();

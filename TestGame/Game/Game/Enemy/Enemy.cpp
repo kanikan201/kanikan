@@ -27,22 +27,32 @@ void Enemy::Init(CVector3 pos)
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
-	////トゥーン設定
-	//std::vector<CSkinModelMaterial*> matList;
-	//skinModelData.GetBody()->FindMaterials(matList, TexName);
-	////リストが空じゃない
-	//if (!matList.empty()) {
-	//	for (size_t i = 0; i < matList.size(); i++)
-	//	{
-	//		if (matList[i]->GetTechnique() == CSkinModelMaterial::enTecShaderHandle_SkinModel) {
-	//			matList[i]->Build(CSkinModelMaterial::enTypeToon);
-	//		}
-	//		else {
-	//			matList[i]->Build(CSkinModelMaterial::enTypeToonNonSkin);
-	//		}
-	//		matList[i]->SetTexture(CSkinModelMaterial::enTextureShaderHandle_DarkTex, darkTex);
-	//	}
-	//}
+	//トゥーン設定
+	std::vector<CSkinModelMaterial*> matList;
+	skinModelData.GetBody()->FindMaterials(matList, TexName);
+	static bool isChangeTec = false;
+	if (isChangeTec == false) {
+		//リストが空じゃない
+		if (!matList.empty()) {
+			for (size_t i = 0; i < matList.size(); i++)
+			{
+				if (matList[i]->GetTechnique() == CSkinModelMaterial::enTecShaderHandle_SkinModel) {
+					matList[i]->Build(CSkinModelMaterial::enTypeToon);
+				}
+				else {
+					matList[i]->Build(CSkinModelMaterial::enTypeToonNonSkin);
+				}
+			}
+		}
+		isChangeTec = true;
+	}
+
+	if (!matList.empty()) {
+		for (size_t i = 0; i < matList.size(); i++)
+		{
+			matList[i]->SetTexture(CSkinModelMaterial::enTextureShaderHandle_DarkTex, darkTex);
+		}
+	}
 
 	position = pos;
 	centralPos.Add(position, central);
@@ -51,6 +61,7 @@ void Enemy::Init(CVector3 pos)
 
 	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
 	characterController.SetMoveSpeed(move);
+	skinModel.Update(position, rotation, { 1.5f, 1.5f, 1.5f });
 
 	animation.PlayAnimation(AnimationStand);
 }
@@ -114,16 +125,16 @@ void Enemy::Damage()
 
 void Enemy::Render(CRenderContext& renderContext)
 {
-	////トゥーンシェーダ設定
-	//std::vector<CSkinModelMaterial*> matList;
-	//skinModelData.GetBody()->FindMaterials(matList, TexName);
-	////リストが空じゃない
-	//if (!matList.empty()) {
-	//	for (size_t i = 0; i < matList.size(); i++)
-	//	{
-	//		matList[i]->SetTexture(CSkinModelMaterial::enTextureShaderHandle_DepthTex, *Dof().GetDepthRenderTarget()->GetTexture());
-	//		matList[i]->SetInt(CSkinModelMaterial::enIntShaderHandle_IsZPrepass, CEngine::Instance().isZPrepass());
-	//	}
-	//}
+	//トゥーンシェーダ設定
+	std::vector<CSkinModelMaterial*> matList;
+	skinModelData.GetBody()->FindMaterials(matList, TexName);
+	//リストが空じゃない
+	if (!matList.empty()) {
+		for (size_t i = 0; i < matList.size(); i++)
+		{
+			matList[i]->SetTexture(CSkinModelMaterial::enTextureShaderHandle_DepthTex, *Dof().GetDepthRenderTarget()->GetTexture());
+			matList[i]->SetInt(CSkinModelMaterial::enIntShaderHandle_IsZPrepass, CEngine::Instance().isZPrepass());
+		}
+	}
 	skinModel.Draw(renderContext, g_gameScene->getCamera()->GetViewMatrix(), g_gameScene->getCamera()->GetProjectionMatrix());
 }

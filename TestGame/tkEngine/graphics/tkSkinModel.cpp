@@ -7,6 +7,7 @@
 #include "tkEngine/graphics/material/tkSkinModelMaterial.h"
 #include "tkEngine/graphics/tkAtmosphericScatteringParam.h"
 
+
 namespace tkEngine{
 	void CSkinModel::SetupMaterialCommonParameter(CSkinModelMaterial& material, D3DXMATRIX& viewMatrix, D3DXMATRIX& viewProj, bool isDrawToShadowMap)
 	{

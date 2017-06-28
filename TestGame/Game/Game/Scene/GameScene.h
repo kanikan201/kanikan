@@ -48,6 +48,11 @@ public:
 		return light;
 	}
 
+	//パネルのライト取得
+	CLight* getPanelLight() {
+		return &PanelLight;
+	}
+
 	//カメラ取得
 	Camera* getCamera(){
 		return camera;
@@ -107,6 +112,7 @@ private:
 	//コンストラクタ
 	Camera*				camera;				//カメラ
 	CLight				light;				//ライト
+	CLight				PanelLight;			//パネルのライト
 	Player*				player;				//プレイヤー
 	BackGround*			background;			//背景
 	Map*				map;				//マップ

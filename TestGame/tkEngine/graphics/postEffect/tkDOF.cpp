@@ -69,6 +69,7 @@ namespace tkEngine{
 	
 	void CDof::Render( CRenderContext& renderContext, CPostEffect* postEffect )
 	{
+		return;
 		CPIXPerfTag tag(renderContext, L"CDof::Render");
 		if (m_isEnable) {
 			

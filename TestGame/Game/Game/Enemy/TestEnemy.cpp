@@ -10,11 +10,11 @@ TestEnemy::TestEnemy()
 
 	currentAnimSetNo = AnimationStand;
 
-	////影用のテクスチャパス
-	//darkTex.Load("Assets/modelData/Skeleton_D_dark.png");
+	//影用のテクスチャパス
+	darkTex.Load("Assets/modelData/Skeleton_D_dark.png");
 
-	////モデルのテクスチャ名
-	//sprintf(TexName, "Skeleton_D_light.png");
+	//モデルのテクスチャ名
+	sprintf(TexName, "Skeleton_D.png");
 }
 
 

@@ -19,6 +19,8 @@ int4 g_flags;				//x‚É–@üƒ}ƒbƒvAy‚ÍƒVƒƒƒhƒEƒŒƒV[ƒo[Az‚ÍƒŠƒ€ƒ‰ƒCƒgAw‚ÍƒXƒyƒ
 
 float4	g_diffuseLightDirection;	//ƒgƒD[ƒ“ƒVƒF[ƒ_[‚Íƒ‰ƒCƒg‚Íˆê–{‚Ì‚İB
 
+
+
 texture g_diffuseTexture;		//ƒfƒBƒtƒ…[ƒYƒeƒNƒXƒ`ƒƒB
 sampler g_diffuseTextureSampler = 
 sampler_state
@@ -812,7 +814,7 @@ PSOutput PSToon( VS_OUTPUT In )
 	}
 
 	psOut.depth = In.worldPos_depth.w;
-	if(!g_isZPrepass){
+	if(!g_isZPrepass ){
 		
 		
 		float2 screenPos = In.screenPos.xy / In.screenPos.w;

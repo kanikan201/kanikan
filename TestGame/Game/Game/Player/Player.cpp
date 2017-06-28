@@ -19,6 +19,7 @@ Player::~Player()
 }
 
 bool Player::Start() {
+	//モデル
 	skinModelData.LoadModelData("Assets/modelData/Unity.X", &animation);
 
 	skinModel.Init(skinModelData.GetBody());
@@ -27,6 +28,8 @@ bool Player::Start() {
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
+	//スケール・回転
+	scale = { 2.5f,2.5f,2.5f };
 	rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(180.0f));
 
 	CVector3 lightPos = CVector3(0.0f, 20.5f, 24.5f);
@@ -37,25 +40,41 @@ bool Player::Start() {
 	ShadowMap().SetCalcLightViewFunc(CShadowMap::enCalcLightViewFunc_PositionTarget);
 	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
 
+	//モーション設定
 	animation.SetAnimationEndTime(AnimationRun, 0.8);
 	animation.SetAnimationLoopFlag(AnimationDown, false);
 	animation.SetAnimationLoopFlag(AnimationKneelDown, false);
 	animation.SetAnimationLoopFlag(AnimationSalute, false);
-	animation.PlayAnimation(AnimationStand);
 
+	//モーションをセット
+	animation.PlayAnimation(AnimationStand);
+	currentAnimSetNo = AnimationStand;
+	prevAnim = currentAnimSetNo;
+
+	//トーン設定
 	darkTex.Load("Assets/modelData/utc_all2_dark.png");
 	std::vector<CSkinModelMaterial*> matList;
 	skinModelData.GetBody()->FindMaterials(matList, "utc_all2_light.png");
-	//リストが空じゃない
+	static bool isChangeTec = false;
+	if (isChangeTec == false) {
+		//リストが空じゃない
+		if (!matList.empty()) {
+			for (size_t i = 0; i < matList.size(); i++)
+			{
+				if (matList[i]->GetTechnique() == CSkinModelMaterial::enTecShaderHandle_SkinModel) {
+					matList[i]->Build(CSkinModelMaterial::enTypeToon);
+				}
+				else {
+					matList[i]->Build(CSkinModelMaterial::enTypeToonNonSkin);
+				}
+			}
+		}
+		isChangeTec = true;
+	}
+
 	if (!matList.empty()) {
 		for (size_t i = 0; i < matList.size(); i++)
 		{
-			if (matList[i]->GetTechnique() == CSkinModelMaterial::enTecShaderHandle_SkinModel) {
-				matList[i]->Build(CSkinModelMaterial::enTypeToon);
-			}
-			else {
-				matList[i]->Build(CSkinModelMaterial::enTypeToonNonSkin);
-			}
 			matList[i]->SetTexture(CSkinModelMaterial::enTextureShaderHandle_DarkTex, darkTex);
 		}
 	}
@@ -235,6 +254,7 @@ void Player::Render(CRenderContext& renderContext)
 	skinModel.Draw(renderContext, g_gameScene->getCamera()->GetViewMatrix(), g_gameScene->getCamera()->GetProjectionMatrix());
 }
 
+//ポジションを設定
 void Player::SetPosition(CVector3 pos) 
 {
 	characterController.SetPosition(pos);
@@ -260,6 +280,7 @@ float Player::Distance(CVector3& objectPos)
 	return diff.Length();
 }
 
+//リセット
 void Player::Reset()
 {
 	rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(180.0f));
@@ -269,6 +290,10 @@ void Player::Reset()
 	characterController.Init(0.5f, 1.0f, position);
 	scale = { 2.5f,2.5f,2.5f };
 	g_gameScene->getJudge()->SetReturnflg(false);
+	prevAnim = currentAnimSetNo;
+	animation.PlayAnimation(AnimationStand);
+	//アニメーション更新
+	animation.Update(1.0f / 30.0f);
 }
 
 void Player::DownAnimation() 

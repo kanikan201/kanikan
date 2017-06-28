@@ -8,6 +8,7 @@
 #include "tkEngine/graphics/material/node/tkSkinModelMaterialNode.h"
 
 
+
 namespace tkEngine{
 	/*!
 	 *@brief	コンストラクタ。
@@ -277,6 +278,7 @@ namespace tkEngine{
 			m_pEffectRaw->SetValue(m_hAtmosShaderHandle, &m_atmosParam, sizeof(m_atmosParam));
 			m_pEffectRaw->SetValue(m_hShadowRecieverParamShaderHandle, &m_shadowRecParam, sizeof(m_shadowRecParam));
 			m_pEffectRaw->SetMatrixArray(m_hBoneMatrixArrayShaderHandle, m_boneMatrixArray, m_boneMatrixArraySize);
+			
 			for (auto& node : m_materialNodes) {
 				node->SendMaterialParamToGPU();
 			}
