@@ -97,8 +97,8 @@ void RouteObject::Perticle()
 
 void RouteObject::LightReset()
 {
-	light.SetAmbinetLight(ambientLight);
-	skinModel.SetLight(&light);
+	g_gameScene->PanelLightReset();
+	skinModel.SetLight(g_gameScene->getPanelLight());
 	flag = false;
 }
 

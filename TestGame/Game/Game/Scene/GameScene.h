@@ -30,6 +30,7 @@ public:
 	void Release();		//解放
 	void SetGameOver();	//ゲームオーバーをセット
 	void Reset();
+	void PanelLightReset();
 
 	//フェードの状態
 	enum Step {
