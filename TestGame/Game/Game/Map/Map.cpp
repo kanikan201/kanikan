@@ -5,6 +5,7 @@
 #include "Route/RouteObject.h"
 #include "Scene/GameScene.h"
 #include "../Block.h"
+#include "Rock.h"
 
 Map::Map()
 {
@@ -24,6 +25,7 @@ bool Map::Start()
 //引数(マップデータ,オブジェクト数)
 void Map::Create(SMapInfo* mapLocInfo, int numObject)
 {
+	int idx = 0;
 	//置かれているオブジェクトの数のマップチップを生成
 	for (int i = 0; i < numObject; i++) {
 		if (strcmp("clearMarker", mapLocInfo[i].modelName) == 0) {
@@ -45,6 +47,12 @@ void Map::Create(SMapInfo* mapLocInfo, int numObject)
 		else if (strcmp("block", mapLocInfo[i].modelName) == 0) {
 			block = NewGO<Block>(0);
 			block->Init(mapLocInfo[i].position,mapLocInfo[i].rotation);
+		}
+		else if (strcmp("Rock1", mapLocInfo[i].modelName) == 0) {
+			rock[idx] = NewGO<Rock>(0);
+			rock[idx]->Init(mapLocInfo[i].position, mapLocInfo[i].rotation);
+			rock[idx]->SetActiveFlag(false);
+			idx++;
 		}
 		else {
 			MapChip* mapChip = NewGO<MapChip>(0);

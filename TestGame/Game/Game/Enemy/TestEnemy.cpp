@@ -49,7 +49,7 @@ void TestEnemy::Move()
 		angle = acos(angle);
 		if (fabsf(angle) < D3DXToRadian(45.0f) && length < 5.0f) {
 			//歩きアニメーション
-			animation.PlayAnimation(AnimationWalk);
+			animation.PlayAnimation(AnimationWalk, 0.3f);
 			currentAnimSetNo = AnimationWalk;
 		}
 		move = CVector3::Zero;
@@ -72,7 +72,7 @@ void TestEnemy::Move()
 		rotation.SetRotation(CVector3::AxisY, angle);
 		//プレイヤーとの距離が近ければ攻撃
 		if (length < 2.5f) {
-			animation.PlayAnimation(AnimationAttack);
+			animation.PlayAnimation(AnimationAttack, 0.3f);
 			currentAnimSetNo = AnimationAttack;
 		}
 		break;
@@ -83,7 +83,7 @@ void TestEnemy::Move()
 		if (timer > 2.5f) {
 			currentAnimSetNo = Waiting;
 			timer = 0.0f;
-			animation.PlayAnimation(AnimationStand);
+			animation.PlayAnimation(AnimationStand, 0.3f);
 		}
 		break;
 	case Waiting:
@@ -93,11 +93,11 @@ void TestEnemy::Move()
 			length = toPlayer.Length();
 			if (length > 2.0f) {
 				currentAnimSetNo = AnimationWalk;
-				animation.PlayAnimation(AnimationWalk);
+				animation.PlayAnimation(AnimationWalk, 0.3f);
 			}
 			else {
 				currentAnimSetNo = AnimationAttack;
-				animation.PlayAnimation(AnimationAttack);
+				animation.PlayAnimation(AnimationAttack, 0.3f);
 			}
 			timer = 0.0f;
 		}

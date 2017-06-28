@@ -844,6 +844,18 @@
 	CVector3(-8.00f, 20.00f, -24.00f),             //平行移動
 	CQuaternion(-0.71f, 0.00f, 0.00f, 0.71f ),  //回転
 },
+//Rock1
+{
+	"Rock1",
+	CVector3(-16.00f, 3.00f, 8.00f),             //平行移動
+	CQuaternion(-0.50f, 0.50f, 0.50f, 0.50f ),  //回転
+},
+//Rock1
+{
+	"Rock1",
+	CVector3(-16.00f, 3.00f, 24.00f),             //平行移動
+	CQuaternion(0.50f, -0.50f, 0.50f, 0.50f ),  //回転
+},
 //D_Unity
 {
 	"D_Unity",
@@ -853,7 +865,7 @@
 //D_Unity
 {
 	"D_Unity",
-	CVector3(-16.00f, 0.05f, 8.00f),             //平行移動
+	CVector3(-8.00f, 0.05f, 8.00f),             //平行移動
 	CQuaternion(0.00f, 0.00f, 0.00f, 0.00f),  //回転
 },
 //D_Unity

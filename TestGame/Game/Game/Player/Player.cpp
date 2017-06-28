@@ -2,6 +2,8 @@
 #include "Player.h"
 #include "../Enemy/TestEnemy.h"
 #include "scene/GameScene.h"
+#include "../Block.h"
+#include "../Rock.h"
 
 #define SPEED 7.0f
 
@@ -33,7 +35,7 @@ bool Player::Start() {
 	toLightPos.Subtract(lightPos, position);
 
 	ShadowMap().SetCalcLightViewFunc(CShadowMap::enCalcLightViewFunc_PositionTarget);
-	characterController.Init(0.1f, 1.0f, position);	//キャラクタコントローラの初期化。
+	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
 
 	animation.SetAnimationEndTime(AnimationRun, 0.8);
 	animation.SetAnimationLoopFlag(AnimationDown, false);
@@ -82,10 +84,9 @@ void Player::Update()
 	characterController.SetMoveSpeed(Move());	//移動速度を設定
 	characterController.Execute(GameTime().GetFrameDeltaTime());	//キャラクターコントロール実行
 	position = characterController.GetPosition();	//実行結果を受け取る
-
 //移動してる
 	if (!(g_gameScene->GetClear() || g_gameScene->getCamera()->GetChengeIn())
-		&& (Pad(0).GetLStickXF()!=0.0f || Pad(0).GetLStickYF() != 0.0f))
+		&& (Pad(0).GetLStickXF() != 0.0f || Pad(0).GetLStickYF() != 0.0f))
 	{
 		//走りアニメーション
 		currentAnimSetNo = AnimationRun;
@@ -104,19 +105,53 @@ void Player::Update()
 			}
 		}
 	}
-//立ってるとき
+	//立ってるとき
 	else
 	{
 		//立ちアニメーション
 		currentAnimSetNo = AnimationStand;
 	}
-
 	//挟まれたらスケールを小さくする(仮)
-	if (Pad(0).IsTrigger(enButtonB)) {
+	if (block != NULL && block->GetPlayerHit() == true) {
+		if (block->GetPosition().y <= 16.0f) {
+			scale.y -= 1.5f;
+			if (scale.y < 0.3f) {
+				scale.y = 0.3f;
+			}
+		}
+		characterController.RemoveRigidBoby();
+		characterController.Init(0.5f, 0.2f, position);
+	}
+
+	if (rock[0] != nullptr && rock[1] != nullptr
+		&& (rock[0]->GetRockHit() == true || rock[1]->GetRockHit() == true)) {
+		//向きを変更
+		rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(-90.0f));
+		scale.x -= 1.5f;
+		if (scale.x < 0.3f) {
+			scale.x = 0.3f;
+			rock[0]->SetRockHit(false);
+			rock[1]->SetRockHit(false);
+		}
 		characterController.RemoveRigidBoby();
 		characterController.Init(0.2f, 1.0f, position);
 	}
 
+	if (g_gameScene->getJudge()->GetReturnflg() == true) {
+		characterController.RemoveRigidBoby();
+		characterController.Init(0.5f, 1.0f, position);
+		scale.y += 0.3f;
+		scale.x += 0.3f;
+		if (scale.x > 2.5f) {
+			scale.x = 2.5f;
+		}
+		if (scale.y > 2.5f) {
+			scale.y = 2.5f;
+		}
+		if (scale.x == 2.5f && scale.y == 2.5f) {
+			g_gameScene->getJudge()->SetReturnflg(false);
+		}
+	}
 	//影
 	ShadowMap().SetLightTarget(position);
 	CVector3 lightPos;
@@ -135,14 +170,20 @@ CVector3 Player::Move()
 		return move; 
 	}
 
-	//Bボタンでジャンプ
-	/*if (Pad(0).IsTrigger(enButtonB) && !characterController.IsJump()) {
-		move.y = 8.0f;
-		characterController.Jump();
-		CSoundSource* SE = NewGO<CSoundSource>(0);
-		SE->Init("Assets/sound/V0001.wav");
-		SE->Play(false);
-	}*/
+	//挟まれている間は動かない
+	if (block != NULL && Distance(block->GetPosition()) < 5.0f) {
+		move.x = 0.0f;
+		move.z = 0.0f;
+		return move;
+	}
+
+	if (rock[0] != nullptr && rock[1] != nullptr
+		&& (rock[0]->GetRockHit() == true || rock[1]->GetRockHit() == true))
+	{
+		move.x = 0.0f;
+		move.z = 0.0f;
+		return move;
+	}
 
 	//キャラの進行方向の計算
 	CVector3 moveDirLocal;	//入力された方向
@@ -173,11 +214,6 @@ CVector3 Player::Move()
 
 	move.x = dir.x * SPEED;
 	move.z = dir.z * SPEED;
-
-	if (characterController.IsJump()) {
-		move.x = move.x * 2 / 3;
-		move.z = move.z * 2 / 3;
-	}
 
 	return move;
 }
@@ -229,6 +265,10 @@ void Player::Reset()
 	rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(180.0f));
 	SetPosition({ 0.0f,0.0f,0.0f });
 	currentAnimSetNo = AnimationStand;
+	characterController.RemoveRigidBoby();
+	characterController.Init(0.5f, 1.0f, position);
+	scale = { 2.5f,2.5f,2.5f };
+	g_gameScene->getJudge()->SetReturnflg(false);
 }
 
 void Player::DownAnimation() 

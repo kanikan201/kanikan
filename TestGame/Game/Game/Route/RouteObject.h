@@ -20,6 +20,9 @@ public:
 	void SetWorp();
 	void SetResetLight();
 	void GameOvered();
+	CVector3 GetPosition() {
+		return position;
+	}
 private:
 	CSkinModel					skinModel;		//スキンモデル
 	CSkinModelDataHandle		skinModelData;	//スキンモデルデータ

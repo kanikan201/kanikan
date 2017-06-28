@@ -2,7 +2,6 @@
 #include "Block.h"
 #include "scene/GameScene.h"
 #include "scene/SceneManager.h"
-#include "Route\RouteJudge.h"
 
 Block* block;
 
@@ -26,11 +25,8 @@ void Block::Init(CVector3 position, CQuaternion rotation)
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
-	characterController.Init(5.0f, 5.0f, position);	//キャラクタコントローラの初期化。
-	characterController.SetMoveSpeed(move);
-
 	//ワールド行列を作成
-	skinModel.Update(position, rotation, { 1.7f,1.7f,1.7f });
+	skinModel.Update(position, rotation, { 1.7f,3.0f,1.7f });
 
 	this->position = position;		//位置を記録
 	this->rotation = rotation;		//回転を記録
@@ -49,13 +45,20 @@ void Block::Update()
 	//通常時しか処理しない
 	if (g_gameScene->isStep() != GameScene::step_nomal) { return; }
 
+	//ブロックのマスに来たら動かす
 	if (g_gameScene->getJudge()->GetBlockflg() == true) {
+		timer += GameTime().GetFrameDeltaTime();
 		Move();
+	}
+
+	if (position.y < 0.0f) {
+		position.y = 0.0f;
 	}
 
 	if (position.y > 20.0f) {
 		position.y = 20.0f;
 		Upflg = false;
+		g_gameScene->getJudge()->SetBlockflg(false);
 	}
 
 	skinModel.Update(position, rotation, { 1.7f,1.7f,1.7f });
@@ -63,8 +66,7 @@ void Block::Update()
 
 void Block::Move()
 {
-	
-	if (position.y <= 2.0f && Upflg == false) {
+	if (position.y <= 0.0f && Upflg == false && timer >= 2.0f) {
 		move = UpPos;
 		Upflg = true;
 	}
@@ -72,10 +74,16 @@ void Block::Move()
 		if (Upflg == false) {
 			move = DownPos;
 		}
+		//プレイヤーとブロックの距離が一定になったらヒット
+		float Blocklength = g_gameScene->getPlayer()->Distance(position);
+		if (Blocklength < 5.0f) {
+			PlayerHit = true;
+		}
+		else {
+			PlayerHit = false;
+		}
 	}
-	characterController.SetMoveSpeed(move);		//移動速度を設定
-	characterController.Execute(GameTime().GetFrameDeltaTime());	//キャラクターコントロール実行
-	position = characterController.GetPosition();	//実行結果の受け取り
+	position.Add(move);
 }
 
 void Block::Render(CRenderContext& renderContext)

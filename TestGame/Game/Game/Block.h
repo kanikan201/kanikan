@@ -1,7 +1,6 @@
 #pragma once
 
 #include "tkEngine/Physics/tkMeshCollider.h"
-#include "tkEngine/character/tkCharacterController.h"
 
 class Block: public IGameObject
 {
@@ -12,18 +11,29 @@ public:
 	void Update();
 	void Render(CRenderContext& renderContext);
 	void Move();
+
+	bool GetPlayerHit()
+	{
+		return PlayerHit;
+	}
+	void SetPlayerHit(bool flg) {
+		PlayerHit = flg;
+	}
+	CVector3 GetPosition() {
+		return position;
+	}
 private:
 	CSkinModel					skinModel;		//スキンモデル
 	CSkinModelDataHandle		skinModelData;	//スキンモデルデータ
-	CCharacterController		characterController;		//キャラクタ―コントローラー
 
 	CVector3					position;
 	CQuaternion					rotation;
-	CVector3					DownPos = { 0.0f,-20.0f,0.0f };
-	CVector3					UpPos = { 0.0f,20.0f,0.0f };
+	CVector3					DownPos = { 0.0f,-2.0f,0.0f };	//下方向のベクトル
+	CVector3					UpPos = { 0.0f,1.0f,0.0f };	//上方向のベクトル
 	CVector3					move = CVector3::Zero;
-	bool						Upflg = false;
-	float						timer = 0.0f;
+	bool						Upflg = false;	//上に動かすフラグ
+	bool						PlayerHit = false;	//プレイヤーとのヒットフラグ
+	float						timer = 0.0f;	//タイマー
 };
 
 extern Block* block;
