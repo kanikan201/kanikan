@@ -22,19 +22,7 @@ void RouteObject::Init(CVector3 position, CQuaternion rotation)
 	skinModelData.LoadModelData("Assets/modelData/route.x", NULL);
 	skinModel.Init(skinModelData.GetBody());
 
-	//ライト設定
-	if (g_gameScene->GetStage() == en_Stage1) {
-		ambientLight = { 0.0f, 0.30f , 0.42f };
-	}
-	else if (g_gameScene->GetStage() == en_Stage2) {
-		ambientLight = { 0.40f, 0.0f , 0.10f };
-	}
-	else {
-		ambientLight = { 0.01f, 0.35f , 0.0f };
-	}
-	ambientLight.Scale(2.8f);
-	light.SetAmbinetLight(ambientLight);
-	skinModel.SetLight(&light);
+	skinModel.SetLight(g_gameScene->getPanelLight());
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
@@ -54,11 +42,6 @@ void RouteObject::Update()
 		//自分を削除
 		DeleteGO(this);
 		return;
-	}
-
-	//暗くなる
-	if (!flag && g_gameScene->isStep() == GameScene::step_WaitGameOver) {
-		GameOvered();
 	}
 
 	//ルートがリセット
@@ -110,23 +93,6 @@ void RouteObject::Perticle()
 		{ 1.0f,1.0f,1.0f },					//!<乗算カラー。
 	},
 		position);							//パーティクルの位置
-}
-
-void RouteObject::GameOvered() {
-	//暗いライト(仮)
-	//デフォルトライト設定
-	if (g_gameScene->GetStage() == en_Stage1) {
-		ambientLight = { 0.0f, 0.20f , 0.20f };
-	}
-	else if (g_gameScene->GetStage() == en_Stage2) {
-		ambientLight = { 0.20f, 0.0f , 0.10f };
-	}
-	else {
-		ambientLight = { 0.03f, 0.20f , 0.0f };
-	}
-	ambientLight.Scale(2.8f);
-	light.SetAmbinetLight(ambientLight);
-	skinModel.SetLight(&light);
 }
 
 void RouteObject::LightReset()

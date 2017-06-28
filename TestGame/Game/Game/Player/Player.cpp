@@ -17,6 +17,7 @@ Player::~Player()
 }
 
 bool Player::Start() {
+	//モデル
 	skinModelData.LoadModelData("Assets/modelData/Unity.X", &animation);
 
 	skinModel.Init(skinModelData.GetBody());
@@ -25,6 +26,7 @@ bool Player::Start() {
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
+	//スケール・回転
 	scale = { 2.5f,2.5f,2.5f };
 	rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(180.0f));
 
@@ -36,12 +38,18 @@ bool Player::Start() {
 	ShadowMap().SetCalcLightViewFunc(CShadowMap::enCalcLightViewFunc_PositionTarget);
 	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
 
+	//モーション設定
 	animation.SetAnimationEndTime(AnimationRun, 0.8);
 	animation.SetAnimationLoopFlag(AnimationDown, false);
 	animation.SetAnimationLoopFlag(AnimationKneelDown, false);
 	animation.SetAnimationLoopFlag(AnimationSalute, false);
-	animation.PlayAnimation(AnimationStand);
 
+	//モーションをセット
+	animation.PlayAnimation(AnimationStand);
+	currentAnimSetNo = AnimationStand;
+	prevAnim = currentAnimSetNo;
+
+	//トーン設定
 	darkTex.Load("Assets/modelData/utc_all2_dark.png");
 	std::vector<CSkinModelMaterial*> matList;
 	skinModelData.GetBody()->FindMaterials(matList, "utc_all2_light.png");
@@ -212,6 +220,7 @@ void Player::Render(CRenderContext& renderContext)
 	skinModel.Draw(renderContext, g_gameScene->getCamera()->GetViewMatrix(), g_gameScene->getCamera()->GetProjectionMatrix());
 }
 
+//ポジションを設定
 void Player::SetPosition(CVector3 pos) 
 {
 	characterController.SetPosition(pos);
@@ -237,11 +246,16 @@ float Player::Distance(CVector3& objectPos)
 	return diff.Length();
 }
 
+//リセット
 void Player::Reset()
 {
 	rotation.SetRotation(CVector3::AxisY, CMath::DegToRad(180.0f));
 	SetPosition({ 0.0f,0.0f,0.0f });
 	currentAnimSetNo = AnimationStand;
+	prevAnim = currentAnimSetNo;
+	animation.PlayAnimation(AnimationStand);
+	//アニメーション更新
+	animation.Update(1.0f / 30.0f);
 }
 
 void Player::DownAnimation() 
