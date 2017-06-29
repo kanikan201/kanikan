@@ -303,12 +303,20 @@ void Player::DownAnimation()
 {
 	//敵と接触したときのアニメーション
 	currentAnimSetNo = AnimationDown;
+
+	CSoundSource* SE = NewGO<CSoundSource>(0);
+	SE->Init("Assets/sound/V0018.wav");
+	SE->Play(false);
 }
 
 void Player::KneelDownAnimation()
 {
 	//同じマスを通ったときのアニメーション
 	currentAnimSetNo = AnimationKneelDown;
+
+	CSoundSource* SE = NewGO<CSoundSource>(0);
+	SE->Init("Assets/sound/V0019.wav");
+	SE->Play(false);
 }
 
 void Player::SaluteAnimation()

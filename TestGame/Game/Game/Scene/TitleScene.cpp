@@ -29,22 +29,22 @@ bool TitleScene::Start()
 	sprite.SetSize(BackSize);
 	sprite.SetPosition(BackPos);
 
-	con1Tex.Load("Assets/sprite/start1.png");
+	con1Tex.Load("Assets/sprite/command/start1.png");
 	continue1.Init(&con1Tex);
 	continue1.SetSize(strSize);
 	continue1.SetPosition(conPos);
 
-	con2Tex.Load("Assets/sprite/start2.png");
+	con2Tex.Load("Assets/sprite/command/start2.png");
 	continue2.Init(&con2Tex);
 	continue2.SetSize(strSize);
 	continue2.SetPosition(conPos);
 
-	end1Tex.Load("Assets/sprite/exit1.png");
+	end1Tex.Load("Assets/sprite/command/exit1.png");
 	end1.Init(&end1Tex);
 	end1.SetSize(strSize);
 	end1.SetPosition(endPos);
 
-	end2Tex.Load("Assets/sprite/exit2.png");
+	end2Tex.Load("Assets/sprite/command/exit2.png");
 	end2.Init(&end2Tex);
 	end2.SetSize(strSize);
 	end2.SetPosition(endPos);

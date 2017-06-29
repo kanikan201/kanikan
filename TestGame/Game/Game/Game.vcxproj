@@ -169,6 +169,7 @@
     <ClCompile Include="Interface\DisplayTime.cpp" />
     <ClCompile Include="Interface\inventory.cpp" />
     <ClCompile Include="Interface\Number.cpp" />
+    <ClCompile Include="Interface\ShowSprite.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Map\Block.cpp" />
     <ClCompile Include="Map\ClearMarker.cpp" />
@@ -201,6 +202,7 @@
     <ClInclude Include="Interface\DisplayTime.h" />
     <ClInclude Include="Interface\inventory.h" />
     <ClInclude Include="Interface\Number.h" />
+    <ClInclude Include="Interface\ShowSprite.h" />
     <ClInclude Include="Map\Block.h" />
     <ClInclude Include="Map\ClearMarker.h" />
     <ClInclude Include="Map\Map.h" />

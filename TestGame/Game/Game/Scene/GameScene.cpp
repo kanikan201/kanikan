@@ -3,6 +3,7 @@
 #include "ResultScene.h"
 #include "fade/Fade.h"
 #include "ClearScene.h"
+#include "Interface/ShowSprite.h"
 
 GameScene* g_gameScene = NULL;
 
@@ -98,6 +99,9 @@ void GameScene::Update()
 		//フェードが終わった
 		if (!g_fade->IsExecute()) {
 			step = step_nomal;
+
+			//スタート時のスプライト表示
+			NewGO<ShowSprite>(0);
 		}
 		break;
 
@@ -317,4 +321,25 @@ void GameScene::Reset() {
 	player->Reset();
 	gameTime = 0.0f;
 	camera->Reset();
+}
+
+void GameScene::PanelLightReset()
+{
+	//パネルのライトを暗くする
+	CVector3 ambientLight;
+	switch (currentStage) {
+	case en_Stage1:
+		ambientLight = { 0.0f, 0.30f , 0.42f };
+		break;
+
+	case en_Stage2:
+		ambientLight = { 0.40f, 0.0f , 0.10f };
+		break;
+
+	case en_Stage3:
+		ambientLight = { 0.01f, 0.35f , 0.0f };
+		break;
+	}
+	ambientLight.Scale(2.8f);
+	PanelLight.SetAmbinetLight(ambientLight);
 }
