@@ -27,6 +27,10 @@ public:
 		return dir;
 	}
 
+	void ScaleReset(float s) {
+		scale = { s,s,s };
+	}
+
 //ƒ‚[ƒVƒ‡ƒ“
 	enum AnimationNo {
 		AnimationStand,		//—§‚¿

@@ -300,6 +300,7 @@ void GameScene::Release() {
 
 //ゲームオーバーへ切り替え
 void GameScene::SetGameOver() {
+	getPlayer()->ScaleReset(2.5f);
 	DeleteGO(bgmSource);
 	bgmSource = nullptr;
 	AddGO(0, &GameOverSE);

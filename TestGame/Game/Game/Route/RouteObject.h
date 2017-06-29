@@ -19,7 +19,6 @@ public:
 	void SetTrap();
 	void SetWorp();
 	void SetResetLight();
-	void GameOvered();
 	CVector3 GetPosition() {
 		return position;
 	}

@@ -47,7 +47,7 @@ void RouteJudge::Reset(int set_x,int set_y)
 			int tmp = map[j][i];
 			//何もないor柱
 			if (tmp == Empty || tmp == Pole || tmp == Dummy 
-				|| tmp == Block1 || tmp == Block2 || tmp == Return) {
+				|| tmp == Block1 || tmp == Block2 || tmp==Return) {
 				StageCount++;
 			}
 
@@ -181,6 +181,7 @@ void RouteJudge::Update()
 
 			rock[0]->SetActiveFlag(true);
 			rock[1]->SetActiveFlag(true);
+
 			Block2flg = true;
 
 			break;
@@ -195,8 +196,9 @@ void RouteJudge::Update()
 			se->Init("Assets/sound/panel.wav");
 			se->Play(false);
 
-			Count++;
-			Returnflg = true;
+			if (g_gameScene->getJudge()->GetThroughFlg() == true) {
+				Returnflg = true;
+			}
 
 			break;
 		//すでに通ったマスに移動。または、邪魔パネル(仮)
@@ -205,6 +207,17 @@ void RouteJudge::Update()
 			g_gameScene->getPlayer()->KneelDownAnimation();
 			//ゲームオーバー処理
 			g_gameScene->SetGameOver();
+			break;
+		case Dummy:
+			map[currentGrid.y][currentGrid.x] = Path;
+			//通ったマスを描画する
+			routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
+			routeObject[currentGrid.y][currentGrid.x]->Perticle();
+			RouteCount++;
+
+			se->Init("Assets/sound/panel.wav");
+			se->Play(false);
+			g_gameScene->getJudge()->SetThroughFlg(true);
 			break;
 		//まだ通ってない道
 		default:
