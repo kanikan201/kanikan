@@ -30,7 +30,8 @@ bool BackGround::Start()
 	skinModelData.LoadModelData("Assets/modelData/Unity.X", &animation);
 	skinModel.Init(skinModelData.GetBody());
 	skinModel.SetLight(&g_gameScene->getLight());			//デフォルトライトを設定。
-	animation.PlayAnimation(AnimationRun);
+	animation.SetAnimationEndTime(Run, 0.8);
+	animation.PlayAnimation(Run);
 
 	//背景のユニティちゃん用のカメラの設定
 	camera.SetPosition({0.0f, 0.0f, 1.6f});
@@ -55,13 +56,14 @@ void BackGround::Update()
 
 void BackGround::Render(CRenderContext& renderContext)
 {
+
+	renderContext.SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
+	sprite.Draw(renderContext);
+	renderContext.SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
+
 	if (g_gameScene->getCamera()->GetChengeIn() ) {
 		renderContext.SetRenderTarget(1,NULL);
-		renderContext.SetRenderState(D3DRS_ZWRITEENABLE, FALSE);
-		sprite.Draw(renderContext);
-		renderContext.SetRenderState(D3DRS_ZWRITEENABLE, TRUE);
 		skinModel.Draw(renderContext, camera.GetViewMatrix(), camera.GetProjectionMatrix());
-
 		renderContext.Clear(0, nullptr, D3DCLEAR_ZBUFFER,
 			D3DCOLOR_RGBA(0, 0, 255, 0), 1.0f, 0);
 		renderContext.SetRenderTarget(1, Dof().GetDepthRenderTarget());

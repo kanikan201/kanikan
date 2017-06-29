@@ -112,16 +112,14 @@ void Player::Update()
 		//向きを変更
 		rotation.SetRotation(CVector3::AxisY, atan2f(dir.x, dir.z));
 
-		if (!characterController.IsJump()) {
-			timer += GameTime().GetFrameDeltaTime();
+		timer += GameTime().GetFrameDeltaTime();
 
-			if (timer > 0.4f) {
-				//足音
-				CSoundSource* se = NewGO<CSoundSource>(0);
-				se->Init("Assets/sound/footstep.wav");
-				se->Play(false);
-				timer = 0.0f;
-			}
+		if (timer > 0.4f) {
+			//足音
+			CSoundSource* se = NewGO<CSoundSource>(0);
+			se->Init("Assets/sound/footstep.wav");
+			se->Play(false);
+			timer = 0.0f;
 		}
 	}
 	//立ってるとき
@@ -141,6 +139,7 @@ void Player::Update()
 		characterController.Init(0.5f, 0.2f, position);
 	}
 
+	//挟まれたらスケールを小さくする(仮)
 	if (rock[0] != nullptr && rock[1] != nullptr
 		&& (rock[0]->GetRockHit() == true || rock[1]->GetRockHit() == true)) {
 		//向きを変更
