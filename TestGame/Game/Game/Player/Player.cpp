@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "Player.h"
-#include "../Enemy/TestEnemy.h"
+#include "Enemy/TestEnemy.h"
 #include "scene/GameScene.h"
-#include "../Block.h"
-#include "../Rock.h"
+#include "Map/Block.h"
+#include "Map/Rock.h"
 
 #define SPEED 7.0f
 

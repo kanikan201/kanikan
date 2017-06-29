@@ -176,8 +176,8 @@
     <ClCompile Include="Map\Map.cpp" />
     <ClCompile Include="Map\MapChip.cpp" />
     <ClCompile Include="Map\MapData.cpp" />
+    <ClCompile Include="Map\Rock.cpp" />
     <ClCompile Include="Player\Player.cpp" />
-    <ClCompile Include="Rock.cpp" />
     <ClCompile Include="Route\RouteJudge.cpp" />
     <ClCompile Include="Route\RouteObject.cpp" />
     <ClCompile Include="Scene\BackGround.cpp" />
@@ -208,8 +208,8 @@
     <ClInclude Include="Map\Map.h" />
     <ClInclude Include="Map\MapChip.h" />
     <ClInclude Include="Map\MapData.h" />
+    <ClInclude Include="Map\Rock.h" />
     <ClInclude Include="Player\Player.h" />
-    <ClInclude Include="Rock.h" />
     <ClInclude Include="Route\RouteJudge.h" />
     <ClInclude Include="Route\RouteObject.h" />
     <ClInclude Include="Scene\BackGround.h" />

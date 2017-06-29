@@ -50,8 +50,8 @@ public:
 	}
 
 	//パネルのライト取得
-	CLight* getPanelLight() {
-		return &PanelLight;
+	CLight& getPanelLight() {
+		return PanelLight;
 	}
 
 	//カメラ取得

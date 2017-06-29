@@ -22,7 +22,7 @@ void RouteObject::Init(CVector3 position, CQuaternion rotation)
 	skinModelData.LoadModelData("Assets/modelData/route.x", NULL);
 	skinModel.Init(skinModelData.GetBody());
 
-	skinModel.SetLight(g_gameScene->getPanelLight());
+	skinModel.SetLight(&g_gameScene->getPanelLight());
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
@@ -98,7 +98,7 @@ void RouteObject::Perticle()
 void RouteObject::LightReset()
 {
 	g_gameScene->PanelLightReset();
-	skinModel.SetLight(g_gameScene->getPanelLight());
+	skinModel.SetLight(&g_gameScene->getPanelLight());
 	flag = false;
 }
 
