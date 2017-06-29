@@ -196,6 +196,7 @@ void RouteJudge::Update()
 			se->Init("Assets/sound/panel.wav");
 			se->Play(false);
 
+			Count++;
 			Returnflg = true;
 
 			break;

@@ -71,6 +71,12 @@ public:
 	int GetCurrentGrid_y() {
 		return currentGrid.y;
 	}
+	int GetCount() {
+		return Count;
+	}
+	void SetCount(int val) {
+		Count = val;
+	}
 private:
 	
 
@@ -99,5 +105,6 @@ private:
 
 	int StageCount;		//stage1をクリアするために必要なマスの数
 	int RouteCount;		//現在のstageで通ったマスの数
+	int Count;
 };
 
