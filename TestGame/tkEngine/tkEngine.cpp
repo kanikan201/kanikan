@@ -45,11 +45,11 @@ namespace tkEngine{
 		{
 			sizeof(WNDCLASSEX), CS_CLASSDC, MsgProc, 0L, 0L,
 			GetModuleHandle(nullptr), nullptr, nullptr, nullptr, nullptr,
-			TEXT("D3D Tutorial"), nullptr
+			TEXT("ONE RUN ONE LAND"), nullptr
 		};
 		RegisterClassEx(&wc);
 		// Create the application's window
-		m_hWnd = CreateWindow(TEXT("D3D Tutorial"), TEXT("D3D Tutorial 06: Meshes"),
+		m_hWnd = CreateWindow(TEXT("ONE RUN ONE LAND"), TEXT("ONE RUN ONE LAND"),
 			WS_OVERLAPPEDWINDOW, 0, 0, m_screenWidth, m_screenHeight,
 			nullptr, nullptr, wc.hInstance, nullptr);
 

@@ -26,6 +26,17 @@ void RouteObject::Init(CVector3 position, CQuaternion rotation)
 	skinModel.SetShadowCasterFlag(true);
 	skinModel.SetShadowReceiverFlag(true);
 
+	//ライトを初期化
+	light.SetDiffuseLightDirection(0, { 0.707f, 0.0f, -0.707f });
+	light.SetDiffuseLightDirection(1, { -0.707f, 0.0f, -0.707f });
+	light.SetDiffuseLightDirection(2, { 0.0f, 0.707f, -0.707f });
+	light.SetDiffuseLightDirection(3, { 0.0f, -0.707f, -0.707f });
+
+	light.SetDiffuseLightColor(0, { 0.2f, 0.2f, 0.2f, 1.0f });
+	light.SetDiffuseLightColor(1, { 0.2f, 0.2f, 0.2f, 1.0f });
+	light.SetDiffuseLightColor(2, { 0.3f, 0.3f, 0.3f, 1.0f });
+	light.SetDiffuseLightColor(3, { 0.2f, 0.2f, 0.2f, 1.0f });
+
 	rotation.SetRotation(CVector3::AxisX, CMath::DegToRad(90.0f));
 	//ワールド行列を作成(一回だけ)
 	skinModel.Update(position, rotation, CVector3::One);
