@@ -41,7 +41,7 @@ bool Player::Start() {
 	characterController.Init(0.5f, 1.0f, position);	//キャラクタコントローラの初期化。
 
 	//モーション設定
-	animation.SetAnimationEndTime(AnimationRun, 0.8);
+
 	animation.SetAnimationLoopFlag(AnimationDown, false);
 	animation.SetAnimationLoopFlag(AnimationKneelDown, false);
 	animation.SetAnimationLoopFlag(AnimationSalute, false);
