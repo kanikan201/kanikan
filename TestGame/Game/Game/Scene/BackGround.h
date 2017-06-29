@@ -12,12 +12,6 @@ public:
 	void SetPosition(CVector3 pos);
 
 	void Render(CRenderContext& renderContext) override;
-	enum AnimationNo {
-		AnimationStand,		//立ち
-		AnimationWalk,		//歩き
-		AnimationRun,		//走り
-		AnimationJump,		//ジャンプ
-	};
 
 private:
 	CSprite			sprite;		//スプライト
@@ -33,6 +27,8 @@ private:
 	CQuaternion			qRotX, qRotY, View;
 	CVector3			toLightPos;
 	CAnimation			animation;				//アニメーション。
+	int					Run = 2;				//アニメーションナンバー。2は走るモーション。
+
 	CCamera				camera;					//ユニティちゃんカメラ。
 };
 
