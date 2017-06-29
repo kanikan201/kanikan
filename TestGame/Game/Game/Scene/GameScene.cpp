@@ -297,6 +297,8 @@ void GameScene::SetGameOver() {
 	step = step_WaitGameOver;
 	timer = 0.0f;
 
+	route->SetResetEnd(false);
+
 	//パネルのライトを暗くする
 	CVector3 ambientLight;
 	switch (currentStage) {

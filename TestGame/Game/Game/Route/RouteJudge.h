@@ -77,6 +77,9 @@ public:
 	void SetCount(int val) {
 		Count = val;
 	}
+	void SetResetEnd(bool flg) {
+		ResetEnd = flg;
+	}
 private:
 	
 
