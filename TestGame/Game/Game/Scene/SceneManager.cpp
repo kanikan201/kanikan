@@ -6,7 +6,11 @@
 SceneManager* sceneManager;
 
 SceneManager::SceneManager()
-{
+{	
+	//タイトル画面生成
+	title = NewGO<TitleScene>(0);
+	state = stateTitel;
+	f_step = step_nomal;
 }
 SceneManager::~SceneManager()
 {
@@ -14,10 +18,7 @@ SceneManager::~SceneManager()
 
 bool SceneManager::Start()
 {
-	//タイトル画面生成
-	title = NewGO<TitleScene>(0);
-	state = stateTitel;
-	f_step = step_nomal;
+
 
 	return true;
 }

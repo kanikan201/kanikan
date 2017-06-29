@@ -2,7 +2,9 @@
 #include "RouteJudge.h"
 #include "scene/GameScene.h"
 #include "RouteObject.h"
-#include "Map/Block.h"
+#include "../Block.h"
+#include "../Rock.h"
+//#include "Map/Block.h"
 
 RouteJudge::RouteJudge()
 {
@@ -45,7 +47,8 @@ void RouteJudge::Reset(int set_x,int set_y)
 		for (int j = 0; j < Height; j++) {
 			int tmp = map[j][i];
 			//何もないor柱
-			if (tmp == Empty || tmp == Pole || tmp == Dummy || tmp == Block1) {
+			if (tmp == Empty || tmp == Pole || tmp == Dummy 
+				|| tmp == Block1 || tmp == Block2 || tmp == Return) {
 				StageCount++;
 			}
 
@@ -80,6 +83,7 @@ void RouteJudge::Reset(int set_x,int set_y)
 	RouteCount++;
 
 	isReset = false;
+	ResetEnd = false;
 
 	if (isChange) {
 		StageCount += CountPlus;
@@ -141,7 +145,6 @@ void RouteJudge::Update()
 
 		//ワープパネル
 		case WarpTrap:
-
 			if (ResetEnd==true) {
 				Warp();
 				RouteCount++;
@@ -154,6 +157,7 @@ void RouteJudge::Update()
 				g_gameScene->SetGameOver();
 			}
 			break;
+		//ブロックのあるマス
 		case Block1:
 			map[currentGrid.y][currentGrid.x] = Path;
 			//通ったマスを描画する
@@ -163,18 +167,46 @@ void RouteJudge::Update()
 
 			se->Init("Assets/sound/panel.wav");
 			se->Play(false);
-
+			
 			Blockflg = true;
+
+			break;
+		case Block2:
+			map[currentGrid.y][currentGrid.x] = Path;
+			//通ったマスを描画する
+			routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
+			routeObject[currentGrid.y][currentGrid.x]->Perticle();
+			RouteCount++;
+
+			se->Init("Assets/sound/panel.wav");
+			se->Play(false);
+
+			rock[0]->SetActiveFlag(true);
+			rock[1]->SetActiveFlag(true);
+			Block2flg = true;
+
+			break;
+		//元に戻すマス
+		case Return:
+			map[currentGrid.y][currentGrid.x] = Path;
+			//通ったマスを描画する
+			routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
+			routeObject[currentGrid.y][currentGrid.x]->Perticle();
+			RouteCount++;
+
+			se->Init("Assets/sound/panel.wav");
+			se->Play(false);
+
+			Returnflg = true;
 
 			break;
 		//すでに通ったマスに移動。または、邪魔パネル(仮)
 		case Path:
 		case Trap1:
-			//g_gameScene->getPlayer()->KneelDownAnimation();
-			////ゲームオーバー処理
-			//g_gameScene->SetGameOver();
+			g_gameScene->getPlayer()->KneelDownAnimation();
+			//ゲームオーバー処理
+			g_gameScene->SetGameOver();
 			break;
-
 		//まだ通ってない道
 		default:
 			map[currentGrid.y][currentGrid.x] = Path;

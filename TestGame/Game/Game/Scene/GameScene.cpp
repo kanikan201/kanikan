@@ -54,15 +54,16 @@ bool GameScene::Start()
 
 		background	= NewGO<BackGround>(0);//背景
 		map			= NewGO<Map>(0);		//マップ生成
-
-		player		= NewGO<Player>(0);		//プレイヤー生成
 		camera		= NewGO<Camera>(0);		//カメラ生成
-		ivt			= NewGO<inventory>(0);		//インベントリ生成
-		time		= NewGO<DisplayTime>(0);	//タイム表示生成
 		route		= NewGO<RouteJudge>(0);
 
-		bgmSource	= NULL;
+		bgmSource = NULL;
 		CreateStage(currentStage);
+
+		player		= NewGO<Player>(0);		//プレイヤー生成
+		ivt			= NewGO<inventory>(0);		//インベントリ生成
+		time		= NewGO<DisplayTime>(0);	//タイム表示生成
+		
 
 		step		= step_StageLoad;
 		isDelete	= false;
@@ -173,7 +174,6 @@ void GameScene::Update()
 		if (gameOver->GetChoice()) {
 			//続けるを選択
 			if (gameOver->GetState()== GameOverScene::enContinue) {
-				//bgmSource->Play(true);
 				g_fade->StartFadeOut();
 				step = step_WaitFadeOut;
 				nextStage = currentStage;

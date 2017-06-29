@@ -36,8 +36,24 @@ public:
 		return Blockflg;
 	}
 
+	bool GetBlock2flg() {
+		return Block2flg;
+	}
+
+	bool GetReturnflg() {
+		return Returnflg;
+	}
+
 	void SetBlockflg(bool flg) {
 		Blockflg = flg;
+	}
+
+	void SetBlock2flg(bool flg) {
+		Block2flg = flg;
+	}
+
+	void SetReturnflg(bool flg) {
+		Returnflg = flg;
 	}
 
 	int GetInitialGrid_x() {
@@ -78,6 +94,8 @@ private:
 	bool ResetEnd = false;
 	bool Perticleflg = false;	//パーティクルのフラグ
 	bool Blockflg = false;
+	bool Block2flg = false;
+	bool Returnflg = false;
 
 	int StageCount;		//stage1をクリアするために必要なマスの数
 	int RouteCount;		//現在のstageで通ったマスの数
