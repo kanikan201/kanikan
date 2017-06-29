@@ -36,6 +36,9 @@
     <Filter Include="Source Files\Scene\GameScene">
       <UniqueIdentifier>{271f8398-54bc-481b-8332-8fb20a88c006}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Map\object">
+      <UniqueIdentifier>{89cda463-c119-470d-a1d2-30ed246005ef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -71,9 +74,6 @@
     <ClCompile Include="Enemy\TestEnemy.cpp">
       <Filter>Source Files\Eneny</Filter>
     </ClCompile>
-    <ClCompile Include="Map\ClearMarker.cpp">
-      <Filter>Source Files\Map</Filter>
-    </ClCompile>
     <ClCompile Include="Interface\inventory.cpp">
       <Filter>Source Files\Interface</Filter>
     </ClCompile>
@@ -107,11 +107,17 @@
     <ClCompile Include="Scene\BackGround.cpp">
       <Filter>Source Files\Scene\GameScene</Filter>
     </ClCompile>
-    <ClCompile Include="Map\Block.cpp">
-      <Filter>Source Files\Map</Filter>
-    </ClCompile>
     <ClCompile Include="Interface\ShowSprite.cpp">
       <Filter>Source Files\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Map\Block.cpp">
+      <Filter>Source Files\Map\object</Filter>
+    </ClCompile>
+    <ClCompile Include="Map\ClearMarker.cpp">
+      <Filter>Source Files\Map\object</Filter>
+    </ClCompile>
+    <ClCompile Include="Map\Rock.cpp">
+      <Filter>Source Files\Map\object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -144,9 +150,6 @@
     </ClInclude>
     <ClInclude Include="Enemy\TestEnemy.h">
       <Filter>Source Files\Eneny</Filter>
-    </ClInclude>
-    <ClInclude Include="Map\ClearMarker.h">
-      <Filter>Source Files\Map</Filter>
     </ClInclude>
     <ClInclude Include="Interface\inventory.h">
       <Filter>Source Files\Interface</Filter>
@@ -181,11 +184,17 @@
     <ClInclude Include="Scene\BackGround.h">
       <Filter>Source Files\Scene\GameScene</Filter>
     </ClInclude>
-    <ClInclude Include="Map\Block.h">
-      <Filter>Source Files\Map</Filter>
-    </ClInclude>
     <ClInclude Include="Interface\ShowSprite.h">
       <Filter>Source Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\Block.h">
+      <Filter>Source Files\Map\object</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\ClearMarker.h">
+      <Filter>Source Files\Map\object</Filter>
+    </ClInclude>
+    <ClInclude Include="Map\Rock.h">
+      <Filter>Source Files\Map\object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

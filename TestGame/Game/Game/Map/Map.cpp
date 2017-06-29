@@ -5,7 +5,7 @@
 #include "Route/RouteObject.h"
 #include "Scene/GameScene.h"
 #include "Map/Block.h"
-#include "../Rock.h"
+#include "Map/Rock.h"
 
 Map::Map()
 {

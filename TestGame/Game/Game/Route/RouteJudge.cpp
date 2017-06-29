@@ -3,7 +3,7 @@
 #include "scene/GameScene.h"
 #include "RouteObject.h"
 #include "Map/Block.h"
-#include "../Rock.h"
+#include "Map/Rock.h"
 
 RouteJudge::RouteJudge()
 {
