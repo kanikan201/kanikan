@@ -225,11 +225,6 @@ void RouteJudge::Update()
 		g_gameScene->getPlayer()->SaluteAnimation();
 		g_gameScene->setClear(true);
 	}
-	//デバッグ用
-	if (Pad(0).IsTrigger(enButtonStart)) {
-		g_gameScene->getPlayer()->SaluteAnimation();
-		g_gameScene->setClear(true);
-	}
 }
 
 void RouteJudge::Warp()
