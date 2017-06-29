@@ -15,7 +15,7 @@ Camera::~Camera()
 {
 }
 
-void Camera::Init(int count) 
+void Camera::Init(int count)
 {
 	ChengeCount = count;
 	ChengeIn = false;
@@ -46,7 +46,7 @@ void Camera::Update()
 		//Xボタンが押されたら視点を変える
 		if (Pad(0).IsTrigger(enButtonX)) {
 			if (timer == 0.0f && ChengeCount > 0) {
-				ChengeCamera = !ChengeCamera;
+				ChengeCamera = true/*!ChengeCamera*/;
 				ChengeCount--;
 
 				CSoundSource* se = NewGO<CSoundSource>(0);
@@ -79,8 +79,8 @@ void Camera::Update()
 	camera.SetTarTarget(target);	//視点設定
 
 	//30秒か1分
-	if (timer > 30.0f) {
-		ChengeCamera = !ChengeCamera;
+	if (timer > 30.0f || Pad(0).IsTrigger(enButtonY)) {
+		ChengeCamera = false/*!ChengeCamera*/;
 		timer = 0.0f;
 	}
 

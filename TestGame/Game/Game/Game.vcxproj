@@ -210,6 +210,7 @@
     <ClInclude Include="Map\MapData.h" />
     <ClInclude Include="Map\Rock.h" />
     <ClInclude Include="Player\Player.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Route\RouteJudge.h" />
     <ClInclude Include="Route\RouteObject.h" />
     <ClInclude Include="Scene\BackGround.h" />
@@ -220,6 +221,12 @@
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Game.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

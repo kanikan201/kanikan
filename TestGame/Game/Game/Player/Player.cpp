@@ -132,11 +132,10 @@ void Player::Update()
 	}
 	//‹²‚Ü‚ê‚½‚çƒXƒP[ƒ‹‚ð¬‚³‚­‚·‚é(‰¼)
 	if (block != NULL && block->GetPlayerHit() == true) {
-		if (block->GetPosition().y <= 16.0f) {
-			scale.y -= 1.5f;
-			if (scale.y < 0.3f) {
-				scale.y = 0.3f;
-			}
+		scale.y -= 1.5f;
+		if (scale.y < 0.3f) {
+			scale.y = 0.3f;
+			block->SetPlayerHit(false);
 		}
 		characterController.RemoveRigidBoby();
 		characterController.Init(0.5f, 0.2f, position);
@@ -193,7 +192,7 @@ CVector3 Player::Move()
 	}
 
 	//‹²‚Ü‚ê‚Ä‚¢‚éŠÔ‚Í“®‚©‚È‚¢
-	if (block != NULL && Distance(block->GetPosition()) < 5.0f) {
+	if (block != nullptr && Distance(block->GetPosition()) < 5.0f) {
 		move.x = 0.0f;
 		move.z = 0.0f;
 		return move;

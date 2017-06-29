@@ -3,7 +3,7 @@
 #include "scene/GameScene.h"
 #include "scene/SceneManager.h"
 
-Block* block;
+Block* block = nullptr;
 
 Block::Block()
 {
@@ -79,9 +79,9 @@ void Block::Move()
 		if (Blocklength < 5.0f) {
 			PlayerHit = true;
 		}
-		else {
+		/*else {
 			PlayerHit = false;
-		}
+		}*/
 	}
 	position.Add(move);
 }
