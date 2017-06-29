@@ -52,6 +52,17 @@ bool GameScene::Start()
 		//light.SetLimLightColor(CVector4(0.6f, 0.6f, 0.6f, 1.0f));
 		//light.SetLimLightDirection(CVector3(0.0f, 0.0f, -1.0f));
 
+		//ライトを初期化
+		PanelLight.SetDiffuseLightDirection(0, { 0.707f, 0.0f, -0.707f });
+		PanelLight.SetDiffuseLightDirection(1, { -0.707f, 0.0f, -0.707f });
+		PanelLight.SetDiffuseLightDirection(2, { 0.0f, 0.707f, -0.707f });
+		PanelLight.SetDiffuseLightDirection(3, { 0.0f, -0.707f, -0.707f });
+
+		PanelLight.SetDiffuseLightColor(0, { 0.2f, 0.2f, 0.2f, 1.0f });
+		PanelLight.SetDiffuseLightColor(1, { 0.2f, 0.2f, 0.2f, 1.0f });
+		PanelLight.SetDiffuseLightColor(2, { 0.3f, 0.3f, 0.3f, 1.0f });
+		PanelLight.SetDiffuseLightColor(3, { 0.2f, 0.2f, 0.2f, 1.0f });
+
 		background	= NewGO<BackGround>(0);//背景
 		map			= NewGO<Map>(0);		//マップ生成
 		camera		= NewGO<Camera>(0);		//カメラ生成
