@@ -81,7 +81,7 @@ void Enemy::Update()
 
 	//プレイヤーと自身の距離
 	float dist = g_gameScene->getPlayer()->Distance(position);
-	if (dist < 2.0f) {
+	if (dist < 1.5f) {
 		g_gameScene->getPlayer()->DownAnimation();
 		g_gameScene->SetGameOver();
 	}

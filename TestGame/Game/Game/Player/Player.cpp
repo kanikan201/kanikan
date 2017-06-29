@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "../Enemy/TestEnemy.h"
 #include "scene/GameScene.h"
-#include "../Block.h"
+#include "Map/Block.h"
 #include "../Rock.h"
 
 #define SPEED 7.0f
@@ -157,18 +157,21 @@ void Player::Update()
 	}
 
 	if (g_gameScene->getJudge()->GetReturnflg() == true) {
-		characterController.RemoveRigidBoby();
-		characterController.Init(0.5f, 1.0f, position);
-		scale.y += 0.3f;
-		scale.x += 0.3f;
-		if (scale.x > 2.5f) {
-			scale.x = 2.5f;
-		}
-		if (scale.y > 2.5f) {
-			scale.y = 2.5f;
-		}
-		if (scale.x == 2.5f && scale.y == 2.5f) {
-			g_gameScene->getJudge()->SetReturnflg(false);
+		if (g_gameScene->getJudge()->GetCount() >= 2) {
+			characterController.RemoveRigidBoby();
+			characterController.Init(0.5f, 1.0f, position);
+			scale.y += 0.3f;
+			scale.x += 0.3f;
+			if (scale.x > 2.5f) {
+				scale.x = 2.5f;
+			}
+			if (scale.y > 2.5f) {
+				scale.y = 2.5f;
+			}
+			if (scale.x == 2.5f && scale.y == 2.5f) {
+				g_gameScene->getJudge()->SetReturnflg(false);
+				g_gameScene->getJudge()->SetCount(0);
+			}
 		}
 	}
 	//‰e

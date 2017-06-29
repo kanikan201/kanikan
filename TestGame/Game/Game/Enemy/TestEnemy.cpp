@@ -7,6 +7,7 @@ TestEnemy* enemy;
 TestEnemy::TestEnemy()
 {
 	skinModelData.LoadModelData("Assets/modelData/enemy_00.X", &animation);
+	matrix = skinModelData.GetBody()->FindBoneWorldMatrix("Bip001_R_Hand");
 
 	currentAnimSetNo = AnimationStand;
 
@@ -22,6 +23,7 @@ TestEnemy::~TestEnemy()
 {
 }
 
+
 void TestEnemy::Move()
 {
 	CVector3 toPlayer;
@@ -31,6 +33,17 @@ void TestEnemy::Move()
 	direction.y = wMatrix.m[2][1];
 	direction.z = wMatrix.m[2][2];
 	direction.Normalize();
+
+	CVector3 SwordPosition;
+	SwordPosition.x = matrix->m[3][0];
+	SwordPosition.y = matrix->m[3][1];
+	SwordPosition.z = matrix->m[3][2];
+
+	CVector3 PlayerPos = g_gameScene->getPlayer()->GetPosition();
+	PlayerPos.y += 1.0f;
+	CVector3 diff;
+	diff.Subtract(PlayerPos, SwordPosition);
+	float Len = diff.Length();
 
 	moveFrameCount++;
 	float length = 0.0f;
@@ -79,6 +92,13 @@ void TestEnemy::Move()
 	case AnimationAttack:
 		//攻撃中は動かない
 		move = CVector3::Zero;
+
+		if (Len < 1.0f) {
+			g_gameScene->getPlayer()->KneelDownAnimation();
+			//ゲームオーバー処理
+			g_gameScene->SetGameOver();
+		}
+
 		timer += GameTime().GetFrameDeltaTime();
 		if (timer > 2.5f) {
 			currentAnimSetNo = Waiting;

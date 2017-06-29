@@ -13,6 +13,7 @@ public:
 	}
 private:
 	void Move()override;
+	CMatrix*    matrix;
 	float		dir = 1.0f;
 	float		timer = 0.0f;			//タイマー
 	int			moveFrameCount = 0;

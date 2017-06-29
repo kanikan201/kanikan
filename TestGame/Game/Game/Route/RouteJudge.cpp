@@ -2,9 +2,8 @@
 #include "RouteJudge.h"
 #include "scene/GameScene.h"
 #include "RouteObject.h"
-#include "../Block.h"
+#include "Map/Block.h"
 #include "../Rock.h"
-//#include "Map/Block.h"
 
 RouteJudge::RouteJudge()
 {
@@ -197,6 +196,7 @@ void RouteJudge::Update()
 			se->Init("Assets/sound/panel.wav");
 			se->Play(false);
 
+			Count++;
 			Returnflg = true;
 
 			break;
