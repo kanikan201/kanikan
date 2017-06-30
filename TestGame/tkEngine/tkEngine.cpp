@@ -41,13 +41,15 @@ namespace tkEngine{
 
 		m_screenHeight = initParam.screenHeight;
 		m_screenWidth = initParam.screenWidth;
+		HICON hIcon = LoadIcon(initParam.hInstance, MAKEINTRESOURCE(101));
 		WNDCLASSEX wc =
 		{
 			sizeof(WNDCLASSEX), CS_CLASSDC, MsgProc, 0L, 0L,
-			GetModuleHandle(nullptr), nullptr, nullptr, nullptr, nullptr,
+			GetModuleHandle(nullptr), hIcon, nullptr, nullptr, nullptr,
 			TEXT("ONE RUN ONE LAND"), nullptr
 		};
 		RegisterClassEx(&wc);
+		
 		// Create the application's window
 		m_hWnd = CreateWindow(TEXT("ONE RUN ONE LAND"), TEXT("ONE RUN ONE LAND"),
 			WS_OVERLAPPEDWINDOW, 0, 0, m_screenWidth, m_screenHeight,
