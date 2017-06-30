@@ -219,8 +219,8 @@ void GameScene::CreateStage(state_stage stage)
 		numObject = sizeof(Stage1) / sizeof(Stage1[0]);
 		map->Create(Stage1, numObject);
 
-		nextStage = en_Stage2;
-		step = step_StageLoad;
+		//nextStage = en_Stage2;
+		nextStage = en_Stage3;	//ステージ2と3を入れ替え(仮)
 
 		bgmSource = NewGO<CSoundSource>(0);
 		bgmSource->Init("Assets/sound/Dungeon.wav");
@@ -239,8 +239,8 @@ void GameScene::CreateStage(state_stage stage)
 		numObject = sizeof(Stage2) / sizeof(Stage2[0]);
 		map->Create(Stage2, numObject);
 
-		nextStage = en_Stage3;
-		step = step_StageLoad;
+		//nextStage = en_Stage3;
+		nextStage = en_end;		//ステージ2と3を入れ替え(仮)
 
 		bgmSource = NewGO<CSoundSource>(0);
 
@@ -261,8 +261,8 @@ void GameScene::CreateStage(state_stage stage)
 		numObject = sizeof(Stage3) / sizeof(Stage3[0]);
 		map->Create(Stage3, numObject);
 
-		nextStage = en_end;
-		step = step_StageLoad;
+		//nextStage = en_end;
+		nextStage = en_Stage2;	//ステージ2と3を入れ替え(仮)
 
 		bgmSource = NewGO<CSoundSource>(0);
 

@@ -26,11 +26,13 @@ bool ShowSprite::Start()
 		break;
 
 	case en_Stage2:
-		texture.Load("Assets/sprite/stage/stage2.png");
+		//texture.Load("Assets/sprite/stage/stage2.png");
+		texture.Load("Assets/sprite/stage/stage3_ex.png");
 		break;
 
 	case en_Stage3:
-		texture.Load("Assets/sprite/stage/stage3.png");
+		//texture.Load("Assets/sprite/stage/stage3.png");
+		texture.Load("Assets/sprite/stage/stage2_ex.png");
 		break;
 	}
 	sprite.Init(&texture);
