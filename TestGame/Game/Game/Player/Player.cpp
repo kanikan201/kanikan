@@ -20,7 +20,7 @@ Player::~Player()
 
 bool Player::Start() {
 	//モデル
-	skinModelData.LoadModelData("Assets/modelData/Unity.X", &animation);
+	skinModelData.LoadModelData("Assets/modelData/Unity.X", &animation); 
 
 	skinModel.Init(skinModelData.GetBody());
 	skinModel.SetLight(&g_gameScene->getLight());			//デフォルトライトを設定。
@@ -128,12 +128,19 @@ void Player::Update()
 		//立ちアニメーション
 		currentAnimSetNo = AnimationStand;
 	}
+
 	//挟まれたらスケールを小さくする(仮)
 	if (block != NULL && block->GetPlayerHit() == true) {
 		scale.y -= 1.5f;
 		if (scale.y < 0.3f) {
 			scale.y = 0.3f;
 			block->SetPlayerHit(false);
+			if (Soundflg == false) {
+				CSoundSource* se = NewGO<CSoundSource>(0);
+				se->Init("Assets/sound/hit.wav");
+				se->Play(false);
+				Soundflg = true;
+			}
 		}
 		characterController.RemoveRigidBoby();
 		characterController.Init(0.5f, 0.2f, position);
@@ -149,6 +156,12 @@ void Player::Update()
 			scale.x = 0.3f;
 			rock[0]->SetRockHit(false);
 			rock[1]->SetRockHit(false);
+			if (Sound2flg == false) {
+				CSoundSource* se = NewGO<CSoundSource>(0);
+				se->Init("Assets/sound/hit.wav");
+				se->Play(false);
+				Sound2flg = true;
+			}
 		}
 		characterController.RemoveRigidBoby();
 		characterController.Init(0.2f, 1.0f, position);

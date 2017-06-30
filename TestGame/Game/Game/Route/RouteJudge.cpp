@@ -46,8 +46,7 @@ void RouteJudge::Reset(int set_x,int set_y)
 		for (int j = 0; j < Height; j++) {
 			int tmp = map[j][i];
 			//‰½‚à‚È‚¢or’Œ
-			if (tmp == Empty || tmp == Pole || tmp == Dummy 
-				|| tmp == Block1 || tmp == Block2 || tmp==Return) {
+			if (tmp == Empty || tmp == Pole || tmp == Dummy  || tmp==Return) {
 				StageCount++;
 			}
 
@@ -66,6 +65,10 @@ void RouteJudge::Reset(int set_x,int set_y)
 			if (!isReset && tmp == ResetTrap) {
 				routeObject[j][i]->SetResetLight();
 				StageCount++;
+			}
+			if (tmp == Block1 || tmp == Block2) {
+				StageCount++;
+				routeObject[j][i]->SetPressLight();
 			}
 		}
 	}
@@ -163,6 +166,8 @@ void RouteJudge::Update()
 			routeObject[currentGrid.y][currentGrid.x]->Perticle();
 			RouteCount++;
 
+			routeObject[currentGrid.y][currentGrid.x]->LightReset();
+
 			se->Init("Assets/sound/panel.wav");
 			se->Play(false);
 			
@@ -175,6 +180,8 @@ void RouteJudge::Update()
 			routeObject[currentGrid.y][currentGrid.x]->SetActiveFlag(true);
 			routeObject[currentGrid.y][currentGrid.x]->Perticle();
 			RouteCount++;
+
+			routeObject[currentGrid.y][currentGrid.x]->LightReset();
 
 			se->Init("Assets/sound/panel.wav");
 			se->Play(false);
@@ -193,11 +200,14 @@ void RouteJudge::Update()
 			routeObject[currentGrid.y][currentGrid.x]->Perticle();
 			RouteCount++;
 
-			se->Init("Assets/sound/panel.wav");
-			se->Play(false);
-
 			if (g_gameScene->getJudge()->GetThroughFlg() == true) {
 				Returnflg = true;
+				se->Init("Assets/sound/button65.wav");
+				se->Play(false);
+			}
+			else {
+				se->Init("Assets/sound/panel.wav");
+				se->Play(false);
 			}
 
 			break;
@@ -235,6 +245,10 @@ void RouteJudge::Update()
 
 	//ƒNƒŠƒA”»’è
 	if (isPassed()) {
+		g_gameScene->getPlayer()->SaluteAnimation();
+		g_gameScene->setClear(true);
+	}
+	if (Pad(0).IsTrigger(enButtonStart)) {
 		g_gameScene->getPlayer()->SaluteAnimation();
 		g_gameScene->setClear(true);
 	}

@@ -19,6 +19,7 @@ public:
 	void SetTrap();
 	void SetWorp();
 	void SetResetLight();
+	void SetPressLight();
 	CVector3 GetPosition() {
 		return position;
 	}

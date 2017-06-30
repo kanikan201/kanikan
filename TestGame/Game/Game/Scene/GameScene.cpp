@@ -312,6 +312,8 @@ void GameScene::SetGameOver() {
 
 	route->SetResetEnd(false);
 	route->SetThroughFlg(false);
+	player->SetSoundflg(false);
+	player->SetSound2flg(false);
 
 	//パネルのライトを暗くする
 	CVector3 ambientLight;

@@ -31,6 +31,14 @@ public:
 		scale = { s,s,s };
 	}
 
+	void SetSoundflg(bool flg) {
+		Soundflg = flg;
+	}
+
+	void SetSound2flg(bool flg) {
+		Sound2flg = flg;
+	}
+
 //モーション
 	enum AnimationNo {
 		AnimationStand,		//立ち
@@ -63,4 +71,6 @@ private:
 	AnimationNo			prevAnim;				//変更前のモーション
 
 	float				timer = 0.0f;		//タイマー。
+	bool				Soundflg = false;
+	bool				Sound2flg = false;
 };

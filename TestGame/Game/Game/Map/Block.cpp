@@ -66,6 +66,9 @@ void Block::Update()
 
 void Block::Move()
 {
+	if (position.y <= 0.0f && Upflg == false) {
+
+	}
 	if (position.y <= 0.0f && Upflg == false && timer >= 2.0f) {
 		move = UpPos;
 		Upflg = true;
@@ -79,9 +82,6 @@ void Block::Move()
 		if (Blocklength < 5.0f) {
 			PlayerHit = true;
 		}
-		/*else {
-			PlayerHit = false;
-		}*/
 	}
 	position.Add(move);
 }

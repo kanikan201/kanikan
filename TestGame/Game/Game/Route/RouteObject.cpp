@@ -143,3 +143,13 @@ void RouteObject::SetTrap() {
 	skinModel.SetLight(&light);
 	flag = true;
 }
+
+void RouteObject::SetPressLight() {
+	SetActiveFlag(true);
+	//×–‚ƒpƒlƒ‹‚ÌF(‰¼)
+	CVector3 aLight = { 0.10f, 0.00f , 0.10f };
+	aLight.Scale(2.8f);
+	light.SetAmbinetLight(aLight);
+	skinModel.SetLight(&light);
+	flag = true;
+}
