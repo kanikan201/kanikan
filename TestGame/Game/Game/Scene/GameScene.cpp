@@ -188,6 +188,7 @@ void GameScene::Update()
 				g_fade->StartFadeOut();
 				step = step_WaitFadeOut;
 				nextStage = currentStage;
+				totalTime += gameTime;
 			}
 			//‚â‚ß‚é‚ð‘I‘ð
 			else if (gameOver->GetState()== GameOverScene::enEnd) {
