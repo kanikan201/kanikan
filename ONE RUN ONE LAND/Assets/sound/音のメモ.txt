@@ -1,0 +1,14 @@
+効果音
+
+・炎			fire.wav
+・氷			ice.wav
+・光る音		light.wav
+・箱を引きずる音	trailing.wav
+・宝箱			Treasure.wav
+・柱が壊れる音		explosion.wav
+・決定音		Decision.wav
+・選択音		Choice.wav
+・キャラクターの足音	footstep.wav
+
+decision26	カメラ切り替え音?
+cancel6		カメラ切り替え不可時
