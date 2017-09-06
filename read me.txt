@@ -1,2 +1,25 @@
-実行ファイル　GitHub\kanikan\実行ファイル
-動画
+実行ファイル　kanikan/実行ファイル/Game.exe
+動画          動画/ONE RUN ONE LAND.mp4
+プロジェクト　TestGame/Game/Game.sln
+
+・学校のライブラリ
+tkEngine
+
+・プログラム担当者
+小西　健吾
+砂田　晴香
+兵頭　智輝
+
+・担当したプログラム
+小西　健吾
+　Enemy , Camera , Map , Player , Route
+砂田　晴香
+　Fade , Camera , Interface , Player , Scene
+兵頭　智輝
+　BackGround
+
+・外部ライブラリ
+BulletCollision
+BulletDynamics
+BulletSoftBody
+LinearMath
